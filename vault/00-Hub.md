@@ -23,5 +23,6 @@ interpretable ML on a unified open dataset. See [[concept-foundation]].
 - [x] Concept foundation written
 - [x] Spec signed off
 - [x] Implementation plan signed off
-- [ ] Phase 1 scaffold (in progress)
+- [x] Phase 1 scaffold (tested, end-to-end on synthetic fixture)
+- [x] Pushed to GitHub (zegran/AIH2, tag phase1-scaffold)
 - [ ] Data extraction — WP1 (>=150 hard floor, ~300 target) ← next critical stage
