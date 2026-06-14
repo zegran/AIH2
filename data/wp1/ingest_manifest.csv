@@ -1,0 +1,36 @@
+source_filename,matched_citekey,doi,in_scope,system_class,action,title,notes
+chen2020.md,chen2020,10.1016/j.ijhydene.2020.03.027,Y,mechanically_activated,archived,Chen et al. — H2 from Al-Bi(OH)3 composite promoted by NaCl,likely figure-only data
+david2012.md,david2012,10.1016/j.jhazmat.2012.01.064,Y,waste_al,archived,David & Kopac — Hydrolysis of aluminum dross material to achieve zero hazardous waste,
+deng2010.md,deng2010,10.1111/j.1551-2916.2010.03969.x,Y,pure_al_alkali,archived,Deng et al. — Role of particle sizes in hydrogen generation by reaction of Al with w,likely figure-only data
+dudoladov2016.md,dudoladov2016,10.1016/j.ijhydene.2015.11.122,Y,pure_al_alkali,archived,Dudoladov et al. — H2 by Al oxidation in aqueous solutions at low temperatures,
+elitzur2014.md,elitzur2014,10.1016/j.ijhydene.2014.02.037,Y,al_alloy,archived,Elitzur et al. — Study of H2 production and storage based on Al–water reaction,likely figure-only data
+godart2019.md,godart2019,10.1016/j.ijhydene.2019.03.140,Y,liquid_metal_activated,archived,Godart et al. — H2 from Al–water subject to varied pressures and temperatures,
+guan2019.md,guan2019,10.1016/j.energy.2019.116107,Y,mechanically_activated,archived,Guan et al. — H2 from Al composites activated by low-melting metals/oxides/salts,
+ho2016.md,ho2016,10.1016/j.ijhydene.2015.11.083,Y,waste_al,archived,Ho — Enhancement of H2 using waste Al cans hydrolysis in low alkaline water,likely figure-only data
+irankhah2018.md,irankhah2018,10.1016/j.ijhydene.2018.07.014,Y,mechanically_activated,archived,Irankhah et al. — H2 generation using activated aluminum/water reaction,
+jayaraman2015.md,jayaraman2015,10.4236/epe.2015.79041,Y,liquid_metal_activated,archived,"Jayaraman et al. — Effects of Al particle size, Galinstan content, T on H2",likely figure-only data
+liuyh2017.md,liuyh2017,10.1016/j.ijhydene.2017.02.205,Y,al_alloy,archived,"Liu Y. et al. — H2 from hydrolysis of gas-atomized Al-Bi, Al-Sn powders",
+liuzh2021.md,liuzh2021,10.1016/j.ijhydene.2021.10.113,Y,mechanically_activated,archived,"Liu Z. et al. — H2 performance and hydrolyzates of active Al composites (Bi, Bi2O3)",
+meng2022.md,meng2022,10.1016/j.ijhydene.2022.09.127,Y,al_alloy,archived,"Meng A. et al. — Mechanism of H2 from low-melting elements (Ga,In,Sn) on Al alloy hydro",
+noland2020.md,noland2020,10.1016/j.ijhydene.2020.06.165,Y,pure_al_alkali,archived,Noland et al. — Apparent kinetics of H2 with water-slurried Al in NaOH,
+prabu2021.md,prabu2021,10.1002/er.6478,Y,pure_al_alkali,archived,Prabu et al. — Improved Al/water reaction using Al(OH)3 catalyst crystalline phases,
+preez2018.md,preez2018,10.1016/j.ijhydene.2018.09.133,Y,mechanically_activated,archived,du Preez & Bessarabov — H2 by hydrolysis of mechanochemically activated Al-Sn-In composites,
+preez2019.md,preez2019,10.1016/j.ijhydene.2019.06.154,Y,mechanically_activated,archived,du Preez & Bessarabov — Effects of Bi and Sn on mechanochemical processing of Al composites,
+qiao2019.md,qiao2019,10.1016/j.ijhydene.2018.12.124,Y,al_alloy,archived,Qiao D. et al. — Superior H2 performance of multi-component Al alloys,
+razavi2013.md,razavi2013,10.1016/j.ijhydene.2012.10.106,Y,mechanically_activated,archived,Razavi-Tousi & Szpunar — Effect of ball-milling structural evolution of Al powder on H2,likely figure-only data
+razavi2016.md,razavi2016,10.1016/j.ijhydene.2015.11.080,Y,pure_al_alkali,archived,Razavi-Tousi & Szpunar — Modification of the shrinking core model for Al–water hydrogen generat,
+rin2021.md,rin2021,10.1016/j.ijhydene.2021.06.101,Y,pure_al_alkali,archived,Rin et al. — H2 from hydrolysis of Al promoted by Ni–Li–B catalyst,
+shmelev2016.md,shmelev2016,10.1016/j.ijhydene.2016.05.159,Y,pure_al_alkali,archived,"Shmelev et al. — Hydrogen production by reaction of aluminum with water (KOH, Cu activa",
+tan2016.md,tan2016,10.1016/j.ijhydene.2016.10.090,Y,liquid_metal_activated,archived,Tan S. et al. — Activation of Al with four liquid metals to generate H2 in alkaline so,likely figure-only data
+tekade2018a.md,tekade2018a,10.1515/ijcre-2017-0202,Y,pure_al_alkali,archived,Tekade et al. — H2 in annular micro-reactor; SCM modelling,
+tekade2018k.md,tekade2018k,10.1515/ijcre-2018-0193,Y,pure_al_alkali,archived,Tekade et al. — KOH-activated H2 generation using Al in water splitting,
+tekade2018n.md,tekade2018n,10.1515/ijcre-2017-0250,Y,pure_al_alkali,archived,Tekade et al. — H2 in water splitting using Al: effect of NaOH concentration and SCM m,
+tekade2020.md,tekade2020,10.1016/j.ijhydene.2019.09.026,Y,waste_al,archived,Tekade et al. — H2 via water splitting using waste Al in presence of gallium,
+wanghq2017.md,wanghq2017,10.1016/j.energy.2017.05.031,Y,pure_al_alkali,archived,Wang H. et al. — Facile H2 from Al–water promoted by choline hydroxide,
+wangxy2021.md,wangxy2021,10.1016/j.ijhydene.2021.07.191,Y,pure_al_alkali,archived,Wang X. et al. — Kinetics of Al–water reaction based on improved multi-stage shrinking ,
+wen2018.md,wen2018,10.1002/er.3955,Y,pure_al_alkali,archived,Wen et al. — Kinetics of H2 from Al/water using synthesized Al hydroxides,
+xiao2018.md,xiao2018,10.1016/j.energy.2018.05.201,Y,mechanically_activated,archived,Xiao F. et al. — H2 from hydrolysis of activated Al composites in tap water,
+xiao2020.md,xiao2020,10.1016/j.jallcom.2019.152800,Y,mechanically_activated,archived,Xiao F. et al. — Effect of carbon materials and Bi particle size on H2 of Al composites,
+yang2018.md,yang2018,10.1002/er.3953,Y,pure_al_alkali,archived,Yang et al. — H2 by Al–water reaction in acidic and alkaline media,PARTIAL: drop acid-media rows
+yavor2013.md,yavor2013,10.1016/j.ijhydene.2013.09.070,Y,pure_al_alkali,archived,Yavor et al. — Enhanced hydrogen generation from aluminum–water reactions,
+yolcular2020.md,yolcular2020,10.1080/15567036.2020.1822468,Y,waste_al,archived,Yolcular & Karaoglu — H2 performance of waste Al alloy chips and powders,
