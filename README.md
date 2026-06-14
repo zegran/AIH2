@@ -58,7 +58,7 @@ tests/     mirrors src/
 | WP | Goal | Output | Phase | Status | Depends on |
 |----|------|--------|-------|--------|-----------|
 | **WP0** | Scaffold + tested skeleton pipeline | Repo, env, modules, tests, synthetic fixture | 1 | ✅ done | — |
-| **WP1** | **Literature data extraction** | Real curated dataset (≥150 floor, ~300 target), provenance + quality tiers | 1 | 🔜 **next, critical** | WP0 |
+| **WP1** | **Literature data extraction** | Real curated dataset (≥150 floor, ~300 target), provenance + quality tiers | 1 | 🟡 **in progress** — source pool built (71 in-scope studies), extraction sheet schema-locked, 16 seed rows | WP0 |
 | **WP2** | Modeling + leakage-controlled CV | Comparative models, GroupKFold/LOSO, optimism gap | 1 | ⏳ skeleton done; rerun on real data | WP1 |
 | **WP3** | Explainability (SHAP + ALE) | SHAP main+interaction, ALE, permutation, stability | 1 | ⏳ skeleton done; rerun on real data | WP2 |
 | **WP4** | Physical validation | Arrhenius Eₐ per `system_class` (P1); SCM regime switch + consistency metric (P2) | 1 / 2 | ⏳ Arrhenius live; SCM/consistency stubbed | WP3 |
@@ -72,12 +72,20 @@ implemented.
 ## Where we are / what's next
 
 **Done:** concept foundation · design spec · implementation plan · **WP0 scaffold** (tested,
-end-to-end on synthetic fixture) · GitHub push.
+end-to-end on synthetic fixture) · GitHub push · **WP1 step 1–3** (screened source pool of 71
+in-scope studies, schema-locked extraction sheet, 16 seed rows). WP1 artifacts live under
+`data/wp1/` — see `data/wp1/WP1_PROGRESS_AND_CLI_HANDOFF.md`.
 
-**Next critical stage → WP1: real literature data extraction.** Until the curated dataset
-exists, the pipeline runs on `data/curated/fixture_v0.csv`, a **synthetic** placeholder. Every
-module is built and tested so that dropping the real dataset into `data/curated/` and pointing
-the Hydra config at it reruns the whole analysis with no code changes.
+**In progress → WP1 condition-level extraction.** The pipeline still runs on
+`data/curated/fixture_v0.csv` (synthetic placeholder); the real dataset is being built in
+`data/wp1/AIH2_WP1_extraction_sheet.xlsx`. When extracted rows reach ≥150 (target ~300), the
+curated file is written to `data/curated/`, the Hydra `data.path` is pointed at it, and the
+pipeline reruns to produce real results (including a meaningful optimism gap) — no code changes.
+
+**Open WP1 items (from the handoff):** replace `study_id` citekeys with confirmed DOIs;
+seed rows are tier-C abstract-level (need PDFs + WebPlotDigitizer for condition-level rows);
+review `buryakov2024` (`water_type=sea` proxy for AlCl₃ saline); keep only alkaline/neutral
+rows of `yang2018` (drop acid-media rows).
 
 > **Important — scaffold done ≠ paper ready.** Phase 1 is the skeleton on a synthetic fixture.
 > A submission-ready manuscript requires **Phase 1 + core Phase 2** (shrinking-core regime-switch
