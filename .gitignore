@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Project data & outputs
+data/raw/
+run/outputs/
+temp/
+
+# Keep curated data and dictionaries tracked
+!data/curated/
+!data/data_dictionary.md
+
+# Hydra
+outputs/
+multirun/
+
+# Generated result artifacts (reproducible from the pipeline); keep dirs via .gitkeep
+results/**/*.csv
+results/**/*.png
+results/**/*.pdf
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
