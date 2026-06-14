@@ -1,0 +1,14 @@
+seed: 42
+data:
+  path: data/curated/fixture_v0.csv
+cv:
+  n_splits: 5
+primary_model: lightgbm
+models:
+  - elasticnet
+  - knn
+  - random_forest
+  - xgboost
+  - lightgbm
+  - gaussian_process
+output_dir: results
