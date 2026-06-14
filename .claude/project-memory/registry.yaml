@@ -1,0 +1,8 @@
+project: AIH2
+bound: true
+vault_path: vault
+created: 2026-06-14
+concept_foundation: plan/2026-06-14-aih2-concept-foundation.md
+spec: plan/2026-06-14-aih2-design-spec.md
+implementation_plan: plan/2026-06-14-aih2-phase1-implementation-plan.md
+language: en   # vault personal notes may be Turkish
