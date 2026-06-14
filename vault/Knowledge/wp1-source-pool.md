@@ -7,8 +7,18 @@
 
 ## State
 WP1 step 1–3 done: screened pool + schema-locked extraction sheet + 16 seed rows.
-Extraction (condition-level) is in progress. Hard floor 150, target ~300; switch the curated
-dataset only at ≥150 rows.
+**Ingest done for the first download batch: 35/71 IN-scope studies have full text archived**
+(`data/raw/literature/`, gitignored) with `vault/Papers/` stubs and resolved DOIs. 36 studies
+still to retrieve (see `data/wp1/INGEST_GAP_REPORT.md`). Condition-level extraction in progress.
+Hard floor 150, target ~300; switch the curated dataset only at ≥150 rows.
+
+### Obtained vs missing (after first ingest)
+- pure_al_alkali 15/26 · al_alloy 4/10 · mechanically_activated 9/15 ·
+  liquid_metal_activated 3/4 · waste_al 4/16.
+- **At-risk for ≥40 rows:** al_alloy, liquid_metal_activated, waste_al (few obtained studies).
+- **Priority missing (contradiction evidence):** `martinezv2026` (H1 inverted-U),
+  `davies2022mat` (rate–yield), `manilevich2020` (rate–yield).
+- Ingest artifacts: `data/wp1/ingest_manifest.csv`, `INGEST_GAP_REPORT.md`, `resolved_dois.csv`.
 
 ## Artifacts (`data/wp1/`)
 - `AIH2_WP1_source_pool.xlsx` — screened pool (Source_Pool / Background_Excluded /
