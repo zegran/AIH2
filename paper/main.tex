@@ -1,0 +1,35 @@
+% Generic article now; switch to Elsevier by replacing the documentclass block with:
+%   \documentclass[preprint,12pt]{elsarticle}
+% and wrapping the title/author block in the elsarticle frontmatter macros.
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[numbers]{natbib}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\graphicspath{{../results/figures/}}
+
+\title{Explaining Contradictory Parameter Effects in Aluminum--Water Hydrolysis for
+Hydrogen Production via Physics-Validated Interpretable Machine Learning}
+\author{Author One \and Author Two}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+% One paragraph: the contradiction problem in Al--water hydrolysis, the unified
+% provenance-tracked dataset, leakage-controlled interpretable ML (random-vs-grouped optimism
+% gap), Arrhenius physical validation, and the contradiction-resolution result.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/results}
+\input{sections/conclusion}
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+\end{document}
