@@ -4,9 +4,24 @@
 schema). Only validated rows count.*
 
 ## Totals
-- **Rows extracted: 88** (validator PASS). Per class: al_alloy 29 · mechanically_activated 28 ·
-  **pure_al_alkali 18** · **liquid_metal_activated 13**. Floor 150 / target ~300 → in progress.
-- Studies attempted: 16 (8 productive, 8 yielded 0 — figure-only / kinetics / wrong-PDF).
+- **Rows extracted: 109** (validator PASS). Per class: **al_alloy 45 (≥40 ✓)** ·
+  mechanically_activated 32 · pure_al_alkali 18 · liquid_metal_activated 13 · waste_al 1.
+  Floor 150 / target ~300 → in progress.
+- Studies attempted: 21 (11 productive). `al_alloy` is the first class to clear the ≥40 rule.
+
+## Batch 3 (2026-06-15) — 5 studies (waste_al start + push al_alloy/mech)
+| study | class | rows | note |
+|---|---|---|---|
+| liuyh2017 | al_alloy | 16 | Al-Bi/Al-Sn fresh+air-exposed, reported % |
+| chen2020 | mechanically_activated | 4 | Bi(OH)3 composite, derived mL/g (<1244) |
+| mezulis2023 | waste_al | 1 | 1M NaOH 92% (tier B) |
+| yolcular2020 | — | 0 | yield figure-only |
+
+### ⚠️ HELD — david2012 (9 rows, decision needed)
+All 9 reported yields are **>100%** (104–106%): waste Al **dross** contains co-reactive metals
+(Zn, Ni, Mg) so H2 per gram of *Al* exceeds the pure-Al theoretical (1244 mL/g). Scientifically
+real, but breaks the `h2_yield_pct ∈ [0,100]` schema. **Not merged** pending a decision: exclude
+/ allow >100 for waste-Al (relax validator, tier C) / cap at 100.
 
 ## Batch 2 (2026-06-15) — 8 studies (thin-class focus)
 | study | class | rows | note |
