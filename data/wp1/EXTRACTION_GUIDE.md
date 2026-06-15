@@ -17,6 +17,10 @@ reported experimental condition.** Every row must pass `tools/validate_rows.py` 
 - Yield % vs. the theoretical **1.245 L H2 per gram Al at STP**. If a study reports volume,
   derive: `yield% = volume_mL / (mass_Al_g * 1245) * 100` and set `value_origin=derived`.
 - Leave `max_rate_ml_min_g` and `t80_min` **blank** (Phase 2).
+- **Yield > 100% rule (decided 2026-06-15):** a reported/derived yield exceeding 100% of the
+  *pure-Al* theoretical (1244 mL/g) — common for waste/dross with co-reactive Zn/Ni/Mg — is
+  **EXCLUDED**. It signals a contaminated yield basis, not a clean Al-hydrolysis yield. The
+  validator enforces `h2_yield_pct ∈ [0,100]`. Document such studies as waste_al heterogeneity.
 
 ## The cardinal rule: `absent = 0` vs `unreported = NaN`
 - A wt% (or any) field is **`0`** only when the source states the element/quantity is **absent**.

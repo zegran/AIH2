@@ -17,11 +17,10 @@ schema). Only validated rows count.*
 | mezulis2023 | waste_al | 1 | 1M NaOH 92% (tier B) |
 | yolcular2020 | — | 0 | yield figure-only |
 
-### ⚠️ HELD — david2012 (9 rows, decision needed)
-All 9 reported yields are **>100%** (104–106%): waste Al **dross** contains co-reactive metals
-(Zn, Ni, Mg) so H2 per gram of *Al* exceeds the pure-Al theoretical (1244 mL/g). Scientifically
-real, but breaks the `h2_yield_pct ∈ [0,100]` schema. **Not merged** pending a decision: exclude
-/ allow >100 for waste-Al (relax validator, tier C) / cap at 100.
+### EXCLUDED — david2012 (9 rows, >100% yield) — decided 2026-06-15
+All 9 yields were **>100%** (104–106%): waste Al **dross** has co-reactive Zn/Ni/Mg so H2 per
+gram of *Al* exceeds the pure-Al theoretical. **Decision: exclude** (yield basis contaminated;
+target stays ≤100). Rule now applies to all waste_al/dross studies — see `EXTRACTION_GUIDE.md`.
 
 ## Batch 2 (2026-06-15) — 8 studies (thin-class focus)
 | study | class | rows | note |
