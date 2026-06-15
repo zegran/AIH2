@@ -20,6 +20,12 @@ Hard floor 150, target ~300; switch the curated dataset only at ≥150 rows.
   `davies2022mat` (rate–yield), `manilevich2020` (rate–yield).
 - Ingest artifacts: `data/wp1/ingest_manifest.csv`, `INGEST_GAP_REPORT.md`, `resolved_dois.csv`.
 
+### Phase A — full citations of the 36 missing (DOIs resolved)
+`data/wp1/PHASE_A_MISSING_36.md` (+ `phase_a_missing_36.csv`): Crossref-resolved, verified DOIs.
+**33/36 have a DOI** (7 confirmed-bib, 6 verified-high, 18 medium, 2 preprint); **3 unresolved**
+(`saroukanian2020`, `manilevich2021b` book chapter, `singh2019`). Next: per-DOI Unpaywall/OA
+reachability check (access-gated, OA-only).
+
 ## Artifacts (`data/wp1/`)
 - `AIH2_WP1_source_pool.xlsx` — screened pool (Source_Pool / Background_Excluded /
   Per_Class_Summary tabs).
