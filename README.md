@@ -58,7 +58,7 @@ tests/     mirrors src/
 | WP | Goal | Output | Phase | Status | Depends on |
 |----|------|--------|-------|--------|-----------|
 | **WP0** | Scaffold + tested skeleton pipeline | Repo, env, modules, tests, synthetic fixture | 1 | ✅ done | — |
-| **WP1** | **Literature data extraction** | Real curated dataset (≥150 floor, ~300 target), provenance + quality tiers | 1 | 🟡 **in progress** — **52-study active pool, all full-text in hand** (19 unreachable excluded → `WP1_EXCLUDED.md`); curation done (`ARCHIVE_CURATION.md`); gap = `liquid_metal_activated` (3) → targeted OA search; 16 seed rows | WP0 |
+| **WP1** | **Literature data extraction** | Real curated dataset (≥150 floor, ~300 target), provenance + quality tiers | 1 | 🟢 **archive assembled** — **59-study active pool, all full-text in hand**; every class feasible for ≥40 rows (liquid_metal gap closed via Consensus OA); 21 excluded (`WP1_EXCLUDED.md`); → **Phase B extraction next** (`WP1_READINESS_REPORT.md`) | WP0 |
 | **WP2** | Modeling + leakage-controlled CV | Comparative models, GroupKFold/LOSO, optimism gap | 1 | ⏳ skeleton done; rerun on real data | WP1 |
 | **WP3** | Explainability (SHAP + ALE) | SHAP main+interaction, ALE, permutation, stability | 1 | ⏳ skeleton done; rerun on real data | WP2 |
 | **WP4** | Physical validation | Arrhenius Eₐ per `system_class` (P1); SCM regime switch + consistency metric (P2) | 1 / 2 | ⏳ Arrhenius live; SCM/consistency stubbed | WP3 |
@@ -76,13 +76,14 @@ end-to-end on synthetic fixture) · GitHub push · **WP1 step 1–3** (screened 
 in-scope studies, schema-locked extraction sheet, 16 seed rows). WP1 artifacts live under
 `data/wp1/` — see `data/wp1/WP1_PROGRESS_AND_CLI_HANDOFF.md`.
 
-**In progress → WP1 condition-level extraction.** **52-study active pool**, all full text in
-hand under `data/raw/literature/` (gitignored) with `vault/Papers/` stubs and resolved DOIs
-(tracker: `data/wp1/master_dois.csv`). The 19 unreachable studies were **permanently excluded**
-(`data/wp1/WP1_EXCLUDED.md`, do-not-resuggest). A bibliometric **curation** found the pool
-strong (≈46/52 Q1/Q2); only `li2019` + `sykhyi2024` flagged weak. The binding gap is
-`liquid_metal_activated` (3 studies) → a focused **open-access Consensus search** is planned
-(`data/wp1/ARCHIVE_CURATION.md`). ⚠️ Curation is deliberately minimal to avoid selection bias. The pipeline still runs on
+**Archive assembled → Phase B extraction next.** **59-study active pool**, all full text in hand
+under `data/raw/literature/` (gitignored) with `vault/Papers/` stubs and resolved DOIs (tracker:
+`data/wp1/master_dois.csv`). Assembled over 4 ingest batches (initial 35 + Sci-Hub 11 + MDPI 6 +
+Consensus OA 9, −2 curation). **Every `system_class` is now feasible for ≥40 rows** — the
+`liquid_metal_activated` gap (was 3) is closed at 10 via a focused open-access Consensus search.
+21 studies excluded (19 unreachable + 2 weak-venue; `WP1_EXCLUDED.md`). Full status:
+`data/wp1/WP1_READINESS_REPORT.md`. ⚠️ Curation kept minimal to avoid selection bias; OA-only
+access documented as a limitation. The pipeline still runs on
 `data/curated/fixture_v0.csv` (synthetic placeholder); the real dataset is being built in
 `data/wp1/AIH2_WP1_extraction_sheet.xlsx`. When extracted rows reach ≥150 (target ~300), the
 curated file is written to `data/curated/`, the Hydra `data.path` is pointed at it, and the

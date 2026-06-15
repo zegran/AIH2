@@ -12,14 +12,15 @@ WP1 step 1–3 done: screened pool + schema-locked extraction sheet + 16 seed ro
 still to retrieve (see `data/wp1/INGEST_GAP_REPORT.md`). Condition-level extraction in progress.
 Hard floor 150, target ~300; switch the curated dataset only at ≥150 rows.
 
-### Active pool after curation (52 in hand; 19 unreachable excluded)
-- 19 unreachable permanently excluded → `WP1_EXCLUDED.md`. Active pool **52** (per-class:
-  pure_al_alkali 20 · al_alloy 7 · mechanically_activated 11 · liquid_metal_activated 3 ·
-  waste_al 11).
-- Bibliometric curation (`ARCHIVE_CURATION.md`, `archive_quality_52.csv`): ~46/52 Q1/Q2;
-  only `li2019` + `sykhyi2024` weak; `jayaraman2015` weak-venue but KEEP (H1).
-- **Binding gap: `liquid_metal_activated` (3)** → targeted OA Consensus search (+5–7), al_alloy
-  +2–3. Snapshots: 35 → 46 → 52 in hand; pool 71 → 52 active after exclusion.
+### Archive assembled — 59 active studies (Phase B ready)
+- Active pool **59**, all full text in hand (per-class: pure_al_alkali 18 · al_alloy 9 ·
+  mechanically_activated 11 · liquid_metal_activated 10 · waste_al 11). **Every class feasible
+  for ≥40 rows.** Milestone: `WP1_READINESS_REPORT.md`.
+- 21 excluded: 19 unreachable + 2 weak-venue (li2019, sykhyi2024) → `WP1_EXCLUDED.md`.
+- `liquid_metal_activated` gap (was 3) closed at 10 via Consensus OA search (+7: lu2017,
+  fischman2020, ilyukhina2012, meroueh2020, nizovskii2017, slocum2020, parmuzina2009);
+  al_alloy +2 (kravchenko2005, changying2017). `jayaraman2015` kept (H1), tier C.
+- Snapshots in-hand: 35 → 46 → 52 → 59. Next: Phase B condition-level extraction.
 - **At-risk for ≥40 rows:** al_alloy, liquid_metal_activated, waste_al (few obtained studies).
 - **Priority missing (contradiction evidence):** `martinezv2026` (H1 inverted-U),
   `davies2022mat` (rate–yield), `manilevich2020` (rate–yield).
