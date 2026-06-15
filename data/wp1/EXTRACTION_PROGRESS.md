@@ -4,8 +4,22 @@
 schema). Only validated rows count.*
 
 ## Totals
-- **Rows extracted: 69** (validator PASS). Per class: pure_al_alkali 6 · al_alloy 29 ·
-  mechanically_activated 28 · liquid_metal_activated 6. Floor 150 / target ~300 → in progress.
+- **Rows extracted: 88** (validator PASS). Per class: al_alloy 29 · mechanically_activated 28 ·
+  **pure_al_alkali 18** · **liquid_metal_activated 13**. Floor 150 / target ~300 → in progress.
+- Studies attempted: 16 (8 productive, 8 yielded 0 — figure-only / kinetics / wrong-PDF).
+
+## Batch 2 (2026-06-15) — 8 studies (thin-class focus)
+| study | class | rows | note |
+|---|---|---|---|
+| wen2018 | pure_al_alkali | 8 | Al(OH)3-catalyst, ~95% across T (tier C) |
+| ilyukhina2012 | liquid_metal_activated | 5 | gallam-activated, range-midpoint (tier C) |
+| prabu2021 | pure_al_alkali | 4 | Table 2 Al(OH)3 phases, reported % (tier B) |
+| fischman2020 | liquid_metal_activated | 1 | slurry 93.4% (tier C) |
+| lu2017 | liquid_metal_activated | 1 | saline 57.1% (water_type=sea, tier C) |
+| tan2016, godart2019, noland2020 | — | 0 | yield figure-only / thermo / rates-only |
+
+QC: `wen2018` activator_ratio blanked (was Al(OH)3 catalyst fraction, not a metal-activator
+ratio — consistency with `prabu2021`).
 
 ## Batch 1 (2026-06-15) — 8 studies dispatched (parallel agents + QC)
 
