@@ -1,0 +1,52 @@
+# AIH2 WP1 non-open-access DOIs (verified via Crossref). citekey -> DOI
+an2022           10.1016/j.energy.2022.123489
+chen2020         10.1016/j.ijhydene.2020.03.027
+david2012        10.1016/j.jhazmat.2012.01.064
+deebika2023      10.1016/j.ijhydene.2023.06.015
+deng2010         10.1111/j.1551-2916.2010.03969.x
+dudoladov2016    10.1016/j.ijhydene.2015.11.122
+elitzur2014      10.1016/j.ijhydene.2014.02.037
+godart2019       10.1016/j.ijhydene.2019.03.140
+huang2023        10.1016/j.ijhydene.2023.08.332
+irankhah2018     10.1016/j.ijhydene.2018.07.014
+kale2021         10.1016/j.joei.2021.11.005
+liuyh2017        10.1016/j.ijhydene.2017.02.205
+liuzh2021        10.1016/j.ijhydene.2021.10.113
+meng2022         10.1016/j.ijhydene.2022.09.127
+meng2023         10.1016/j.mtsust.2022.100284
+prabu2021        10.1002/er.6478
+preez2018        10.1016/j.ijhydene.2018.09.133
+preez2019        10.1016/j.ijhydene.2019.06.154
+qiao2019         10.1016/j.ijhydene.2018.12.124
+razavi2013       10.1016/j.ijhydene.2012.10.106
+razavi2016       10.1016/j.ijhydene.2015.11.080
+rin2021          10.1016/j.ijhydene.2021.06.101
+shmelev2016      10.1016/j.ijhydene.2016.05.159
+tan2016          10.1016/j.ijhydene.2016.10.090
+tekade2018k      10.1515/ijcre-2018-0193
+tekade2018n      10.1515/ijcre-2017-0250
+tekade2020       10.1016/j.ijhydene.2019.09.026
+testa2024        10.1016/j.ijhydene.2024.08.152
+wanghq2017       10.1016/j.energy.2017.05.031
+wen2018          10.1002/er.3955
+wu2025           10.1016/j.renene.2025.122384
+xiao2018         10.1016/j.energy.2018.05.201
+xiao2020         10.1016/j.jallcom.2019.152800
+yang2018         10.1002/er.3953
+yavor2013        10.1016/j.ijhydene.2013.09.070
+yolcular2020     10.1080/15567036.2020.1822468
+
+# DOI PENDING (Crossref throttled / preprint-only / book chapter) — resolve via Zotero or retry:
+gao2023ijhe      (pending) — Catalyst-free high-T high-P Al–water reaction
+gao2023jes       (pending) — Catalyst-free micron Al + water at low/medium T
+guan2019         (pending) — H2 from Al composites activated by low-melting metals/o
+ho2016           (pending) — Enhancement of H2 using waste Al cans hydrolysis in low
+jayaraman2015    (pending) — Effects of Al particle size, Galinstan content, T on H2
+kandasamy2023    (pending) — Al–water splitting: combined experimental and theoretic
+manilevich2021b  (pending) — Activated aluminum for hydrogen generation from water
+mohammed2025     (pending) — Thermally sintered Al-Ga-In microcomposites for H2
+noland2020       (pending) — Apparent kinetics of H2 with water-slurried Al in NaOH
+tekade2018a      (pending) — H2 in annular micro-reactor; SCM modelling
+wangxy2021       (pending) — Kinetics of Al–water reaction based on improved multi-s
+wangyd2024       (pending) — Hydrogen production of millimeter aluminum spheres in s
+xuan2023         (pending) — Rapid H2 from Al/activated charcoal composite with alka
