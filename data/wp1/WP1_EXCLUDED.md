@@ -30,3 +30,12 @@
 - These were attempted (Sci-Hub session 2026-06-15) and could not be retrieved; the project access route is **open-access only** (no institutional access).
 - Chasing them further is low-value per the end-to-end plan (only extracted rows count).
 - They remain **citable** for the contradiction motivation (reported Ea / yield from abstracts) but contribute **no extracted data rows**.
+
+## Removed in curation (in hand, but low value — 2026-06-15)
+
+| citekey | DOI | reason |
+|---|---|---|
+| `li2019` | 10.1051/e3sconf/201911803048 | E3S Web of Conferences (conference proceedings, not a journal); 1 citation; NaF medium off the main alkali axis |
+| `sykhyi2024` | 10.32434/0321-4095-2024-157-6-55-60 | Voprosy Khimii (obscure venue); 0 citations; partly electrochemical (dissolvable anode) — borderline scope |
+
+> Archived PDFs remain on disk but are flagged **no-extract** (removed from `master_dois.csv`).
