@@ -4,10 +4,26 @@
 schema). Only validated rows count.*
 
 ## Totals
-- **Rows extracted: 119** (validator PASS). Per class: **al_alloy 45 (≥40 ✓)** ·
-  mechanically_activated 32 · pure_al_alkali 18 · **waste_al 11** · liquid_metal_activated 13.
-  Floor 150 / target ~300 → in progress.
-- Studies attempted: 26 (15 productive). `al_alloy` cleared the ≥40 rule.
+- **Rows extracted: 148** (validator PASS). Per class: **al_alloy 45 (≥40 ✓)** · pure_al_alkali 38 ·
+  mechanically_activated 32 · waste_al 20 · liquid_metal_activated 13. **2 short of the 150 floor.**
+- Studies attempted: 34 (23 productive). ⭐ **H1 evidence captured**: `martinezv2026` particle-size
+  **inverted-U** (215µm→8.5% · 360µm→10.6% · 475µm→8.2%, non-monotonic).
+
+## Batch 5 (2026-06-15) — 8 studies (pure_al_alkali + waste_al)
+| study | class | rows |
+|---|---|---|
+| rin2021 | pure_al_alkali | 9 (Ni-Li-B catalyst) |
+| trowell2022 | pure_al_alkali | 5 (supercritical water) |
+| knoks2025 | waste_al | 4 (dross RM/SOW/HDC/Alw1) |
+| yavor2013 | pure_al_alkali | 3 (ALEX nano) |
+| martinezv2026 | waste_al | 3 (⭐ H1 inverted-U) |
+| wanghq2017 | pure_al_alkali | 2 (choline-OH / NaOH) |
+| urbonav2024 | waste_al | 2 (plasma; 8 OVER-100 excluded) |
+| deng2010 | pure_al_alkali | 1 |
+
+⚠️ Validator caught 1 error (choline-hydroxide row: `alkali_type=none` + a conc → blanked the conc;
+non-NaOH/KOH bases and salt media like AlCl3 don't map to the alkali enum — a known edge case).
+OVER-100 rule again worked (urbonav 8, trowell/deng/martinezv all ≤100).
 
 ## Batch 4 (2026-06-15) — 5 waste_al studies (>100% exclude rule active)
 | study | class | rows | note |
