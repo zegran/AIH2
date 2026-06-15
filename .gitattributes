@@ -1,0 +1,11 @@
+# Normalize line endings so CRLF-only diffs stop showing as changes
+* text=auto eol=lf
+
+# Binary assets — never normalize
+*.pdf binary
+*.xlsx binary
+*.xls binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gz binary
