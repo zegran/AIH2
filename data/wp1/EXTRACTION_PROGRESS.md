@@ -4,17 +4,18 @@
 schema). Only validated rows count.*
 
 ## Totals
-- **Rows extracted: 195** (validator PASS). **Hard floor 150: MET.** Per class:
-  **mechanically_activated 69 (✓)** · **pure_al_alkali 48 (✓)** · **al_alloy 45 (✓)** ·
+- **Rows extracted: 315** (validator PASS). **Hard floor 150: MET.** Per class:
+  **pure_al_alkali 168 (✓)** · **mechanically_activated 69 (✓)** · **al_alloy 45 (✓)** ·
   waste_al 20 (exploratory-only) · liquid_metal_activated 13 (exploratory-only).
-- Studies attempted: 42 (28 productive). ⭐ **H1 evidence**: `martinezv2026` particle-size
+- Studies attempted: 42 (29 productive). ⭐ **H1 evidence**: `martinezv2026` particle-size
   inverted-U; `zhang2024` 3µm vs 25µm (95% vs 34% at 45 °C — strong size effect). ⭐ **Rate–yield
   trade-off (2nd contradiction)**: `davies2022mat` Al-Bi-Zn — Zn slows the rate but keeps ~99.5%
   yield; NaCl & high water-ratio drop both together.
-- ⚠️ **HELD for a balance decision: `porciuncula2012` (120 rows).** Clean tier-A NaOH/KOH ×
-  foil/0.5 mm/1 mm × T × conc factorial. Taking all 120 would make one `study_id` ~38% of the
-  dataset (CV-group imbalance). Floor + 3-class≥40 already met WITHOUT it — so it is optional, not
-  needed. See decision below.
+- ⚠️ **`porciuncula2012` (120 rows) INGESTED** (user decision 2026-06-15: take all). One `study_id`
+  is now ~38% of the dataset → **CV-group imbalance**. Binding mitigations recorded in
+  `DATASET_BALANCE_NOTES.md`: (1) group-balanced sample weighting `1/n_rows(study_id)`, (2)
+  leave-porciuncula-out sensitivity run. Do NOT drop it from the main model — it holds the cleanest
+  alkali-type × conc × T signal.
 
 ## Batch 6 (2026-06-15) — 8 studies (mechanically + pure_al_alkali); +47 rows (porciuncula held)
 | study | class | rows | note |
