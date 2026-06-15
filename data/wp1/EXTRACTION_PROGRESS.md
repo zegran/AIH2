@@ -4,10 +4,33 @@
 schema). Only validated rows count.*
 
 ## Totals
-- **Rows extracted: 148** (validator PASS). Per class: **al_alloy 45 (≥40 ✓)** · pure_al_alkali 38 ·
-  mechanically_activated 32 · waste_al 20 · liquid_metal_activated 13. **2 short of the 150 floor.**
-- Studies attempted: 34 (23 productive). ⭐ **H1 evidence captured**: `martinezv2026` particle-size
-  **inverted-U** (215µm→8.5% · 360µm→10.6% · 475µm→8.2%, non-monotonic).
+- **Rows extracted: 195** (validator PASS). **Hard floor 150: MET.** Per class:
+  **mechanically_activated 69 (✓)** · **pure_al_alkali 48 (✓)** · **al_alloy 45 (✓)** ·
+  waste_al 20 (exploratory-only) · liquid_metal_activated 13 (exploratory-only).
+- Studies attempted: 42 (28 productive). ⭐ **H1 evidence**: `martinezv2026` particle-size
+  inverted-U; `zhang2024` 3µm vs 25µm (95% vs 34% at 45 °C — strong size effect). ⭐ **Rate–yield
+  trade-off (2nd contradiction)**: `davies2022mat` Al-Bi-Zn — Zn slows the rate but keeps ~99.5%
+  yield; NaCl & high water-ratio drop both together.
+- ⚠️ **HELD for a balance decision: `porciuncula2012` (120 rows).** Clean tier-A NaOH/KOH ×
+  foil/0.5 mm/1 mm × T × conc factorial. Taking all 120 would make one `study_id` ~38% of the
+  dataset (CV-group imbalance). Floor + 3-class≥40 already met WITHOUT it — so it is optional, not
+  needed. See decision below.
+
+## Batch 6 (2026-06-15) — 8 studies (mechanically + pure_al_alkali); +47 rows (porciuncula held)
+| study | class | rows | note |
+|---|---|---|---|
+| preez2018 | mechanically_activated | 16 | Al-Sn-In ternary + mass-ratio series, reported % |
+| davies2022mat | mechanically_activated | 10 | ⭐ Al-Bi-Zn rate–yield trade-off; water-quality/NaCl |
+| zhang2024 | pure_al_alkali | 10 | 3µm vs 25µm × 5T (H1 size effect; Table 3) |
+| xiao2020 | mechanically_activated | 7 | Bi/GNS composites, derived mL/g (<1244) |
+| xiao2018 | mechanically_activated | 4 | Al-Bi-Sn tap water, reported % (Table 4) |
+| razavi2013 | — | 0 | yield Fig.4 only / "no reaction" qualitative |
+| tekade2018n | — | 0 | rates + fractional conversion X_B only (not absolute yield) |
+| **porciuncula2012** | pure_al_alkali | **(120 held)** | tier-A factorial; balance decision pending |
+
+QC notes: `zhang2024` 3µm rows have mL/g >1244 but the study's own reported % is ≤100 (kept as
+reported, like a per-study yield basis); `davies`/`preez` use a gas mass-flow meter →
+`measurement_method` blank (no enum); `davies` filtered-water & NaCl rows → `water_type` blank.
 
 ## Batch 5 (2026-06-15) — 8 studies (pure_al_alkali + waste_al)
 | study | class | rows |
