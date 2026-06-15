@@ -27,7 +27,8 @@ modeling time. Recorded during Phase B extraction; binding for WP2-WP4.
 
 ## 2. Exploratory-only classes (<40 rows)
 
-- `waste_al` (20) and `liquid_metal_activated` (13) are below the 40-row exploratory threshold.
+- `waste_al` (20) and `liquid_metal_activated` (19, after the dudoladov reclass) are below the
+  40-row exploratory threshold.
   Per the locked target rule, any per-class claim for these two is **exploratory-only** and must
   be declared as such — never padded. Class-level SHAP/ALE for these two is descriptive, not
   confirmatory. `liquid_metal_activated` is figure-heavy; reaching 40 needs figure digitization.
