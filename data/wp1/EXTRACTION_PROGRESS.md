@@ -4,10 +4,24 @@
 schema). Only validated rows count.*
 
 ## Totals
-- **Rows extracted: 109** (validator PASS). Per class: **al_alloy 45 (≥40 ✓)** ·
-  mechanically_activated 32 · pure_al_alkali 18 · liquid_metal_activated 13 · waste_al 1.
+- **Rows extracted: 119** (validator PASS). Per class: **al_alloy 45 (≥40 ✓)** ·
+  mechanically_activated 32 · pure_al_alkali 18 · **waste_al 11** · liquid_metal_activated 13.
   Floor 150 / target ~300 → in progress.
-- Studies attempted: 21 (11 productive). `al_alloy` is the first class to clear the ≥40 rule.
+- Studies attempted: 26 (15 productive). `al_alloy` cleared the ≥40 rule.
+
+## Batch 4 (2026-06-15) — 5 waste_al studies (>100% exclude rule active)
+| study | class | rows | note |
+|---|---|---|---|
+| buryakov2023met | waste_al | 6 | 2M AlCl3 medium, 90–94% (water_type unmapped — see caveat) |
+| fadhilah2023 | waste_al | 2 | NaOH/NaAlO2 64/96% (derived) |
+| ho2016 | waste_al | 1 | Al cans+Ni, 100% (1350 mL/g excluded by >100 rule) |
+| gupta2025 | waste_al | 1 | Al6063 scrap (3 rows excluded by >100 rule) |
+| tekade2020 | — | 0 | rates / fractional-conversion figures only |
+
+The **>100% exclude rule worked**: gupta (3 rows), ho2016 (1), david2012 (9) all correctly dropped.
+⚠️ Caveat: `buryakov2023met` reacts in **2M AlCl3** (chloride-salt medium) — no `water_type` enum
+fits {DI,tap,sea,alkaline}, left blank. Same will apply to other chloride-salt media (e.g.
+`buryakov2024`). Worth a `water_type=salt` level if more such studies enter.
 
 ## Batch 3 (2026-06-15) — 5 studies (waste_al start + push al_alloy/mech)
 | study | class | rows | note |
