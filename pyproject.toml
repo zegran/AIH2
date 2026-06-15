@@ -20,6 +20,7 @@ dependencies = [
 
 [dependency-groups]
 dev = ["pytest>=8.0", "ruff>=0.4", "mypy>=1.10"]
+tools = ["pymupdf>=1.24", "openpyxl>=3.1"]
 
 [tool.ruff]
 line-length = 100
