@@ -27,5 +27,5 @@ interpretable ML on a unified open dataset. See [[concept-foundation]].
 - [x] Phase 1 scaffold (tested, end-to-end on synthetic fixture)
 - [x] Pushed to GitHub (zegran/AIH2, tag phase1-scaffold)
 - [~] **WP1 data extraction — in progress** ([[wp1-source-pool]]; 71 in-scope studies,
-  **35 full-text archived** + DOIs resolved, 36 to retrieve; 16 seed rows; need ≥150,
+  **46/71 full-text archived** + DOIs resolved, 25 to retrieve; 16 seed rows; need ≥150,
   target ~300) ← active critical stage

@@ -12,9 +12,11 @@ WP1 step 1–3 done: screened pool + schema-locked extraction sheet + 16 seed ro
 still to retrieve (see `data/wp1/INGEST_GAP_REPORT.md`). Condition-level extraction in progress.
 Hard floor 150, target ~300; switch the curated dataset only at ≥150 rows.
 
-### Obtained vs missing (after first ingest)
-- pure_al_alkali 15/26 · al_alloy 4/10 · mechanically_activated 9/15 ·
-  liquid_metal_activated 3/4 · waste_al 4/16.
+### Obtained vs missing (after Sci-Hub batch 2 → 46/71 in hand, 25 missing)
+- pure_al_alkali 20/26 · al_alloy 6/10 · mechanically_activated 9/15 ·
+  liquid_metal_activated 3/4 · waste_al 8/16. (batch 2 added 11; see `STILL_MISSING_25.md`.)
+- Earlier snapshot (after first ingest, 35/71): pure_al_alkali 15 · al_alloy 4 ·
+  mechanically_activated 9 · liquid_metal_activated 3 · waste_al 4.
 - **At-risk for ≥40 rows:** al_alloy, liquid_metal_activated, waste_al (few obtained studies).
 - **Priority missing (contradiction evidence):** `martinezv2026` (H1 inverted-U),
   `davies2022mat` (rate–yield), `manilevich2020` (rate–yield).
