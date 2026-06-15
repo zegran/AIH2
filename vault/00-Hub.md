@@ -26,6 +26,7 @@ interpretable ML on a unified open dataset. See [[concept-foundation]].
 - [x] Implementation plan signed off
 - [x] Phase 1 scaffold (tested, end-to-end on synthetic fixture)
 - [x] Pushed to GitHub (zegran/AIH2, tag phase1-scaffold)
-- [~] **WP1 data extraction — in progress** ([[wp1-source-pool]]; 71 in-scope studies,
-  **52/71 full-text archived** + DOIs resolved, 19 to retrieve; 16 seed rows; need ≥150,
-  target ~300) ← active critical stage
+- [~] **WP1 data extraction — in progress** ([[wp1-source-pool]]; **52-study active pool, all
+  in hand**; 19 unreachable excluded → `WP1_EXCLUDED.md`; curation: `ARCHIVE_CURATION.md`;
+  gap = liquid_metal_activated (3) → targeted OA search; 16 seed rows; need ≥150, ~300)
+  ← active critical stage

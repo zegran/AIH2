@@ -12,12 +12,14 @@ WP1 step 1–3 done: screened pool + schema-locked extraction sheet + 16 seed ro
 still to retrieve (see `data/wp1/INGEST_GAP_REPORT.md`). Condition-level extraction in progress.
 Hard floor 150, target ~300; switch the curated dataset only at ≥150 rows.
 
-### Obtained vs missing (after batch 3 → 52/71 in hand, 19 missing)
-- pure_al_alkali 20/26 · al_alloy 7/10 · mechanically_activated 11/15 ·
-  liquid_metal_activated 3/4 · waste_al 11/16. Canonical list: `STILL_MISSING.md`.
-- Batch 3 (+6 MDPI gold-OA): zhu2021, davies2022eni, davies2022mat, buryakov2023met,
-  knoks2025, martinezv2026 → both contradiction-evidence priorities now in hand.
-- Snapshots: 35/71 (ingest 1) → 46/71 (Sci-Hub batch 2) → 52/71 (batch 3).
+### Active pool after curation (52 in hand; 19 unreachable excluded)
+- 19 unreachable permanently excluded → `WP1_EXCLUDED.md`. Active pool **52** (per-class:
+  pure_al_alkali 20 · al_alloy 7 · mechanically_activated 11 · liquid_metal_activated 3 ·
+  waste_al 11).
+- Bibliometric curation (`ARCHIVE_CURATION.md`, `archive_quality_52.csv`): ~46/52 Q1/Q2;
+  only `li2019` + `sykhyi2024` weak; `jayaraman2015` weak-venue but KEEP (H1).
+- **Binding gap: `liquid_metal_activated` (3)** → targeted OA Consensus search (+5–7), al_alloy
+  +2–3. Snapshots: 35 → 46 → 52 in hand; pool 71 → 52 active after exclusion.
 - **At-risk for ≥40 rows:** al_alloy, liquid_metal_activated, waste_al (few obtained studies).
 - **Priority missing (contradiction evidence):** `martinezv2026` (H1 inverted-U),
   `davies2022mat` (rate–yield), `manilevich2020` (rate–yield).
