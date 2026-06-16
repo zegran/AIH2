@@ -1,9 +1,9 @@
 seed: 42
 data:
-  path: data/curated/fixture_v0.csv
+  path: data/curated/aih2_v1.csv   # real curated dataset (315 rows); fixture_v0.csv = synthetic baseline
 cv:
   n_splits: 5
-primary_model: lightgbm
+primary_model: random_forest   # most robust under grouped CV on real data (smallest optimism gap)
 models:
   - elasticnet
   - knn
