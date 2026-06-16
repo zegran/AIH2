@@ -118,3 +118,13 @@ not a fallback:
 
 Per the pre-committed rule the primary T_A null caps the venue at Energy and AI; T_B's strength is
 reported as the headline finding (not used to override the rule). **Pipeline STOPPED for user sign-off.**
+
+### Pre-write hardening (done — `TB_confound_check.md`)
+T_B survived the confound check: temperature_control is a genuine shared covariate (22/7/2 studies per
+level), **not** a 1:1 re-encoding of `system_class` (each level spans 4–5 regimes), and its contribution
+**survives controlling for regime** (incremental R²=+0.47, cluster-boot CI [+0.04, +0.77], excludes 0).
+**Locked claim wording:** "methodological covariates *explain/are associated with*" (associational, not
+causal); "**predominantly/substantially** methodological" (never "purely" — regime adds +0.15 increment;
+finer kinetic↔diffusion physics per Saceleanu 2019 operates within studies). Particle-size H1 resolved
+as a cross-study artifact (5/5 within-study negative). **Venue decision for IJHE draft: write so it also
+stands as an Energy-and-AI paper; do not overclaim beyond the hardened findings.**

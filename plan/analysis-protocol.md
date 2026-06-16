@@ -126,6 +126,23 @@ heterogeneity**, not physico-chemical regime. Two falsifiable tests:
   artifacts + curated dataset + leakage foil vs Das 2023 single-study ANN). · T_A null → dataset +
   leakage-benchmark paper (Energy and AI).
 
+## Physics reconciliation (locked claim wording)
+The **coarse** `system_class` regime label does not explain the between-study yield spread (H2/H3 null;
+T_B regime R²≈0.02). This does NOT mean physics is irrelevant: a **finer** kinetic↔diffusion regime
+transition (Saceleanu & Kelder 2019, `10.1002/er.4769`) genuinely contributes to Al–water kinetics.
+Therefore the locked claim is **"the apparent contradictions are predominantly / substantially
+methodological"** — **never "purely methodological."** Method covariates dominate the *measured*
+between-study variance; finer physics operates within studies and below the resolution of a 5-level
+regime label. This caveat must appear in the Discussion.
+
+## Particle-size contradiction — resolution (locked)
+The flagship H1 "direction-changing particle-size effect" is resolved as a **cross-study integration
+artifact**: within every study that varies particle size (5/5), the within-study effect is **negative**
+(smaller → higher yield; ρ −0.29 to −0.87). The apparent literature "flip" came from comparing
+different size *ranges* / regimes across studies, not a genuine within-study sign reversal.
+
 ## Status
-Protocol FROZEN (incl. H_meth + T_A/T_B). Mixed-effects H2 done (null), H3 done (null). T_A/T_B NOT yet
-run — this commit freezes their criteria before computation.
+Protocol FROZEN (incl. H_meth + T_A/T_B). H2 null, H3 null, T_A null, **T_B SUPPORTED + hardened**
+(confound check `results/real_v1/TB_confound_check.md`: survives control for regime, CI excludes 0;
+language locked associational + "predominantly methodological"). Proceeding to figures + IJHE draft;
+stop after self-review.
