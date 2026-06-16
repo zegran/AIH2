@@ -87,6 +87,45 @@ The unit of inference is the **study**, not the row. Data-quality covariates (`q
 - H2 refuted ∧ H3 supported → physics-Eₐ-descriptive + leakage paper (still IJHE-plausible).
 - H2 refuted ∧ H3 refuted → **leakage-methodology + open-dataset paper (Energy and AI).**
 
+## Pivot — methodological-heterogeneity thesis (frozen 2026-06-16, after H2/H3 nulls)
+The original RQ asks whether the contradictions are **real physical interactions** or **cross-study
+artifacts**. H2 (regime moderation) and H3 (Eₐ regime structure) were refuted → the data supports the
+**artifact** arm. This is the *other arm of the same pre-stated question*, not a new post-hoc claim.
+Thresholds below are frozen BEFORE computing T_A/T_B (anti-HARKing). Nulls are acceptable and reported
+with an explicit power statement ("no detectable effect at n≈31 studies / 3–9 per regime").
+
+**H_meth:** Apparent inter-study contradictions are dominated by **cross-study methodological
+heterogeneity**, not physico-chemical regime. Two falsifiable tests:
+
+### T_A — within-study consistency vs between-study contradiction (PRIMARY)
+1. **Variance decomposition:** null mixed model `h2_yield_pct ~ 1 + (1|study_id)`; report ICC =
+   between-study variance / total.
+2. **Within-study predictability:** for each study with enough conditions, predict held-out conditions
+   from the others (within-study CV); skill = 1 − SSE/SS(study-mean); aggregate (median + cluster-boot CI).
+3. **Sign-conflict localization:** for parameters varied within ≥2 studies (temperature, alkali_conc,
+   particle_size), estimate the within-study effect SIGN per study; test whether documented sign
+   conflicts occur **between** studies while each study is internally consistent.
+- **Success (FROZEN):** (i) median within-study skill **> 0 with cluster-bootstrap 95% CI lower bound
+  > 0** (and "clearly positive" = median ≥ 0.20), AND (ii) ≥1 contested parameter shows a
+  **between-study sign conflict** with within-study sign consistency → contradictions are integration
+  artifacts.
+
+### T_B — methodological covariates explain between-study variance (UPSIDE)
+0. **Coverage audit first:** fill-rate + n distinct values of `measurement_method`,
+   `temperature_control`, `vessel_type`, `water_type`, `quality_tier`. Any covariate with <2 levels or
+   <~10% informative coverage → declared **untestable**, not forced.
+1. Mixed model `h2_yield_pct ~ physical_params + method_covariates + (1|study_id)`; quantify the
+   **reduction in random-intercept (between-study) variance** from method covariates vs from
+   `system_class` (physical regime). Cluster-bootstrap CIs on each reduction; Holm across covariates.
+- **Success (FROZEN):** method covariates reduce between-study variance by an amount whose
+  cluster-bootstrap 95% CI **excludes 0**, AND that reduction is **≥ the system_class reduction** →
+  methodology is a dominant driver.
+
+### Pre-committed venue rule (binding)
+- T_A ✅ ∧ T_B ✅ → IJHE. · T_A ✅ ∧ T_B null/untestable → IJHE-borderline / Energy and AI (still solid:
+  artifacts + curated dataset + leakage foil vs Das 2023 single-study ANN). · T_A null → dataset +
+  leakage-benchmark paper (Energy and AI).
+
 ## Status
-Protocol FROZEN. **Mixed-effects model NOT yet run.** Awaiting user sign-off + decision on the
-rate-focused second extraction pass before any confirmatory modeling.
+Protocol FROZEN (incl. H_meth + T_A/T_B). Mixed-effects H2 done (null), H3 done (null). T_A/T_B NOT yet
+run — this commit freezes their criteria before computation.
