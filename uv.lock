@@ -37,6 +37,7 @@ dependencies = [
     { name = "scipy" },
     { name = "shap", version = "0.51.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "shap", version = "0.52.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+    { name = "statsmodels" },
     { name = "xgboost" },
 ]
 
@@ -64,6 +65,7 @@ requires-dist = [
     { name = "scikit-learn", specifier = ">=1.4" },
     { name = "scipy", specifier = ">=1.12" },
     { name = "shap", specifier = ">=0.45" },
+    { name = "statsmodels", specifier = ">=0.14.6" },
     { name = "xgboost", specifier = ">=2.0" },
 ]
 

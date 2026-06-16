@@ -31,8 +31,36 @@ The two verdicts together **invert the original story**:
   pillar delivering. If the mixed-effects H2 also comes out null, fall back to the
   **leakage-methodology + open-dataset** paper (Energy and AI). The next gate is the mixed-effects model.
 
-## Decision required from user (pipeline stopped here, per brief)
-1. Approve the frozen analysis protocol (`plan/analysis-protocol.md`).
-2. Approve the **rate-focused second extraction pass** (harvest ~15 reported Eₐ + digitize 5 curve-only
-   studies) — this unblocks WP4/H3 and the physics pillar.
-3. Only then: run the mixed-effects meta-regression (primary H2 test) + Arrhenius-per-regime.
+## Modeling verdicts (2026-06-16, after GATE A+B) — both pre-registered, honest
+
+### H2 (mixed-effects meta-regression, primary) → **NOT SUPPORTED** (`H2_mixed_effects.md`)
+- system_class main effect non-significant (joint Wald p = 0.32 FULL / 0.45 porc-out / 0.41 A/B-tier).
+- 0/8 parameter×system_class interactions survive Holm in any subset (best Holm 0.057).
+- Cluster bootstrap: main effect significant in only 34% of resamples. → regime moderation of the
+  contradiction is **not defensible** on yield data (consistent with TEST 1).
+
+### H3 (Arrhenius, co-primary) → **NOT robustly supported (PARTIAL)** (`H3_arrhenius.md`)
+- **A1** (Eₐ ~ system_class): η²≈0.47 but fragile — primary all-class permutation p=0.18 (REFUTED);
+  well-powered 3-class subset p=0.049 (borderline). Descriptive finding real: mechanically_activated
+  has lower apparent Eₐ (~24) than pure_al_alkali (~52) / waste_al (~47).
+- **A2** (ML↔physics convergence): Spearman ρ=−0.50 (wrong direction) → REFUTED, because **yield is a
+  poor temperature-sensitivity proxy** (pure_al_alkali saturates ~93%). A valid A2 needs **rate-based**
+  sensitivity → requires digitizing the 5 curve-only rate studies (not yet done).
+
+## Resulting framing (per the protocol's pre-set decision rule)
+H2 refuted ∧ H3 partial → the **robust contribution is methodological**:
+1. **Leakage / non-poolability** — random CV overstates; study-grouped CV collapses; regime
+   conditioning does not rescue it (TEST 1 + H2). Robust.
+2. **Curated open dataset** — 315 QC'd yield rows + 73-row kinetic table (CC-BY).
+3. **Suggestive (not confirmed) Eₐ regime structure** — mechanically_activated lower Eₐ (A1, borderline).
+
+- **Honest current venue: *Energy and AI*** (leakage-controlled methodology + heterogeneity + dataset).
+- **Upside path to *IJHE* (physics-validated):** ONLY if a **rate-based A2** (after digitizing the 5
+  curve-only studies + fitting Arrhenius from the tabulated rate-vs-T data, e.g. dudoladov) converts
+  H3 from partial to clean support. H1 (particle-size) stays dead/exploratory.
+
+## Decision required from user (pipeline STOPPED here, per brief — no figures/writing)
+1. **Accept the *Energy and AI* methodology+dataset framing now** (write up the robust results), OR
+2. **Invest one more round: rate-curve digitization → rate-based A2** to attempt rescuing H3 into IJHE
+   territory (bounded effort: 5 studies to digitize + ~3 tabulated rate-vs-T Arrhenius fits).
+3. Either way: H1 and the ML-prediction headline remain retired; ML/SHAP stays descriptive.
