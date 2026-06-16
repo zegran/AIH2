@@ -86,3 +86,35 @@ Retired for good: H1 (particle-size), the ML-prediction headline, and the IJHE p
 ML/SHAP remain descriptive only.
 
 **Pipeline STOPPED for user sign-off on this framing — no WP5 figures, no paper drafting yet.**
+
+---
+
+## Methodological-heterogeneity pivot (T_A / T_B, pre-registered) — 2026-06-17
+Reframed to the **artifact arm** of the original RQ (pre-registered before computing).
+
+### T_A (within-study consistency) → **NULL at frozen bar** (`TA_within_study.md`)
+- 50% of yield variance is between studies (robust manual decomposition).
+- Within-study predictability median skill **−0.145** (CI [−0.45, +0.23]) → fails the "uniformly
+  positive" gate; heterogeneous and power-limited at n≈31.
+- **Substantive finding:** the particle-size "contradiction" (H1) **dissolves** — within-study,
+  particle_size is consistently **negative in 5/5 studies** (no sign conflict). H1 retired cleanly.
+
+### T_B (method covariates explain between-study variance) → **SUPPORTED (strong)** (`TB_method_variance.md`)
+- Study-level between-study variance explained: **method covariates jointly R²=0.553** (CI [0.36, 1.0])
+  vs **system_class R²=0.018**. **temperature_control alone R²=0.332.**
+- Both frozen conditions met (method ≥ regime; CI excludes 0). → **methodology, not physico-chemical
+  regime, dominates the apparent contradictions.** This is the positive, quantitative H_meth answer.
+
+### FINAL FRAMING & VENUE (binding rule: T_A null → Energy and AI)
+➡️ **Venue: *Energy and AI*.** The paper is now a **substantive positive-and-negative** contribution,
+not a fallback:
+1. **Methodology, not physics, drives the literature's apparent contradictions** (T_B: method R²=0.55
+   vs regime 0.02; temperature_control 0.33) — the answer to the original RQ.
+2. **Leakage-controlled evidence** that naive pooling overstates generalization (optimism gap robust;
+   foil = Das 2023 single-study ANN R²≈0.998).
+3. **The particle-size contradiction is an integration artifact** (consistent within-study negative).
+4. **Honest nulls** (no regime moderation H2; no Eₐ regime structure H3) + **curated open datasets**
+   (315 yield rows, 76 kinetic rows, provenance + QC).
+
+Per the pre-committed rule the primary T_A null caps the venue at Energy and AI; T_B's strength is
+reported as the headline finding (not used to override the rule). **Pipeline STOPPED for user sign-off.**
