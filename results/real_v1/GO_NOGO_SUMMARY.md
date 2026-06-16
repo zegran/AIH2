@@ -59,8 +59,30 @@ H2 refuted ∧ H3 partial → the **robust contribution is methodological**:
   curve-only studies + fitting Arrhenius from the tabulated rate-vs-T data, e.g. dudoladov) converts
   H3 from partial to clean support. H1 (particle-size) stays dead/exploratory.
 
-## Decision required from user (pipeline STOPPED here, per brief — no figures/writing)
-1. **Accept the *Energy and AI* methodology+dataset framing now** (write up the robust results), OR
-2. **Invest one more round: rate-curve digitization → rate-based A2** to attempt rescuing H3 into IJHE
-   territory (bounded effort: 5 studies to digitize + ~3 tabulated rate-vs-T Arrhenius fits).
-3. Either way: H1 and the ML-prediction headline remain retired; ML/SHAP stays descriptive.
+## H3 rate-based re-test (Option 1) — DONE → **second null** (`H3_arrhenius.md`)
+Executed with full discipline: digitized 4 curve-only studies (QC point-error ~1.5%), Arrhenius fits
+under an R²≥0.90 gate (dropped rin2021 R²=0.846 and ho2016 unreadable/confounded — no forced fits),
+provenance recorded. `liquid_metal_activated` grew 1→4 Eₐ.
+- **A1 REFUTED:** with the honest 4-study liquid_metal Eₐ (spread **8.5–58 kJ/mol**), η² fell 0.47→0.36;
+  permutation p=0.13 (≥3-study, 4 classes) / 0.22 (all). system_class does **not** significantly explain
+  the Eₐ spread; within-regime spread ≈ between-regime spread.
+- **A2 REFUTED:** ML↔physics convergence undefined without a rate-target model (honesty clause, not
+  redefined to pass); yield-proxy ρ=−0.20.
+
+## FINAL DECISION (per the pre-committed binding rule) — single venue
+**A1 refuted ∧ A2 refuted → H3 NOT clean support → STOP. No third attempt.**
+
+➡️ **Venue: *Energy and AI*** — a **leakage-controlled methodology + curated open-data** paper.
+Confirmed robust contributions:
+1. **Naive pooling overstates generalization** (optimism gap 0.62–0.85, robust to dropping the
+   dominant study; within-regime ML signal is porciuncula-weighted — TEST 1 + H2 null).
+2. **The literature does not reduce to a tidy per-regime physics signal** — apparent Eₐ does not
+   organize by system_class (within-regime spread ≈ between-regime spread). An honest, substantive
+   negative result against the "regimes resolve the contradictions" expectation.
+3. **Curated, QC'd open datasets** — 315-row yield table (0% double-extraction value error) + 76-row
+   kinetic table (Eₐ/rate, provenance + heterogeneity, 13/13 Eₐ QC-exact).
+
+Retired for good: H1 (particle-size), the ML-prediction headline, and the IJHE physics-validated claim.
+ML/SHAP remain descriptive only.
+
+**Pipeline STOPPED for user sign-off on this framing — no WP5 figures, no paper drafting yet.**

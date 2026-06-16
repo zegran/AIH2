@@ -72,3 +72,6 @@ study_id,system_class,kinetic_metric,value,unit,rate_definition,n_temperatures,t
 10.1007/s40243-024-00287-2,waste_al,max_rate,135.54,mL/min/g,max,1,321.13,reported,Table 5,table,reported,C,3M NaOH; T confounded with [NaOH]
 10.1007/s40243-024-00287-2,waste_al,max_rate,35.71,mL/min/g,max,1,311.99,reported,Table 5,table,reported,C,0.75M NaOH; T confounded with [NaOH]
 10.1007/s40243-024-00287-2,waste_al,t80,72,min,max,1,311.99,reported,Fig 11,table,reported,C,0.75M NaOH completion 72min; T confounded
+10.1016/j.ijhydene.2015.11.122,liquid_metal_activated,ea_kj_mol,58.0,kJ/mol,,4,233.15-263.15,arrhenius_fit,Table 2,table,derived,B,KOH max-rate vs T Arrhenius fit; R2=0.987 CI+-9.4; Ga-activated sub-zero
+10.1016/j.ijhydene.2012.02.175,liquid_metal_activated,ea_kj_mol,8.5,kJ/mol,,3,294.15-333.15,arrhenius_fit,Fig 6,webplotdigitizer,derived,C,peak-rate vs T digitized; R2=0.991 CI+-1.6; QC point-err ~1.5%; gallam; low Ea (mass-transfer limited)
+10.4236/epe.2015.79041,liquid_metal_activated,ea_kj_mol,32.8,kJ/mol,,3,303.15-363.15,arrhenius_fit,Fig 4,webplotdigitizer,derived,C,1/t50 vs T digitized; R2=0.979 CI+-9.3; 50/90C low-confidence reads; galinstan
