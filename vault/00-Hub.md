@@ -1,15 +1,18 @@
 # AIH2 — Project Hub
 
-**Topic:** Physics-validated interpretable ML for the aluminum–water reaction (H2 yield).
-**Concept foundation (immutable core):** [[concept-foundation]] →
+**Topic:** Why the aluminum–water hydrolysis literature contradicts itself — a leakage-controlled,
+provenance-tracked analysis. (Pivoted from the original "physics-validated ML" framing; see below.)
+**Concept foundation (original framing, now historical):** [[concept-foundation]] →
 `../plan/2026-06-14-aih2-concept-foundation.md`
-**Design spec:** `../plan/2026-06-14-aih2-design-spec.md`
-**Venue:** IJHE (primary) → Energy and AI (fallback).
+**Frozen analysis protocol (the pivot):** `../plan/analysis-protocol.md`
+**Venue:** **Energy and AI** (methodology + open dataset); IJHE if the physics pillar is later strengthened.
 
-## Central thesis (one line)
-The Al–water hydrolysis literature contradicts itself about parameter effects on H2 yield;
-this is an unsolved scientific problem, resolved here with leakage-controlled, physics-validated
-interpretable ML on a unified open dataset. See [[concept-foundation]].
+## Central finding (one line, pivoted)
+The literature's apparent contradictions are **predominantly methodological, not physico-chemical**:
+methodological covariates explain ~55% of between-study yield variance vs ~2% for physical regime
+(temperature-control method ~33%). H1/H2/H3 (the original "real-physics" hypotheses) were **refuted**
+under pre-registered testing; the methodological-artifact answer (T_B) is supported. See
+`../results/real_v1/GO_NOGO_SUMMARY.md`.
 
 ## Map
 - [[concept-foundation]]  immutable scientific core (start here)
@@ -20,35 +23,33 @@ interpretable ML on a unified open dataset. See [[concept-foundation]].
 - Results/     result notes
 - Daily/       daily working notes (Turkish allowed)
 
-## State
-- [x] Concept foundation · spec · implementation plan signed off
-- [x] Phase 1 scaffold (tested end-to-end on synthetic fixture; GitHub zegran/AIH2, tag phase1-scaffold)
-- [x] **WP1 archive assembled** ([[wp1-source-pool]]; 59-study pool, all in hand)
-- [x] **WP1 Phase B extraction COMPLETE** — 315 condition-level rows, validator PASS (floor 150 met).
-  Per class: pure_al_alkali 162 · mechanically_activated 69 · al_alloy 45 · waste_al 20 (exploratory)
-  · liquid_metal_activated 19 (exploratory). Both contradiction signals captured (H1 size, rate–yield).
-- [x] **Data QC** — double-extraction (52 rows, **0% value error**) + classification audit
-  (31/31 studies; 1 fix: dudoladov2016 → liquid_metal_activated). `system_class` axis verified.
-- [ ] **WP2–WP4 real-data run** ← next critical stage: write `data/curated/`, repoint Hydra, run
-  GroupKFold + group-weighting + porciuncula-out + SHAP/ALE + Arrhenius Eₐ on the 315 rows.
-- [ ] Phase 2 physics (shrinking-core SCM + consistency metrics) — required to complete the
-  "physics-validated" claim before submission.
-- [ ] Paper writing (IJHE) → self-review → submission.
+## State (analysis campaign COMPLETE; paper in draft)
+- [x] WP0 scaffold · WP1 dataset (315 yield rows / 31 studies + 76-row kinetic table; QC 0% error)
+- [x] **WP2 leakage-controlled CV** — optimism gap 0.62–0.85, robust to dropping the dominant study
+- [x] **Stress tests** — TEST1: the within-regime ML headline was porciuncula-driven → FAILS;
+  TEST2: physics (Arrhenius) data recoverable
+- [x] **H2 mixed-effects** → NULL (regime does not moderate the contradiction)
+- [x] **H3 Arrhenius** (incl. rate digitization + QC) → NULL (Eₐ does not organize by regime)
+- [x] **T_A / T_B** (methodological pivot, pre-registered) — T_A partial/null; **T_B SUPPORTED**
+  (method R²=0.55 vs regime 0.02; temperature_control 0.33; survives confound check)
+- [x] **WP5 figures** (5, reproducible) · **WP6 first draft** (`../paper/`, bibliography complete)
+- [ ] Remaining (user-gated): TeX compile · elsarticle frontmatter (author info) · Zenodo DOI ·
+  submission prep — see `../paper/SUBMISSION_PLAN.md`.
 
-## Lifecycle position (governance, 2026-06-16)
-| stage | status | primary skill/agent |
-|---|---|---|
-| Ideation | ✅ done (concept-foundation locked) | research-ideation, brainstorming |
-| ML development (Phase 1) | ✅ scaffold tested on synthetic | architecture-design, TDD, code-review |
-| Data curation (WP1) | ✅ 315 rows, QC'd, class-verified | literature-reviewer, consensus-evidence-search, citation-verification |
-| **Experiment analysis (WP2–WP4)** | ⏭️ **NEXT** (run on real data) | **results-analysis** |
-| Phase 2 physics (SCM) | ⬜ stubs only — pre-submission dependency | results-analysis |
-| Paper writing | ⬜ `paper/` stub only | ml-paper-writing, writing-anti-ai, citation-verification |
-| Self-review | ⬜ | paper-self-review |
-| Submission / rebuttal | ⬜ | review-response, rebuttal-writer |
-| Post-acceptance | ⬜ | post-acceptance |
+## Lifecycle position (governance, 2026-06-17)
+| stage | status |
+|---|---|
+| Ideation | ✅ done |
+| ML development (Phase 1) | ✅ done |
+| Data curation (WP1) | ✅ done (yield + kinetic tables, QC'd) |
+| Experiment analysis (WP2–WP4 + stress tests + T_A/T_B) | ✅ **done** — H1/H2/H3 refuted, T_B supported |
+| Figures (WP5) | ✅ done |
+| Paper writing (WP6) | 🟡 first draft + bibliography done; polish/compile/frontmatter pending |
+| Self-review | ✅ first pass done (`../paper/SELF_REVIEW.md`) |
+| Submission / rebuttal | ⬜ user-gated (compile, author info, Zenodo, venue) |
+| Post-acceptance | ⬜ |
 
-Pipeline confirmed correct. We are at the **ML-development → experiment-analysis boundary**: the
-Phase 1 pipeline is built+tested, the real dataset is curated+QC'd, so the next action is the first
-real WP2–WP4 run. The headline "physics-validated" claim additionally needs Phase 2 SCM before the
-paper is complete (Arrhenius Eₐ validation already exists in Phase 1).
+The analysis is complete. The disciplined, pre-registered campaign refuted the original physics
+hypotheses and landed an honest positive answer (T_B: methodology, not physical regime, drives the
+contradictions). Next is paper finalization, blocked only on user inputs (author/affiliation + a TeX
+build path) — everything else can proceed now.
