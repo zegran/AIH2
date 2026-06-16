@@ -1,5 +1,38 @@
-\section{Related Work}
-% Three threads: (1) aluminum--water hydrolysis kinetics and activation strategies (alkali,
-% alloying with low-melting metals, mechanical and liquid-metal activation); (2) reported
-% contradictions and their likely origin in isolated experimental windows; (3) interpretable ML
-% and data-driven materials/energy studies, and why study-level leakage control is usually absent.
+\section{Related work}
+\paragraph{Aluminum--water hydrolysis.}
+Activating aluminum so it reacts with neutral or alkaline water is a mature experimental
+field. Strategies include dissolved alkali (NaOH/KOH), bulk alloying with low-melting
+metals (Bi, Sn, In, Ga), high-energy ball milling with such additives, gallium-based
+liquid-metal/eutectic activation, and the use of waste or scrap aluminum
+(\todocite{wen2018 10.1002/er.3955; porciuncula2012 10.1590/s0104-66322012000200014;
+urbonav2024 10.3390/ma17112637}). Reviews of the field
+(\todocite{musicco2025}; \todocite{xiao2021review}; \todocite{dupreez2021review}) are
+qualitative narrative comparisons that catalog these contradictions but do not quantify
+their origin, unify the data, or test pooling.
+
+\paragraph{The generalization illusion in single-study models.}
+Data-driven modeling of this reaction is nascent. The closest prior work is a single-study
+artificial neural network reporting $R^2\!\approx\!0.998$ within one laboratory's data
+(\todocite{das2023fuel}). In-sample performance on one study's grid is uninformative about
+cross-study transfer; our leakage analysis makes this gap explicit.
+
+\paragraph{Leakage-controlled evaluation.}
+Grouped/blocked cross-validation, where all records from a group (here, a study) are held
+out together, is the established defense against optimistic in-sample estimates in
+materials, chemistry, and the natural sciences
+(\todocite{bernett2024}; \todocite{john2025}; \todocite{pomerantsev2021}). Recent
+perspectives on data science in catalysis and materials likewise stress provenance,
+reproducibility, and honest generalization assessment
+(\todocite{suvarna2024}; \todocite{bozalginesta2025}; \todocite{coelho2022};
+\todocite{xue2024}; \todocite{noble2022}). We apply this discipline to aluminum hydrolysis
+for the first time and, beyond demonstrating leakage, use the variance structure to
+\emph{attribute} the between-study disagreement.
+
+\paragraph{Methodology as a confound, and reporting standards.}
+Individual studies already report that protocol choices shift measured values
+substantially---vessel insulation and temperature control (\todocite{urbonavicius2023}),
+water type, and catalyst pre-treatment (\todocite{wen2018 10.1002/er.3955})---and round-robin comparisons
+in adjacent hydrogen fields (e.g.\ MgH$_2$, biohydrogen) find temperature control to be a
+dominant inter-laboratory factor (\todocite{testa2024}). Minimum-information reporting
+standards have improved poolability in related areas
+(\todocite{wulf2021}; \todocite{hoque2018}); we adapt that template to aluminum hydrolysis.

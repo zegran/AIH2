@@ -1,5 +1,84 @@
 \section{Results}
-% fig1 global SHAP importance; fig2 size x {T, alkalinity} interaction (H1); fig3 particle-size
-% ALE sign flip by system_class -- the contradiction-resolution headline; fig4 model-derived Ea
-% vs literature band (H3); optimism-gap result; calibration/uncertainty. Tie each result back to
-% the corresponding hypothesis.
+\subsection{The literature does not pool: a large optimism gap}
+Under random $k$-fold splits the tree models reach $R^2\!\approx\!0.55$
+(random forest $0.56$, LightGBM $0.57$, XGBoost $0.55$). Under study-grouped
+cross-validation the same models fall to $R^2<0$, i.e.\ worse than predicting the global
+mean on a held-out study, for an optimism gap of $0.62$--$0.85$ (Fig.~\ref{fig:gap}). The
+gap persists after removing the single largest study ($0.48$--$0.73$), so it is not an
+artifact of one dominant source. A model trained on some studies therefore does not
+predict an unseen study---the precondition for asking whether the contradictions are real
+or artifactual.
+
+\subsection{Methodology, not physical regime, explains the between-study variance}
+At the study level, $\approx\!50\%$ of the total yield variance lies between studies. The
+physico-chemical regime label explains almost none of it: $R^2_{\texttt{system\_class}}=
+0.018$ (cluster-bootstrap 95\% CI $[0.015,0.373]$). Methodological covariates jointly
+explain $R^2=0.553$ (CI $[0.361,0.999]$), $\approx\!27\times$ more
+(Fig.~\ref{fig:variance}). The single largest source is the \emph{temperature-control
+method}: $R^2_{\texttt{temperature\_control}}=0.332$ (CI $[0.030,0.676]$); studies using a
+self-heating protocol report higher mean yields ($86\%$) than isothermal-bath studies
+($75\%$), and uncontrolled studies far lower ($32\%$).
+
+This signal is not a relabeling of study identity or of physical regime. Each
+temperature-control level is shared by many studies ($22/7/2$ studies for
+isothermal-bath/self-heating/uncontrolled) and spans $4$--$5$ of the five regimes, so it is
+not collinear with \texttt{system\_class}. Its contribution \emph{survives controlling for
+regime}: the incremental variance explained by temperature control given
+\texttt{system\_class} is $+0.467$ (cluster-bootstrap CI $[+0.037,+0.772]$, excluding $0$),
+whereas regime given method adds only $+0.153$. Residual between-study spread remains within
+the dominant isothermal-bath level (yield range $26$--$100$, s.d.\ $18.7$), so temperature
+control is the largest single driver but not the only one---hence we claim
+\emph{predominantly}, not purely, methodological.
+
+\subsection{The flagship particle-size contradiction is a cross-study artifact}
+The literature's headline contradiction is a direction-changing particle-size effect. Within
+every study that varies particle size ($5/5$), the within-study effect has the \emph{same}
+sign: smaller particles give higher yield (Spearman $\rho$ between $-0.29$ and $-0.87$;
+Fig.~\ref{fig:particle}). The apparent ``flip'' across the literature arises from comparing
+different size \emph{ranges} and material regimes between studies, not from any within-study
+sign reversal. The flagship contradiction is thus an integration artifact.
+
+\subsection{Activation energy does not organize by regime}
+Reported and independently re-fit activation energies (76-row kinetic table) do not cluster
+by \texttt{system\_class}: the within-regime spread is comparable to the between-regime
+spread, and \texttt{liquid\_metal\_activated} alone ranges from $8.5$ to $58$\,kJ\,mol$^{-1}$
+(Fig.~\ref{fig:ea}). A variance decomposition of per-study $E_\mathrm{a}$ by regime is not
+significant ($\eta^2=0.36$, permutation $p=0.13$ on the $\ge\!3$-study classes). The coarse
+regime label does not capture the kinetics.
+
+\subsection{Within-study predictability is heterogeneous (a transparent null)}
+Whether each study is internally predictable is mixed: within-study leave-one-condition-out
+skill is clearly positive for well-designed parameter sweeps (e.g.\ $0.84$--$0.86$) but the
+median across 14 testable studies is $-0.145$ (CI $[-0.45,+0.23]$). We report this as no
+detectable \emph{uniform} within-study predictability at these per-study sample sizes
+($5$--$120$ rows), not as evidence that within-study physics is inconsistent; the
+between-study variance and the consistent particle-size direction both point the other way.
+
+\begin{figure}[t]\centering
+\includegraphics[width=0.74\linewidth]{fig2_variance_decomposition.pdf}
+\caption{\textbf{Methodology, not physical regime, explains the between-study yield variance.}
+Left: between-study study-mean-yield variance explained ($R^2$) by the physico-chemical regime
+label ($0.02$) vs all methodological covariates jointly ($0.55$). Right: per-covariate breakdown;
+the temperature-control method dominates ($0.33$). Associational; survives controlling for regime
+(incremental $R^2{=}{+}0.47$, bootstrap CI excludes $0$).}
+\label{fig:variance}
+\end{figure}
+
+\begin{figure}[t]\centering
+\includegraphics[width=0.6\linewidth]{fig1_optimism_gap.pdf}\hfill
+\includegraphics[width=0.38\linewidth]{fig3_particle_size_consistency.pdf}
+\caption{\textbf{Left: leakage.} Per-model CV $R^2$ collapses from random splits to study-grouped
+splits (optimism gap $0.62$--$0.85$). \textbf{Right: the particle-size contradiction resolved.}
+Within-study Spearman $\rho$ (yield vs particle size) is negative in $5/5$ studies---a cross-study
+integration artifact, not a physical sign reversal.}
+\label{fig:gap}\label{fig:particle}
+\end{figure}
+
+\begin{figure}[t]\centering
+\includegraphics[width=0.56\linewidth]{fig4_ea_spread.pdf}\hfill
+\includegraphics[width=0.42\linewidth]{fig5_dataset_composition.pdf}
+\caption{\textbf{Left: $E_\mathrm{a}$ does not organize by regime} (points = per-study apparent
+$E_\mathrm{a}$, red bar = class median); within-regime spread $\approx$ between-regime spread.
+\textbf{Right: dataset composition} (315 yield rows / 31 studies; quality tiers; 76-row kinetic table).}
+\label{fig:ea}\label{fig:dataset}
+\end{figure}

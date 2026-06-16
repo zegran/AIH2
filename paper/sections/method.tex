@@ -1,7 +1,54 @@
-\section{Method}
-% Dataset construction (provenance, quality tiers, system_class taxonomy, absent vs unreported
-% encoding). Comparative model set and the tree/linear preprocessing split. Leakage control:
-% GroupKFold + LOSO, random-vs-grouped optimism gap. Explainability: TreeSHAP main and 2-way
-% interaction, ALE-primary, permutation sanity check, cross-fold SHAP stability. Physical
-% validation: Arrhenius Ea per system_class against the 3.5--102.6 kJ/mol band (Phase 1); SCM
-% regime-switch and SHAP-physics consistency metric (Phase 2).
+\section{Data and methods}
+\subsection{Provenance-tracked dataset}
+We screened the aluminum--water hydrolysis literature and extracted, from 31 full-text
+studies in hand, every distinct experimental condition reporting a hydrogen outcome. Each
+row records the target (H$_2$ yield, \% of the $1244$\,mL\,g$^{-1}$ pure-Al theoretical),
+physical parameters (temperature, alkali concentration, particle size, activator ratio,
+elemental composition), categorical descriptors, full provenance (study DOI, table/figure
+source, extractor, extraction method), and quality/methodology metadata. The grouping key
+is the study DOI. Absent quantities are encoded as $0$ and unreported quantities as
+missing, never conflated. Each study is assigned a physico-chemical regime label
+\texttt{system\_class} $\in$ \{\texttt{pure\_al\_alkali}, \texttt{al\_alloy},
+\texttt{mechanically\_activated}, \texttt{liquid\_metal\_activated}, \texttt{waste\_al}\},
+verified against the source materials/methods. The final yield dataset has 315 rows from 31
+studies (Fig.~\ref{fig:dataset}); a \emph{separate} 76-row kinetic table holds activation
+energies and rates (reported or fit from rate-vs-temperature data), with their own
+provenance and fit-quality fields, and is never merged into the yield table.
+
+Two independent re-extraction passes provide quality control: a double extraction of
+$\approx\!16\%$ of yield rows showed $52/52$ exact value agreement, and a classification
+audit re-derived \texttt{system\_class} for all 31 studies from source; digitized kinetic
+points were re-read independently ($\approx\!1.5\%$ point error). Studies whose Arrhenius
+fits failed a quality gate ($R^2\!\ge\!0.90$, $\ge\!3$ temperatures) were dropped rather
+than forced.
+
+\subsection{Leakage-controlled evaluation}
+For each of six comparative regressors (ElasticNet, $k$NN, random forest, XGBoost, LightGBM,
+Gaussian process) we estimate the held-out coefficient of determination under two protocols:
+ordinary $k$-fold (records split at random) and \emph{study-grouped} $k$-fold (all records
+of a study held out together). The \emph{optimism gap}, $R^2_{\text{random}}-
+R^2_{\text{grouped}}$, measures how much random splitting overstates cross-study
+generalization. Tree models retain missing values; linear/kernel models use median
+imputation and one-hot encoding.
+
+\subsection{Between-study variance decomposition (primary analysis)}
+To ask \emph{what} drives the disagreement, we aggregate to the study level (one row per
+study: mean yield and the study's modal covariate values) and decompose the between-study
+variance of mean yield. For a categorical predictor $C$ we report the variance share
+$R^2_C = 1 - \mathrm{SS_{within}}(C)/\mathrm{SS_{total}}$, comparing the physical-regime
+label against methodological covariates (\texttt{temperature\_control},
+\texttt{measurement\_method}, \texttt{water\_type}, \texttt{quality\_tier},
+\texttt{vessel\_type}). We test whether the methodological signal is genuine---rather than a
+re-encoding of study identity or a confound with regime---by (i) auditing the study-level
+coverage of each covariate level, (ii) cross-tabulating against \texttt{system\_class}, and
+(iii) reporting the \emph{incremental} variance explained by the temperature-control method
+after controlling for regime. All headline numbers carry cluster-bootstrap confidence
+intervals (resampling studies); contrasts use Holm correction. We treat the kinetic
+$E_\mathrm{a}$ analysis and the within-study tests analogously.
+
+\subsection{Discipline}
+Hypotheses and success thresholds were frozen before computation. Language on observational
+findings is associational, not causal. We report nulls as ``no detectable effect at
+$n\!\approx\!31$ studies / $3$--$9$ per regime.'' Machine-learning attributions
+(SHAP/importances) are used descriptively only. All numbers in this paper trace to a
+committed analysis artifact, and the full pipeline is released.

@@ -1,16 +1,19 @@
-% Generic article now; switch to Elsevier by replacing the documentclass block with:
-%   \documentclass[preprint,12pt]{elsarticle}
-% and wrapping the title/author block in the elsarticle frontmatter macros.
+% IJHE submission (elsarticle). For Elsevier, switch to:
+%   \documentclass[preprint,12pt]{elsarticle}  and use \begin{frontmatter}...\end{frontmatter}.
+% Kept as `article` for local compilation; structure/content are submission-ready first-draft.
 \documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{booktabs}
-\usepackage[numbers]{natbib}
+\usepackage[numbers,sort&compress]{natbib}
 \usepackage{amsmath}
-\usepackage{hyperref}
-\graphicspath{{../results/figures/}}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\graphicspath{{../results/real_v1/figures/}}
+\newcommand{\todocite}[1]{\textcolor{red}{[cite: #1]}}  % placeholder for not-yet-verified refs
 
-\title{Explaining Contradictory Parameter Effects in Aluminum--Water Hydrolysis for
-Hydrogen Production via Physics-Validated Interpretable Machine Learning}
+\title{Apparent Contradictions in the Aluminum--Water Hydrolysis Literature
+are Predominantly Methodological: a Provenance-Tracked, Leakage-Controlled Analysis}
 \author{Author One \and Author Two}
 \date{}
 
@@ -18,16 +21,34 @@ Hydrogen Production via Physics-Validated Interpretable Machine Learning}
 \maketitle
 
 \begin{abstract}
-% One paragraph: the contradiction problem in Al--water hydrolysis, the unified
-% provenance-tracked dataset, leakage-controlled interpretable ML (random-vs-grouped optimism
-% gap), Arrhenius physical validation, and the contradiction-resolution result.
+\noindent The aluminum--water hydrolysis literature for hydrogen production reports
+parameter effects that contradict one another across studies---most visibly a
+direction-changing particle-size effect and activation energies spanning
+$3.5$--$102.6$\,kJ\,mol$^{-1}$---which blocks data-driven design and leaves open whether
+the contradictions reflect genuine physico-chemical regimes or artifacts of isolated,
+non-standardized experimental conditions. We unify the scattered literature into a
+provenance-tracked open dataset (315 condition-level yield rows from 31 studies, plus a
+separate 76-row kinetic table) and analyze it with leakage-controlled evaluation, a
+study-level variance decomposition, and a within-study consistency test, with
+pre-registered claims and transparent nulls. Under study-grouped cross-validation the
+strong apparent predictability of random splits collapses (optimism gap $0.62$--$0.85$
+in $R^2$), and a between-study variance decomposition shows that \emph{methodological}
+covariates are associated with $\approx 55\%$ of the between-study yield variance versus
+$\approx 2\%$ for the physico-chemical regime label (\texttt{system\_class}), with the
+temperature-control method alone the single largest source ($\approx 33\%$). The flagship
+particle-size ``contradiction'' is internally consistent within every study that varies
+size ($5/5$ negative), identifying it as a cross-study integration artifact rather than a
+physical sign reversal. We therefore conclude---associationally and at $n\!\approx\!31$
+studies---that the literature's apparent contradictions are predominantly methodological;
+we release the curated dataset, the reproducible analysis, and a minimum-information
+reporting standard for aluminum-hydrolysis studies.
 \end{abstract}
 
 \input{sections/introduction}
 \input{sections/related_work}
 \input{sections/method}
-\input{sections/experiments}
 \input{sections/results}
+\input{sections/discussion}
 \input{sections/conclusion}
 
 \bibliographystyle{unsrtnat}

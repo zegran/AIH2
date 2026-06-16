@@ -1,8 +1,48 @@
 \section{Introduction}
-% Motivate hydrogen-on-demand via the aluminum--water reaction. State the central thesis: the
-% literature is internally contradictory about parameter effects on H2 yield (direction-changing
-% particle-size effect, 3.5--102.6 kJ/mol activation-energy spread, inconsistent rate--yield
-% trade-off, disagreement on parameter dominance). Frame as an unsolved scientific problem
-% (significance), not a missing combination (novelty). State the research question and the three
-% hypotheses (H1--H3). List contributions: open dataset, leakage-controlled methodology, physical
-% validation, contradiction resolution.
+The reaction of aluminum with water, $2\,\mathrm{Al}+3\,\mathrm{H_2O}\rightarrow
+\mathrm{Al_2O_3}+3\,\mathrm{H_2}$ (or via hydroxides), is an attractive route to
+hydrogen on demand: it is triggered by water alone, stores energy at high density, and
+needs no high-pressure H$_2$ infrastructure. Two decades of experiments have mapped how
+temperature, alkalinity, particle size, alloying/activation, and water chemistry control
+the yield and rate. Yet the resulting literature is \emph{internally contradictory}.
+Reported activation energies span $3.5$--$102.6$\,kJ\,mol$^{-1}$; the effect of particle
+size is reported as both beneficial and detrimental; the rate--yield trade-off is
+inconsistent; and studies disagree on which parameter dominates. These contradictions are
+usually attributed, in passing, to ``different conditions,'' but the attribution has never
+been tested.
+
+This is the unresolved question we address: \emph{are the apparent inter-study
+contradictions genuine physico-chemical regime differences, or artifacts of isolated,
+non-standardized experimental conditions?} The distinction matters because it determines
+whether the literature can be pooled to build predictive design models at all. Prior
+machine-learning work on aluminum--water hydrolysis is, to our knowledge, limited to a
+single-study, in-sample neural network reporting near-perfect prediction
+($R^2\!\approx\!0.998$; \todocite{das2023fuel}). Such a number is exactly the
+generalization illusion that a cross-study analysis must guard against: a model that
+interpolates one laboratory's data says nothing about whether the literature agrees.
+
+We take the opposite stance. We unify the scattered literature into a single
+provenance-tracked dataset and ask, with leakage-controlled evaluation, how far one study
+transfers to another, and \emph{what} drives the differences when it does not. We
+pre-registered the analyses and their success criteria before computing them, and we
+report nulls transparently as ``no detectable effect at this sample size'' rather than as
+evidence of absence.
+
+\paragraph{Contributions.}
+\begin{itemize}\itemsep2pt
+  \item A curated, provenance-tracked, quality-tiered \textbf{open dataset} of 315
+  condition-level hydrogen-yield rows from 31 studies, with a separate 76-row kinetic
+  table (activation energies and rates), released under CC-BY.
+  \item A \textbf{leakage-controlled evaluation} showing that random-split predictability
+  ($R^2\!\approx\!0.55$) collapses under study-grouped cross-validation ($R^2<0$; optimism
+  gap $0.62$--$0.85$)---the literature does not pool naively.
+  \item The central finding: a study-level variance decomposition in which
+  \textbf{methodological covariates explain $\approx\!55\%$ of the between-study yield
+  variance versus $\approx\!2\%$ for the physico-chemical regime}, with the
+  temperature-control method alone the largest single source ($\approx\!33\%$); the effect
+  survives controlling for regime.
+  \item Resolution of the \textbf{flagship particle-size contradiction} as a cross-study
+  integration artifact (within-study effect negative in $5/5$ studies).
+  \item A proposed \textbf{minimum-information reporting standard} for aluminum-hydrolysis
+  studies, to make future data poolable.
+\end{itemize}
