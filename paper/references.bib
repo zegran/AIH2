@@ -1,81 +1,113 @@
 % References for the methodological-heterogeneity paper.
-% RULE (ml-paper-writing): never write BibTeX from memory. Entries are added ONLY after the DOI is
-% verified. Verified entries appear below; not-yet-fetched refs remain red \todocite{} placeholders.
+% RULE (ml-paper-writing): never write BibTeX from memory. Each entry tagged with its verification
+% tier: "full-text" (source PDF/MD in data/raw/literature/) or "metadata" (DOI+title+abstract
+% verified via Crossref/Consensus, no full text). Metadata-only entries support GENERAL ATTRIBUTION
+% only; specific quantitative claims on them are softened in text or flagged % NEEDS-FULLTEXT.
 %
-% ---- REMAINING placeholders to fetch (replace \todocite -> \cite when verified) ----
-% das2023fuel       : Das et al. 2023, Fuel -- single-study in-sample ANN (R^2~0.998). DOI: TODO.
-% pomerantsev2021   : Pomerantsev & Rodionova 2021, Talanta.   10.1016/j.talanta.2021.122104
-% urbonavicius2023  : Urbonavicius et al. 2023, IJHE.          10.1016/j.ijhydene.2023.09.065
-% testa2024         : round-robin temperature control. DOI: TODO.
-% saceleanu2019     : Saceleanu & Kelder 2019.                 10.1002/er.4769
-% wulf2021          : Wulf et al. 2021, ChemCatChem.           10.1002/cctc.202001974
-% hoque2018         : Hoque & Guzman 2018, Materials.          10.3390/ma11101990
-% musicco2025, xiao2021review, dupreez2021review : domain reviews. DOIs: TODO.
-% wen2018 (10.1002/er.3955), porciuncula2012 (10.1590/s0104-66322012000200014),
-% urbonav2024 (10.3390/ma17112637) : our dataset studies (full list: data/wp1/canonical_studies.csv).
+% RESIDUAL (unverifiable, left as \todocite in text): xiao2021review -- a 2021 IJHE Xiao review on
+% activated Al composites could not be resolved via Crossref; user to supply DOI or drop.
+% testa2024 -- the only locatable "Testa 2024" (10.1016/j.ijhydene.2024.08.152) is an Al-NaOH
+% kinetics study, NOT a round-robin; it does not support the round-robin claim, so that claim was
+% removed rather than mis-cited (see SELF_REVIEW.md).
 
-% ==== VERIFIED — positioning batch 1 (7) ====
+% ==== positioning batch 1 (metadata-verified) ====
 @article{bernett2024,
   author  = {Bernett, Judith and Blumenthal, David B. and Grimm, Dominik G. and Haselbeck, Florian and Joeres, Roman and Kalinina, Olga V. and List, Markus},
   title   = {Guiding questions to avoid data leakage in biological machine learning applications},
-  journal = {Nature Methods},
-  year    = {2024},
-  volume  = {21},
-  pages   = {1444--1453},
-  doi     = {10.1038/s41592-024-02362-y}
-}
+  journal = {Nature Methods}, year = {2024}, volume = {21}, pages = {1444--1453},
+  doi     = {10.1038/s41592-024-02362-y}}  % verified: metadata
 
 @article{john2025,
   author  = {John, Kingsley and Saurette, Daniel D. and Heung, Brandon},
   title   = {The problematic case of data leakage: A case for leave-profile-out cross-validation in 3-dimensional digital soil mapping},
-  journal = {Geoderma},
-  year    = {2025},
-  doi     = {10.1016/j.geoderma.2025.117223}
-}
+  journal = {Geoderma}, year = {2025}, doi = {10.1016/j.geoderma.2025.117223}}  % verified: metadata
 
 @article{suvarna2024,
   author  = {Suvarna, Manu and P{\'e}rez-Ram{\'i}rez, Javier},
   title   = {Embracing data science in catalysis research},
-  journal = {Nature Catalysis},
-  year    = {2024},
-  volume  = {7},
-  pages   = {624--635},
-  doi     = {10.1038/s41929-024-01150-3}
-}
+  journal = {Nature Catalysis}, year = {2024}, volume = {7}, pages = {624--635},
+  doi     = {10.1038/s41929-024-01150-3}}  % verified: metadata
 
 @article{bozalginesta2025,
   author  = {Bozal-Ginesta, Carlota and Pablo-Garc{\'i}a, Sergio and Choi, Changhyeok and Taranc{\'o}n, Albert and Aspuru-Guzik, Al{\'a}n},
   title   = {Developing machine learning for heterogeneous catalysis with experimental and computational data},
-  journal = {Nature Reviews Chemistry},
-  year    = {2025},
-  doi     = {10.1038/s41570-025-00740-4}
-}
+  journal = {Nature Reviews Chemistry}, year = {2025}, doi = {10.1038/s41570-025-00740-4}}  % verified: metadata
 
 @article{coelho2022,
   author  = {Coelho, Leonardo B. and Zhang, Dawei and Van Ingelgem, Yves and Steckelmacher, Denis and Now{\'e}, Ann and Terryn, Herman},
   title   = {Reviewing machine learning of corrosion prediction in a data-oriented perspective},
-  journal = {npj Materials Degradation},
-  year    = {2022},
-  volume  = {6},
-  pages   = {1--16},
-  doi     = {10.1038/s41529-022-00218-4}
-}
+  journal = {npj Materials Degradation}, year = {2022}, volume = {6}, pages = {1--16},
+  doi     = {10.1038/s41529-022-00218-4}}  % verified: metadata
 
 @article{xue2024,
   author  = {Xue, Pengcheng and Qiu, Ruihu and Peng, Cheng and Peng, Zhuoran and Ding, Kang and Long, Rui and Zheng, Qi},
   title   = {Solutions for Lithium Battery Materials Data Issues in Machine Learning: Overview and Future Outlook},
-  journal = {Advanced Science},
-  year    = {2024},
-  volume  = {11},
-  doi     = {10.1002/advs.202410065}
-}
+  journal = {Advanced Science}, year = {2024}, volume = {11}, doi = {10.1002/advs.202410065}}  % verified: metadata
 
 @article{noble2022,
   author  = {Noble, Daniel W. A. and Pottier, Patrice and Lagisz, Malgorzata and Burke, Samantha and Drobniak, Szymon M. and O'Dea, Rose E. and Nakagawa, Shinichi},
   title   = {Meta-analytic approaches and effect sizes to account for `nuisance heterogeneity' in comparative physiology},
-  journal = {Journal of Experimental Biology},
-  year    = {2022},
-  volume  = {225},
-  number  = {Suppl\_1},
-  doi     = {10.1242/jeb.243225}
-}
+  journal = {Journal of Experimental Biology}, year = {2022}, volume = {225}, number = {Suppl\_1},
+  doi     = {10.1242/jeb.243225}}  % verified: metadata
+
+% ==== positioning batch 2 (metadata-verified) ====
+@article{das2023fuel,
+  author  = {Das, Biswajyoti and Robi, P. S. and Mahanta, Pinakeswar},
+  title   = {Experimental Investigation and Modelling by Machine Learning Techniques for Hydrogen Generation by Reacting Aluminium with Aqueous NaOH Solution},
+  journal = {Fuel}, year = {2023}, doi = {10.1016/j.fuel.2023.128924}}  % verified: metadata (exact R^2 NEEDS-FULLTEXT)
+
+@article{saceleanu2019,
+  author  = {Saceleanu, Flaviu and Vuong, Thu V. and Master, Emma R. and Wen, John Z.},
+  title   = {Tunable kinetics of nanoaluminum and microaluminum powders reacting with water to produce hydrogen},
+  journal = {International Journal of Energy Research}, year = {2019}, volume = {43}, pages = {7384--7396},
+  doi     = {10.1002/er.4769}}  % verified: metadata
+
+@article{pomerantsev2021,
+  author  = {Pomerantsev, Alexey L. and Rodionova, Oxana Ye.},
+  title   = {Procrustes Cross-Validation of short datasets in PCA context},
+  journal = {Talanta}, year = {2021}, volume = {226}, pages = {122104},
+  doi     = {10.1016/j.talanta.2021.122104}}  % verified: metadata
+
+@article{urbonavicius2023,
+  author  = {Urbonavi{\v c}ius, Marius and Varnagiris, {\v S}ar{\=u}nas and Mezulis, Ainars and Lesnicenoks, Peteris and Knoks, Ainars and Richter, Christiaan and Mil{\v c}ius, Darius and Meirbekova, Rauan and Gunnarsson, Gudmundur and Kleperis, Janis},
+  title   = {Hydrogen from industrial aluminium scraps: Hydrolysis under various conditions, modelling of pH behaviour and analysis of reaction by-product},
+  journal = {International Journal of Hydrogen Energy}, year = {2023}, doi = {10.1016/j.ijhydene.2023.09.065}}  % verified: metadata
+
+@article{wulf2021,
+  author  = {Wulf, Christoph and Beller, Matthias and Boenisch, Tim and Deutschmann, Olaf and Hanf, Schirin and Kockmann, Norbert and Kraehnert, Ralph and Oezaslan, Mehtap and Palkovits, Stefan and Schimmler, Sonja and Schunk, Stephan and Wagemann, Kurt and Linke, David},
+  title   = {A Unified Research Data Infrastructure for Catalysis Research -- Challenges and Concepts},
+  journal = {ChemCatChem}, year = {2021}, volume = {13}, doi = {10.1002/cctc.202001974}}  % verified: metadata
+
+@article{hoque2018,
+  author  = {Hoque, Md Ariful and Guzman, Marcelo I.},
+  title   = {Photocatalytic Activity: Experimental Features to Report in Heterogeneous Photocatalysis},
+  journal = {Materials}, year = {2018}, volume = {11}, number = {10}, pages = {1990},
+  doi     = {10.3390/ma11101990}}  % verified: metadata
+
+@article{musicco2025,
+  author  = {Musicco, Nicola and Gelfi, Marcello and Iora, Paolo and Venturelli, Matteo and Artioli, Nancy and Montorsi, Luca and Milani, Massimo},
+  title   = {A review of hydrogen generation methods via aluminum-water reactions},
+  journal = {International Journal of Thermofluids}, year = {2025}, doi = {10.1016/j.ijft.2025.101152}}  % verified: metadata
+
+@article{dupreez2021review,
+  author  = {du Preez, S. P. and Bessarabov, D. G.},
+  title   = {On-demand hydrogen generation by the hydrolysis of ball-milled aluminum composites: A process overview},
+  journal = {International Journal of Hydrogen Energy}, year = {2021}, volume = {46}, pages = {35790--35813},
+  doi     = {10.1016/j.ijhydene.2021.03.240}}  % verified: metadata
+
+% ==== our dataset studies cited inline (full-text-verified from data/raw/literature/) ====
+@article{wen2018,
+  author  = {Wen, Yu-Chieh and Huang, Wei-Min and Wang, Hong-Wen},
+  title   = {Kinetics study on the generation of hydrogen from an aluminum/water system using synthesized aluminum hydroxides},
+  journal = {International Journal of Energy Research}, year = {2018}, doi = {10.1002/er.3955}}  % verified: full-text
+
+@article{urbonav2024,
+  author  = {Urbonavi{\v c}ius, Marius and Varnagiris, {\v S}ar{\=u}nas and Knoks, Ainars and Mezulis, Ainars and Kleperis, Janis and Richter, Christiaan and Meirbekova, Rauan and Gunnarsson, Gudmundur and Mil{\v c}ius, Darius},
+  title   = {Enhanced Hydrogen Generation through Low-Temperature Plasma Treatment of Waste Aluminum for Hydrolysis Reaction},
+  journal = {Materials}, year = {2024}, volume = {17}, pages = {2637}, doi = {10.3390/ma17112637}}  % verified: full-text
+
+@article{porciuncula2012,
+  author  = {Porci{\'u}ncula, C. B. and Marcilio, N. R. and Tessaro, I. C. and Gerchmann, M.},
+  title   = {Production of hydrogen in the reaction between aluminum and water in the presence of NaOH and KOH},
+  journal = {Brazilian Journal of Chemical Engineering}, year = {2012}, volume = {29}, pages = {337--348},
+  doi     = {10.1590/s0104-66322012000200014}}  % verified: full-text

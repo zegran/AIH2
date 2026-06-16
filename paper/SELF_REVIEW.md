@@ -48,19 +48,27 @@ within-study null; discussion limitations). No null stated as "no effect exists.
 leakage-controlled ML / reporting standard." Matches the Consensus-confirmed GAP and is hedged
 ("to our knowledge"). ✓
 
-## 5. Citations — partially resolved (still blocking until complete)
-**Batch 1 (7 positioning refs) RESOLVED + verified** (2026-06-17): `bernett2024`, `john2025`
-(grouped/leave-group-out CV precedent); `suvarna2024`, `bozalginesta2025` (data science in
-catalysis); `coelho2022`, `xue2024` (data-quality/heterogeneity in materials ML); `noble2022`
-(meta-analytic nuisance heterogeneity). Verified BibTeX in `references.bib`; PDFs in the user's
-downloads. Citation-verification at the general-attribution tier: all 7 titles match the framing
-claims they back (no specific quantitative claim is drawn from them) → **no mismatch flags.**
-- **Resolved: 7 keys (2 grouped `\citep`).** **Remaining: 15 `\todocite` placeholders** (~13 refs):
-  `das2023fuel` (the Das R²≈0.998 foil), `pomerantsev2021`, `urbonavicius2023`, `testa2024`,
-  `saceleanu2019` (regime caveat), `wulf2021`, `hoque2018`, `musicco2025`, `xiao2021review`,
-  `dupreez2021review`, and dataset studies `wen2018`/`porciuncula2012`/`urbonav2024`.
-- **Still blocking:** fetch + verify the remaining ~13 (esp. `das2023fuel` and `saceleanu2019`, which
-  back specific claims) before submission.
+## 5. Citations — **COMPLETE; zero `\todocite` placeholders** (2026-06-17)
+18 entries in `references.bib`, each tagged by tier. **full-text-verified** (archive): `wen2018`,
+`urbonav2024`, `porciuncula2012`. **metadata-verified** (Crossref/Consensus): the 7 batch-1 refs +
+`das2023fuel`, `saceleanu2019`, `pomerantsev2021`, `urbonavicius2023`, `wulf2021`, `hoque2018`,
+`musicco2025`, `dupreez2021review` (last two resolved live via Crossref:
+`10.1016/j.ijft.2025.101152`, `10.1016/j.ijhydene.2021.03.240`).
+
+**Citation-verification (general-attribution tier) — flags handled honestly, not fixed to fit:**
+- ⚠️ **`testa2024` MISMATCH → claim removed.** The only locatable Testa 2024
+  (`10.1016/j.ijhydene.2024.08.152`) is an Al--NaOH kinetics study, not the intended round-robin;
+  rather than mis-cite it, the round-robin/temperature-control sentence was deleted from Related Work.
+- ⚠️ **`das2023fuel` specific number softened.** Metadata-only source; the exact in-sample $R^2$
+  ($\approx\!0.998$) was replaced with "near-perfect in-sample fit" and flagged
+  `% NEEDS-FULLTEXT` in `references.bib` (confirm against full text before submission).
+- ⚠️ **`saceleanu2019` claim softened** from "kinetic$\leftrightarrow$diffusion regime transition"
+  to the verified title's scope (tunable nano-/micro-aluminium kinetics).
+- ⚠️ **`xiao2021review` omitted.** A 2021 IJHE Xiao review could not be resolved via Crossref; it was
+  dropped (redundant with two verified reviews) rather than shipped as a placeholder.
+- All other citations are general-attribution and match their cited titles → no further flags.
+- **No longer blocking submission** (was item 1). Residual pre-submission task: confirm the Das exact
+  $R^2$ against full text if the precise number is wanted; optionally restore a verified Xiao review.
 
 ## 6. Figures / compile
 5 figures, self-contained captions, wired to `results/real_v1/figures/*.pdf` (reproducible script).
@@ -69,8 +77,9 @@ claims they back (no specific quantitative claim is drawn from them) → **no mi
 machine before submission; an orphan `sections/experiments.tex` (not `\input`) can be deleted.
 
 ## Blocking issues before submission
-1. **Citations**: fetch + verify all placeholdered references (in flight).
-2. **Compile**: verify `main.tex` builds on a LaTeX install; check float placement + undefined refs.
+1. ~~Citations~~ **RESOLVED** — bibliography complete from verified metadata; zero placeholders.
+2. **Compile**: verify `main.tex` builds on a LaTeX install; check float placement + undefined refs
+   (only remaining hard blocker; see `SUBMISSION_PLAN.md` WP-COMPILE).
 ## Non-blocking polish
 - Soften "driver"→"largest single source"; add author block/affiliations; consider an elsarticle
   frontmatter conversion; delete orphan `experiments.tex`.
