@@ -57,11 +57,11 @@ tests/     mirrors src/
 
 | WP | Goal | Output | Phase | Status | Depends on |
 |----|------|--------|-------|--------|-----------|
-| **WP0** | Scaffold + tested skeleton pipeline | Repo, env, modules, tests, synthetic fixture | 1 | ✅ done | — |
-| **WP1** | **Literature data extraction** | Real curated dataset (≥150 floor, ~300 target), provenance + quality tiers | 1 | 🟢 **archive assembled** — **59-study active pool, all full-text in hand**; every class feasible for ≥40 rows (liquid_metal gap closed via Consensus OA); 21 excluded (`WP1_EXCLUDED.md`); → **Phase B extraction next** (`WP1_READINESS_REPORT.md`) | WP0 |
-| **WP2** | Modeling + leakage-controlled CV | Comparative models, GroupKFold/LOSO, optimism gap | 1 | ⏳ skeleton done; rerun on real data | WP1 |
-| **WP3** | Explainability (SHAP + ALE) | SHAP main+interaction, ALE, permutation, stability | 1 | ⏳ skeleton done; rerun on real data | WP2 |
-| **WP4** | Physical validation | Arrhenius Eₐ per `system_class` (P1); SCM regime switch + consistency metric (P2) | 1 / 2 | ⏳ Arrhenius live; SCM/consistency stubbed | WP3 |
+| **WP0** | Scaffold + tested skeleton pipeline | Repo, env, modules, tests, synthetic fixture | 1 | ✅ done (28 tests pass) | — |
+| **WP1** | **Literature data extraction** | Real curated dataset (≥150 floor, ~300 target), provenance + quality tiers | 1 | ✅ **done** — `data/curated/aih2_v1.csv`, **315 rows / 31 studies**, validator PASS (floor met). **QC: 0% value error** (double-extraction) + classification audit (31/31). 3 classes ≥40, 2 exploratory | WP0 |
+| **WP2** | Modeling + leakage-controlled CV | Comparative models, GroupKFold/LOSO, optimism gap | 1 | ✅ **done (real data)** — optimism gap **0.62–0.85** (robust to dropping the dominant study); within-`system_class` grouped R² **+0.58** (pure_al_alkali) vs global −0.06 | WP1 |
+| **WP3** | Explainability (SHAP + ALE) | SHAP main+interaction, ALE, permutation, stability | 1 | 🟡 **partial** — SHAP rank stability ~0.68 + permutation importance done; ALE/SHAP sign-by-class **figures pending** | WP2 |
+| **WP4** | Physical validation | Arrhenius Eₐ per `system_class` (P1); SCM regime switch + consistency metric (P2) | 1 / 2 | 🔴 **blocked** — rigorous Arrhenius needs **rate data** (`max_rate`/`t80`, Phase 2, currently blank); SCM/consistency stubbed | WP3 |
 | **WP5** | Figures | fig1–fig4 + supporting (CV-gap, calibration) | 1 (+P2 parts) | ⛔ deferred (placeholders only) | WP3, WP4 |
 | **WP6** | Paper | IJHE manuscript from results | 1+2 | ⛔ not started (skeleton only) | WP4, WP5 |
 
@@ -71,36 +71,30 @@ implemented.
 
 ## Where we are / what's next
 
-**Done:** concept foundation · design spec · implementation plan · **WP0 scaffold** (tested,
-end-to-end on synthetic fixture) · GitHub push · **WP1 step 1–3** (screened source pool of 71
-in-scope studies, schema-locked extraction sheet, 16 seed rows). WP1 artifacts live under
-`data/wp1/` — see `data/wp1/WP1_PROGRESS_AND_CLI_HANDOFF.md`.
+**Done:** concept foundation · design spec · implementation plan · **WP0 scaffold** (28 tests
+pass) · **WP1 real dataset** (`data/curated/aih2_v1.csv`, 315 rows / 31 studies, QC'd) · **WP2
+first real run** · partial **WP3**. The pipeline now defaults to the real dataset
+(`run/conf/config.yaml`), with `data/curated/fixture_v0.csv` kept as a synthetic baseline.
 
-**Archive assembled → Phase B extraction next.** **59-study active pool**, all full text in hand
-under `data/raw/literature/` (gitignored) with `vault/Papers/` stubs and resolved DOIs (tracker:
-`data/wp1/master_dois.csv`). Assembled over 4 ingest batches (initial 35 + Sci-Hub 11 + MDPI 6 +
-Consensus OA 9, −2 curation). **Every `system_class` is now feasible for ≥40 rows** — the
-`liquid_metal_activated` gap (was 3) is closed at 10 via a focused open-access Consensus search.
-21 studies excluded (19 unreachable + 2 weak-venue; `WP1_EXCLUDED.md`). Full status:
-`data/wp1/WP1_READINESS_REPORT.md`. ⚠️ Curation kept minimal to avoid selection bias; OA-only
-access documented as a limitation. The pipeline still runs on
-`data/curated/fixture_v0.csv` (synthetic placeholder); the real dataset is being built in
-`data/wp1/AIH2_WP1_extraction_sheet.xlsx`. When extracted rows reach ≥150 (target ~300), the
-curated file is written to `data/curated/`, the Hydra `data.path` is pointed at it, and the
-pipeline reruns to produce real results (including a meaningful optimism gap) — no code changes.
+**Key results so far** (random_forest, study-grouped CV; `results/real_v1/RQ_FINDINGS.md`):
+- **Naive pooling fails (leakage):** random-split R² ≈ 0.56 collapses to grouped R² < 0
+  (optimism gap 0.62–0.85), **robust to dropping the dominant study** → not a one-study artifact.
+- **Regime-conditioning resolves the contradiction:** global grouped R² −0.06, but **within
+  pure_al_alkali (9 studies) +0.58** → contradictions are regime-moderated *real* effects, not
+  cross-study artifacts (strongest where statistical power exists). **Supports H2.**
+- **Parameter hierarchy moderately stable** (~0.68 Spearman across folds) → relative hierarchy
+  defensible.
+- **Coverage honesty:** `particle_size` is thin (19% of rows, 2 classes empty) → the particle-size
+  contradiction (H1) is underpowered; temperature / alkali / composition are well-covered.
 
-**At-risk classes (cannot reach ≥40 rows from obtained studies yet):** `al_alloy` (4 studies),
-`liquid_metal_activated` (3), `waste_al` (4) — prioritize retrieving `martinezv2026`,
-`davies2022mat`, `manilevich2020` (contradiction-evidence studies still missing).
+**Methodologically correct next steps** (convergent-validity design):
+1. Freeze an internal analysis protocol (primary test + falsifiable "real-vs-artifact" criteria).
+2. **Mixed-effects model** (study as random effect) + study-level bootstrap CIs — the principled
+   confound-separation test, complementing the ML, with multi-seed CIs.
+3. **Targeted rate re-extraction** from the in-hand studies → regime-wise Arrhenius Eₐ (unblocks WP4 / H3).
+4. Then WP5 figures + WP6 writing, on convergent (replication ∧ confound-survival ∧ physics) findings.
 
-**Phase A reference list:** `data/wp1/PHASE_A_MISSING_36.md` — full citations + Crossref-resolved
-DOIs for all 36 missing studies (33/36 have a DOI; 3 unresolved, flagged). Next gate: per-DOI
-Unpaywall/open-access reachability check.
-
-**Open WP1 items (from the handoff):** replace `study_id` citekeys with confirmed DOIs;
-seed rows are tier-C abstract-level (need PDFs + WebPlotDigitizer for condition-level rows);
-review `buryakov2024` (`water_type=sea` proxy for AlCl₃ saline); keep only alkaline/neutral
-rows of `yang2018` (drop acid-media rows).
+**Hypothesis scorecard:** H2 ✅ supported · H1 🟡 signal but data-thin → exploratory · H3 ⬜ pending rate data.
 
 > **Important — scaffold done ≠ paper ready.** Phase 1 is the skeleton on a synthetic fixture.
 > A submission-ready manuscript requires **Phase 1 + core Phase 2** (shrinking-core regime-switch
@@ -111,5 +105,5 @@ rows of `yang2018` (drop acid-media rows).
 - **Code:** MIT License (`LICENSE`).
 - **Dataset:** CC-BY-4.0 (separate from code).
 - **Archival:** versioned Zenodo release (DOI) — *pending, added after WP1*.
-- **Note:** `data/curated/fixture_v0.csv` is synthetic and will be replaced by the real
-  extracted dataset.
+- **Real dataset:** `data/curated/aih2_v1.csv` (315 rows, schema-valid, QC'd). `fixture_v0.csv`
+  is retained as the synthetic baseline/test fixture.
