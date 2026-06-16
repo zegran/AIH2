@@ -55,6 +55,18 @@ across particle sizes) · buryakov2023met (waste_al, 1T) · martinezv2026 (waste
 ### YIELD-ONLY
 fischman2020 (liquid_metal — mentions Arrhenius but reports no Eₐ/rate-vs-T; T tests are viscosity only).
 
+## Kinetic table built (GATE B)
+`data/wp1/rate_extraction.csv` (73 rows, separate from `aih2_v1.csv`): 32 Eₐ + 30 max_rate + 6
+rate_k + 5 t80. Validated by `tools/validate_rate_rows.py` (PASS, 5 advisory warns: wen2018 164.8
+out-of-band flag + 4 digitization-pending blanks). Eₐ rows per class: pure_al_alkali 16,
+mechanically 10, waste_al 4, al_alloy 1, liquid_metal 1 (→ 3 classes with ≥3 direct Eₐ; al_alloy &
+liquid_metal each have 1 direct Eₐ + derivable/digitization-pending). Method heterogeneity (medium,
+fit method, T-range, confounds) recorded per row.
+
+**Double-extraction QC (GATE B):** porciuncula2012 (7 Eₐ) + xiao2020 (6 Eₐ) re-extracted
+independently → **13/13 Eₐ values exact (0% error)**, ~18% of the Eₐ rows. Temperature sets and the
+lowest-Eₐ assignment corroborated.
+
 ## Notes
 - **Directly-usable physics:** ~15 reported Eₐ values already span ~10–70 kJ/mol (all inside the
   3.5–102.6 kJ/mol band except wen2018's 164.9 outlier system) → H3's in-band check is largely

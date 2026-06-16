@@ -39,12 +39,25 @@ The unit of inference is the **study**, not the row. Data-quality covariates (`q
      (or the `system_class` main effect) is significant at **Holm-corrected p < 0.05** with a
      non-negligible standardized effect, AND it survives the **high-quality-only (tier A/B) sensitivity**
      AND the **leave-porciuncula-out sensitivity**. H2 is REFUTED iff no interaction survives correction.
-2. **H3 — physics validation.**
-   - Build the literature/derived apparent-Eₐ distribution per `system_class` (direct extraction +
-     digitization per `RATE_FEASIBILITY.md`).
-   - **Success criterion:** H3 is SUPPORTED iff apparent-Eₐ is in 3.5–102.6 kJ/mol for **≥3 classes**
-     AND the empirical/ML temperature sensitivity rank-correlates with the per-regime literature Eₐ.
-     REFUTED iff Eₐ is mostly out-of-band or the temperature effect is uncorrelated with literature Eₐ.
+2. **H3 — physics validation (co-primary).** ⚠️ "Eₐ in-band (3.5–102.6 kJ/mol)" is **not** a
+   contribution — the literature already reports in-band Eₐ. H3 has **two** pre-registered,
+   falsifiable criteria (both thresholds set BEFORE computing; H3 may return null):
+   - **A1 — Regime structure of the Eₐ spread.** Does `system_class` explain a meaningful share of
+     the across-study apparent-Eₐ variance? Test: one-way model `Ea ~ system_class` with the
+     **study as unit** (each study one Eₐ), report between-class vs within-class variance, **η²**,
+     and a **cluster-bootstrap (resample studies) 95% CI** on η²; permutation p.
+     - **SUPPORTED** iff η² ≥ **0.25** (large) with bootstrap-CI lower bound > 0 (permutation p<0.05)
+       → the 3.5–102.6 spread is **regime-structured, not random** (resolves contradiction #2 on Eₐ).
+     - **PARTIAL** iff η² ∈ [0.06, 0.25). **REFUTED** iff η² < 0.06 or CI includes 0.
+   - **A2 — ML↔physics convergence.** Does the model-implied per-regime temperature sensitivity
+     (fitted temperature coefficient / mean local Arrhenius slope from the descriptive ML, or a
+     direct yield-vs-1/T apparent-Eₐ) agree with the **independently reported** Eₐ per regime?
+     Test: per-regime comparison across the (≤5) classes that have both — directional/rank agreement
+     + CI overlap of ML-implied vs reported Eₐ.
+     - **SUPPORTED** iff agreement holds (same ordering / overlapping CIs) in **≥3 of the regimes**
+       that have both quantities. **REFUTED** iff it disagrees in the majority.
+     - ⚠️ Power caveat (stated up front): with ≤5 regimes a rank correlation is low-power; A2 is a
+       convergence check, not a significance test — interpreted with explicit n_regime.
 
 ## Descriptive (NOT confirmatory)
 - **Leakage / optimism gap** (random vs study-grouped CV): reported as an established methodological
