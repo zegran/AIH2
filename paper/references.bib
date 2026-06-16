@@ -1,39 +1,81 @@
 % References for the methodological-heterogeneity paper.
 % RULE (ml-paper-writing): never write BibTeX from memory. Entries are added ONLY after the DOI is
-% fetched and verified via citation-verification. Until then, citations appear as red \todocite{}
-% placeholders in the text. The DOIs below are the vetted positioning targets to fetch (Consensus,
-% 2026-06-16) + our own dataset studies; replace each placeholder with a verified @article entry as
-% the reference is ingested into data/raw/literature/.
+% verified. Verified entries appear below; not-yet-fetched refs remain red \todocite{} placeholders.
 %
-% ---- Foil / prior ML on Al-water hydrolysis ----
-% das2023fuel            : Das et al. 2023, Fuel -- single-study in-sample ANN (R^2~0.998). DOI: TODO fetch.
-%
-% ---- Leakage / grouped-CV method precedent ----
-% bernett2024            : Bernett et al. 2024, Nature Methods.            10.1038/s41592-024-02362-y
-% john2025               : John et al. 2025, Geoderma.                     10.1016/j.geoderma.2025.117223
-% pomerantsev2021        : Pomerantsev & Rodionova 2021, Talanta.          10.1016/j.talanta.2021.122104
-%
-% ---- Data science in catalysis / materials (framing) ----
-% suvarna2024            : Suvarna & Perez-Ramirez 2024, Nature Catalysis. 10.1038/s41929-024-01150-3
-% bozalginesta2025       : Bozal-Ginesta et al. 2025, Nat. Rev. Chem.      10.1038/s41570-025-00740-4
-% coelho2022             : Coelho et al. 2022, npj Mater. Degrad.          10.1038/s41529-022-00218-4
-% xue2024                : Xue et al. 2024, Advanced Science.              10.1002/advs.202410065
-% noble2022              : Noble 2022, J. Exp. Biol.                       10.1242/jeb.243225
-%
-% ---- Method-as-confound / external corroboration ----
-% urbonavicius2023       : Urbonavicius et al. 2023, Int. J. Hydrogen En.  10.1016/j.ijhydene.2023.09.065
-% testa2024              : Testa et al. 2024 (round-robin temperature control). DOI: TODO fetch.
-% saceleanu2019          : Saceleanu & Kelder 2019 (kinetic<->diffusion regime). 10.1002/er.4769
-%
-% ---- Minimum-information reporting standards ----
-% wulf2021               : Wulf et al. 2021, ChemCatChem.                  10.1002/cctc.202001974
-% hoque2018              : Hoque & Guzman 2018, Materials.                 10.3390/ma11101990
-%
-% ---- Domain reviews ----
-% musicco2025, xiao2021review, dupreez2021review : DOIs TODO fetch.
-%
-% ---- Our dataset studies cited inline ----
-% wen2018                : 10.1002/er.3955
-% porciuncula2012        : 10.1590/s0104-66322012000200014
-% urbonav2024            : 10.3390/ma17112637
-% (full 31-study provenance list ships with the dataset, data/wp1/canonical_studies.csv)
+% ---- REMAINING placeholders to fetch (replace \todocite -> \cite when verified) ----
+% das2023fuel       : Das et al. 2023, Fuel -- single-study in-sample ANN (R^2~0.998). DOI: TODO.
+% pomerantsev2021   : Pomerantsev & Rodionova 2021, Talanta.   10.1016/j.talanta.2021.122104
+% urbonavicius2023  : Urbonavicius et al. 2023, IJHE.          10.1016/j.ijhydene.2023.09.065
+% testa2024         : round-robin temperature control. DOI: TODO.
+% saceleanu2019     : Saceleanu & Kelder 2019.                 10.1002/er.4769
+% wulf2021          : Wulf et al. 2021, ChemCatChem.           10.1002/cctc.202001974
+% hoque2018         : Hoque & Guzman 2018, Materials.          10.3390/ma11101990
+% musicco2025, xiao2021review, dupreez2021review : domain reviews. DOIs: TODO.
+% wen2018 (10.1002/er.3955), porciuncula2012 (10.1590/s0104-66322012000200014),
+% urbonav2024 (10.3390/ma17112637) : our dataset studies (full list: data/wp1/canonical_studies.csv).
+
+% ==== VERIFIED — positioning batch 1 (7) ====
+@article{bernett2024,
+  author  = {Bernett, Judith and Blumenthal, David B. and Grimm, Dominik G. and Haselbeck, Florian and Joeres, Roman and Kalinina, Olga V. and List, Markus},
+  title   = {Guiding questions to avoid data leakage in biological machine learning applications},
+  journal = {Nature Methods},
+  year    = {2024},
+  volume  = {21},
+  pages   = {1444--1453},
+  doi     = {10.1038/s41592-024-02362-y}
+}
+
+@article{john2025,
+  author  = {John, Kingsley and Saurette, Daniel D. and Heung, Brandon},
+  title   = {The problematic case of data leakage: A case for leave-profile-out cross-validation in 3-dimensional digital soil mapping},
+  journal = {Geoderma},
+  year    = {2025},
+  doi     = {10.1016/j.geoderma.2025.117223}
+}
+
+@article{suvarna2024,
+  author  = {Suvarna, Manu and P{\'e}rez-Ram{\'i}rez, Javier},
+  title   = {Embracing data science in catalysis research},
+  journal = {Nature Catalysis},
+  year    = {2024},
+  volume  = {7},
+  pages   = {624--635},
+  doi     = {10.1038/s41929-024-01150-3}
+}
+
+@article{bozalginesta2025,
+  author  = {Bozal-Ginesta, Carlota and Pablo-Garc{\'i}a, Sergio and Choi, Changhyeok and Taranc{\'o}n, Albert and Aspuru-Guzik, Al{\'a}n},
+  title   = {Developing machine learning for heterogeneous catalysis with experimental and computational data},
+  journal = {Nature Reviews Chemistry},
+  year    = {2025},
+  doi     = {10.1038/s41570-025-00740-4}
+}
+
+@article{coelho2022,
+  author  = {Coelho, Leonardo B. and Zhang, Dawei and Van Ingelgem, Yves and Steckelmacher, Denis and Now{\'e}, Ann and Terryn, Herman},
+  title   = {Reviewing machine learning of corrosion prediction in a data-oriented perspective},
+  journal = {npj Materials Degradation},
+  year    = {2022},
+  volume  = {6},
+  pages   = {1--16},
+  doi     = {10.1038/s41529-022-00218-4}
+}
+
+@article{xue2024,
+  author  = {Xue, Pengcheng and Qiu, Ruihu and Peng, Cheng and Peng, Zhuoran and Ding, Kang and Long, Rui and Zheng, Qi},
+  title   = {Solutions for Lithium Battery Materials Data Issues in Machine Learning: Overview and Future Outlook},
+  journal = {Advanced Science},
+  year    = {2024},
+  volume  = {11},
+  doi     = {10.1002/advs.202410065}
+}
+
+@article{noble2022,
+  author  = {Noble, Daniel W. A. and Pottier, Patrice and Lagisz, Malgorzata and Burke, Samantha and Drobniak, Szymon M. and O'Dea, Rose E. and Nakagawa, Shinichi},
+  title   = {Meta-analytic approaches and effect sizes to account for `nuisance heterogeneity' in comparative physiology},
+  journal = {Journal of Experimental Biology},
+  year    = {2022},
+  volume  = {225},
+  number  = {Suppl\_1},
+  doi     = {10.1242/jeb.243225}
+}

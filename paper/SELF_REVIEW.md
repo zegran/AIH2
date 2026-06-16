@@ -48,11 +48,19 @@ within-study null; discussion limitations). No null stated as "no effect exists.
 leakage-controlled ML / reporting standard." Matches the Consensus-confirmed GAP and is hedged
 ("to our knowledge"). ✓
 
-## 5. Citations — **BLOCKING for submission**
-All 22 external citations are red `\todocite{}` placeholders (no fabricated BibTeX, per
-ml-paper-writing). `references.bib` lists the vetted DOIs to fetch. **Before submission:** fetch +
-verify each via citation-verification, replace placeholders with `\cite{}`, confirm each supports the
-sentence it backs (esp. Das 2023 R²≈0.998, Saceleanu 2019 regime claim, Bernett 2024 grouped-CV).
+## 5. Citations — partially resolved (still blocking until complete)
+**Batch 1 (7 positioning refs) RESOLVED + verified** (2026-06-17): `bernett2024`, `john2025`
+(grouped/leave-group-out CV precedent); `suvarna2024`, `bozalginesta2025` (data science in
+catalysis); `coelho2022`, `xue2024` (data-quality/heterogeneity in materials ML); `noble2022`
+(meta-analytic nuisance heterogeneity). Verified BibTeX in `references.bib`; PDFs in the user's
+downloads. Citation-verification at the general-attribution tier: all 7 titles match the framing
+claims they back (no specific quantitative claim is drawn from them) → **no mismatch flags.**
+- **Resolved: 7 keys (2 grouped `\citep`).** **Remaining: 15 `\todocite` placeholders** (~13 refs):
+  `das2023fuel` (the Das R²≈0.998 foil), `pomerantsev2021`, `urbonavicius2023`, `testa2024`,
+  `saceleanu2019` (regime caveat), `wulf2021`, `hoque2018`, `musicco2025`, `xiao2021review`,
+  `dupreez2021review`, and dataset studies `wen2018`/`porciuncula2012`/`urbonav2024`.
+- **Still blocking:** fetch + verify the remaining ~13 (esp. `das2023fuel` and `saceleanu2019`, which
+  back specific claims) before submission.
 
 ## 6. Figures / compile
 5 figures, self-contained captions, wired to `results/real_v1/figures/*.pdf` (reproducible script).
