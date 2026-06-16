@@ -41,10 +41,23 @@ source.
 - Value-level (the target column): **0 / 52 ≈ 0%**.
 - Study-level metadata: **1 / 5 studies** had a class-label error (caught + fixed).
 
-## Follow-up (recommended, not yet done)
+## Classification audit (2026-06-16) — DONE
 
-- **Targeted classification audit of `pure_al_alkali` (162 rows).** dudoladov shows the provisional
-  class in `canonical_studies.csv` can mislabel a gallium/eutectic-activated study as
-  pure_al_alkali. Re-check the other pure_al_alkali studies for any that are actually
-  liquid-metal- or mechanically-activated (look for Ga/In/Sn/Zn eutectic milling, added activators).
-  This protects the central analysis axis (`system_class`) before WP2 modeling.
+Triggered by the dudoladov finding. All **31 distinct studies** in the dataset (no study spans
+multiple classes) had their `system_class` re-derived from the source materials/methods by 9
+independent agents grouped by class.
+
+- **Result: every current label is correct after the dudoladov fix — 0 further data changes.**
+- pure_al_alkali (9 studies), mechanically_activated (6), al_alloy (3), waste_al (8): all AGREE.
+- liquid_metal_activated (4 re-audited): jayaraman2015 / fischman2020 / lu2017 AGREE. `lu2017`
+  explicitly verified as gallium-activated (untreated control gave no H₂ in NaCl), not pure-Al-in-
+  seawater. `ilyukhina2012` was a **boundary case**: an agent suggested mechanically_activated
+  (Al wire ball-milled with Ga-In-Sn-Zn gallam), but it is **kept as liquid_metal_activated** for
+  consistency with `dudoladov2016` and the gallium-eutectic rule (a gallium eutectic/gallam is the
+  activator even when milled in). The boundary rule is now documented in `EXTRACTION_GUIDE.md`.
+- Traps correctly handled by the audit: `guan2019` (1 wt% Ga dopant, not a eutectic → stays
+  mechanically), `liuyh2017` (gas-atomized but co-melted → stays al_alloy), `martinezv2026` /
+  `gupta2025` (remelted/scrap-alloy but waste source → stay waste_al).
+
+**Net QC outcome:** 0% yield-value error (52/52), and the central `system_class` axis is verified
+sound across all 31 studies (1 label fixed: dudoladov2016).

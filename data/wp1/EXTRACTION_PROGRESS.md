@@ -9,8 +9,10 @@ schema). Only validated rows count.*
   liquid_metal_activated 19 (exploratory-only) · waste_al 20 (exploratory-only).
 - ✅ **Double-extraction QC done** (`QC_DOUBLE_EXTRACTION.md`): 52 rows (~16.5%) re-extracted
   independently → **52/52 yield values exact (0% value error)**. 1 class-label error caught +
-  fixed (`dudoladov2016` → liquid_metal_activated). Follow-up: targeted pure_al_alkali
-  classification audit before WP2.
+  fixed (`dudoladov2016` → liquid_metal_activated).
+- ✅ **Classification audit done** (2026-06-16): all 31 studies' `system_class` re-derived from
+  source by 9 agents → every label correct after the dudoladov fix (0 further changes). Gallium-
+  eutectic boundary rule documented in `EXTRACTION_GUIDE.md`. **Central analysis axis verified.**
 - Studies attempted: 42 (29 productive). ⭐ **H1 evidence**: `martinezv2026` particle-size
   inverted-U; `zhang2024` 3µm vs 25µm (95% vs 34% at 45 °C — strong size effect). ⭐ **Rate–yield
   trade-off (2nd contradiction)**: `davies2022mat` Al-Bi-Zn — Zn slows the rate but keeps ~99.5%

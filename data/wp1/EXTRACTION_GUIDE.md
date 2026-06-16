@@ -46,6 +46,28 @@ reported experimental condition.** Every row must pass `tools/validate_rows.py` 
   {isothermal_bath,uncontrolled,self_heating} · `vessel_type` {open,closed} · `rate_definition`
   {initial,avg,max} · `value_origin` {reported,derived}.
 
+## system_class assignment (decision rules — verified by audit 2026-06-16)
+`system_class` is the **central analysis axis**; assign it from how the Al was *prepared*, not from
+the reaction medium. Decide in this order:
+1. **waste_al** — feedstock is waste/scrap/dross/recycled Al (cans, machining chips, industrial
+   dross, construction scrap). **Waste source wins** even if later ball-milled or alkali-treated
+   (e.g. `buryakov2023met`, `ho2016`, `urbonav2024`, `gupta2025` scrap-alloy dust).
+2. **liquid_metal_activated** — Al activated by a **gallium-based liquid metal / eutectic**
+   (Ga, Ga-In, Ga-In-Sn/Galinstan, Ga-In-Zn, gallam). ⚠️ **This wins over mechanically_activated
+   even when the eutectic is milled into the Al** — the gallium penetrating grain boundaries is the
+   activator, milling is just the contacting method (`dudoladov2016`, `ilyukhina2012`,
+   `jayaraman2015`, `fischman2020`, `lu2017`). **But** a *minor* Ga dopant (~1 wt%) among several
+   milled additives (In/Sn/Bi₂O₃) is **not** a eutectic-activation system → mechanically_activated
+   (`guan2019`).
+3. **al_alloy** — Al **melt-alloyed/cast** with other metals (induction/furnace melting, then
+   cast/atomized). Gas atomization of a co-melted Al-Bi/Al-Sn melt is still al_alloy
+   (`qiao2019`, `liuyh2017`, `meng2022`).
+4. **mechanically_activated** — Al **ball-milled** with Bi/Sn/In/salt/carbon additives into a
+   composite (no gallium eutectic, no melting). XRD typically shows "no alloy formed during milling".
+5. **pure_al_alkali** — commercial/pure unalloyed Al (foil/powder/granule/nano) with **no** alloying
+   or activation. A catalyst in the **solution** (Al(OH)₃, Ni-B, Ni-Li-B) keeps the row here as long
+   as the Al metal itself is unmodified.
+
 ## Scope & special cases
 - **In scope:** aqueous Al-water hydrolysis only. **Never** enter Mg/acid/non-aqueous rows.
 - `yang2018` → keep alkaline/neutral rows, **drop acid-media rows**.
