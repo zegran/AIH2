@@ -1,62 +1,176 @@
 \section{Data and methods}
-\subsection{Provenance-tracked dataset}
-We screened the aluminum--water hydrolysis literature and extracted, from 31 full-text
-studies in hand, every distinct experimental condition reporting a hydrogen outcome. Each
-row records the target (H$_2$ yield, \% of the $1244$\,mL\,g$^{-1}$ pure-Al theoretical),
-physical parameters (temperature, alkali concentration, particle size, activator ratio,
-elemental composition), categorical descriptors, full provenance (study DOI, table/figure
-source, extractor, extraction method), and quality/methodology metadata. The grouping key
-is the study DOI. Absent quantities are encoded as $0$ and unreported quantities as
-missing, never conflated. Each study is assigned a physico-chemical regime label
-\texttt{system\_class} $\in$ \{\texttt{pure\_al\_alkali}, \texttt{al\_alloy},
-\texttt{mechanically\_activated}, \texttt{liquid\_metal\_activated}, \texttt{waste\_al}\},
-verified against the source materials/methods. The final yield dataset has 315 rows from 31
-studies (Fig.~\ref{fig:dataset}); a \emph{separate} 76-row kinetic table holds activation
-energies and rates (reported or fit from rate-vs-temperature data), with their own
-provenance and fit-quality fields, and is never merged into the yield table.
+
+\subsection{Literature screening and dataset construction}
+
+We identified candidate studies by keyword search, forward and backward citation
+chaining from established reviews, and systematic inspection of relevant journal indices
+through early 2026. Full texts were obtained for all candidate articles; 59 papers were
+screened against the inclusion criterion: at least one numeric hydrogen outcome (yield or
+reaction rate) reported with the experimental conditions explicitly stated. Thirty-one
+studies met that criterion and constitute the data corpus
+\cite{wen2018,prabu2021,wanghq2017,yavor2013,rin2021,trowell2022,deng2010,porciuncula2012,zhang2024,liuyh2017,qiao2019,meng2022,xiao2018,guan2019,preez2018,chen2020,xiao2020,davies2022mat,ilyukhina2012,dudoladov2016,fischman2020,lu2017,jayaraman2015,gupta2025,ho2016,knoks2025,mezulis2023,martinezv2026,buryakov2023met,urbonav2024,fadhilah2023};
+the remaining screened papers---comparative reviews and system-specific studies that do
+not report extractable condition-level yield or rate data---are cited in Related Work by
+regime (Section~\ref{sec:related})
+\cite{razavi2016,yang2018,shmelev2016,noland2020,wangxy2021,elitzur2014,tan2016,godart2019,razavi2013,preez2019,david2012,slocum2020}.
+
+From these 31 studies we extracted every distinct experimental condition, yielding a
+flat-format dataset with 30~columns per row. Physical parameters include temperature (K),
+alkali-solution concentration (mol\,L$^{-1}$), particle size (median $d_{50}$, $\mu$m),
+aluminium purity or alloy composition, activator type and loading, and
+water-to-aluminium mass ratio. Methodological metadata encode temperature-control method
+(\texttt{isothermal\_bath}, \texttt{self\_heating}, \texttt{uncontrolled}), measurement
+method (\texttt{water\_displacement}, \texttt{pressure}, \texttt{gc}), vessel geometry
+class, water type, and quality tier (A/B/C). Full provenance is stored per row: study
+DOI, the table or figure from which each value was read, extraction method (direct or
+digitized), and extractor identity. The grouping key for all cross-study analyses is the
+study DOI. Absent quantities (conditions where $\eta\!=\!0$ is physically meaningful) are
+encoded as $0$; unreported quantities are stored as \texttt{NaN} and never conflated
+with absent ones.
+
+Each study is assigned exactly one physico-chemical regime label
+$\texttt{system\_class} \in \{\texttt{pure\_al\_alkali},\;\texttt{al\_alloy},\;
+\texttt{mechanically\_activated},\;\texttt{liquid\_metal\_activated},\;\texttt{waste\_al}\}$,
+derived from the source materials-and-methods section and verified during the
+classification audit described below. The final yield dataset has 315 condition-level
+rows from 31 studies (Fig.~\ref{fig:dataset}); a separate 76-row kinetic table
+holds Arrhenius activation energies and reaction rates, with their own provenance and
+fit-quality columns, and is never merged into the yield table. Table~\ref{tab:dataset_composition}
+summarises the per-regime composition; the complete 31-study source list with
+temperature, concentration, and particle-size ranges appears in Table~SI-1.
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.92\linewidth]{fig5_dataset_composition.pdf}
 \caption{\textbf{The curated open dataset.} Per-\texttt{system\_class} yield-row counts with study
-counts (left) and the A/B/C quality-tier composition (right); a separate 76-row kinetic table is
-noted. $315$ yield rows from $31$ studies, released under CC-BY.}
+counts (left) and the A/B/C quality-tier composition (right); the separate 76-row kinetic table is
+noted. 315 yield rows from 31 studies, released under CC-BY.}
 \label{fig:dataset}
 \end{figure}
 
-Two independent re-extraction passes provide quality control: a double extraction of
-$\approx\!16\%$ of yield rows showed $52/52$ exact value agreement, and a classification
-audit re-derived \texttt{system\_class} for all 31 studies from source; digitized kinetic
-points were re-read independently ($\approx\!1.5\%$ point error). Studies whose Arrhenius
-fits failed a quality gate ($R^2\!\ge\!0.90$, $\ge\!3$ temperatures) were dropped rather
-than forced.
+\begin{table}[tbp]
+\centering
+\caption{\textbf{Dataset composition by physico-chemical regime.} Each study appears in
+exactly one regime. Yield rows are condition-level records reporting H$_2$ yield
+($\eta$, \% of the 1244\,mL\,g$^{-1}$ pure-Al theoretical); kinetic rows hold
+Arrhenius activation energies or rate measurements. The complete study-level source
+list with experimental condition ranges is given in Table~SI-1.}
+\label{tab:dataset_composition}
+\begin{tabular}{lccc}
+\hline
+Regime (\texttt{system\_class}) & Studies & Yield rows & Kinetic rows \\
+\hline
+\texttt{pure\_al\_alkali}         & 9  & 162 & 26 \\
+\texttt{al\_alloy}                & 3  &  45 &  3 \\
+\texttt{mechanically\_activated}  & 6  &  69 & 16 \\
+\texttt{liquid\_metal\_activated} & 5  &  19 & 10 \\
+\texttt{waste\_al}                & 8  &  20 & 21 \\
+\hline
+\textbf{Total}                    & \textbf{31} & \textbf{315} & \textbf{76} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Quality control}
+\label{sec:qc}
+
+Quality control followed four procedures, summarised in Table~\ref{tab:qc_summary}.
+First, approximately 16\,\% of yield rows (52~rows from 5~studies) were re-extracted
+independently using different source annotations; 52/52 rows reached exact numeric
+agreement, confirming extraction fidelity. Second, a classification audit
+re-derived \texttt{system\_class} for all 31 studies directly from source materials and
+methods: one error was found and corrected. \citeauthor{dudoladov2016}
+\cite{dudoladov2016} had been provisionally labelled \texttt{mechanically\_activated}
+but its activation mechanism is gallium--indium eutectic infiltration, placing it
+unambiguously in \texttt{liquid\_metal\_activated}. No further label changes were
+required. Third, five digitized kinetic curves were re-read by an independent pass
+using a different screen resolution; mean point deviation was $\approx\!1.5\%$, within
+accepted digitization tolerance ($<\!3\%$). Fourth, studies contributing to the kinetic
+table were subjected to an Arrhenius quality gate: a linear fit of $\ln(\text{rate})$
+vs.\ $T^{-1}$ was required to achieve $R^2\!\ge\!0.90$ on at least three distinct
+temperature points. Seventeen studies passed; two were dropped.
+\citeauthor{rin2021}~\cite{rin2021} gave $R^2\!=\!0.846$ (one outlier point destabilised
+the fit); \citeauthor{ho2016}~\cite{ho2016} could not be fit reliably because the
+lowest-temperature reaction was already $\approx\!80\%$ complete within ten seconds and
+the additive loading was confounded with temperature across curves. Both retain their
+yield rows in the primary dataset but contribute no $E_\mathrm{a}$ estimate.
+
+\begin{table}[tbp]
+\centering
+\caption{\textbf{Quality-control procedures and outcomes.}}
+\label{tab:qc_summary}
+\begin{tabular}{p{3.2cm}p{3.5cm}p{2.6cm}p{3.0cm}}
+\hline
+Procedure & Scope & Result & Action \\
+\hline
+Double extraction      & 52 rows, 5 studies        & 52/52 exact       & None \\
+Classification audit   & All 31 studies            & 1 error found     & \citeauthor{dudoladov2016} reclassified \\
+Digitization QC        & 5 kinetic curves re-read  & $\approx$1.5\% point error & Accepted \\
+Arrhenius quality gate & Studies with $\ge\!3$ T-point rate data & 17 passed ($R^2\!\ge\!0.90$) & \citeauthor{rin2021}, \citeauthor{ho2016} dropped \\
+\hline
+\end{tabular}
+\end{table}
 
 \subsection{Leakage-controlled evaluation}
-For each of six comparative regressors (ElasticNet, $k$NN, random forest, XGBoost, LightGBM,
-Gaussian process) we estimate the held-out coefficient of determination under two protocols:
-ordinary $k$-fold (records split at random) and \emph{study-grouped} $k$-fold (all records
-of a study held out together). The \emph{optimism gap}, $R^2_{\text{random}}-
-R^2_{\text{grouped}}$, measures how much random splitting overstates cross-study
-generalization. Tree models retain missing values; linear/kernel models use median
-imputation and one-hot encoding.
 
-\subsection{Between-study variance decomposition (primary analysis)}
-To ask \emph{what} accounts for the disagreement, we aggregate to the study level (one row per
-study: mean yield and the study's modal covariate values) and decompose the between-study
-variance of mean yield. For a categorical predictor $C$ we report the variance share
-$R^2_C = 1 - \mathrm{SS_{within}}(C)/\mathrm{SS_{total}}$, comparing the physical-regime
-label against methodological covariates (\texttt{temperature\_control},
-\texttt{measurement\_method}, \texttt{water\_type}, \texttt{quality\_tier},
-\texttt{vessel\_type}). We test whether the methodological signal is genuine---rather than a
-re-encoding of study identity or a confound with regime---by (i) auditing the study-level
-coverage of each covariate level, (ii) cross-tabulating against \texttt{system\_class}, and
-(iii) reporting the \emph{incremental} variance explained by the temperature-control method
-after controlling for regime. All headline numbers carry cluster-bootstrap confidence
-intervals (resampling studies); contrasts use Holm correction. We treat the kinetic
-$E_\mathrm{a}$ analysis and the within-study tests analogously.
+For each of six comparative regressors---ElasticNet, $k$-nearest neighbours ($k$NN),
+random forest (RF), XGBoost (XGB), LightGBM (LGBM), and Gaussian process (GP)---we
+estimated the held-out coefficient of determination $R^2$ under two cross-validation
+protocols. In the \emph{random-split} protocol, records are assigned to folds
+independently of their study origin, the standard approach in prior ML literature on
+this domain. In the \emph{study-grouped} protocol, all records from a given study are
+withheld together, ensuring no study contributes to both training and test partitions.
+The \emph{optimism gap}, $R^2_{\text{random}} - R^2_{\text{grouped}}$, measures how
+much random splitting overstates cross-study generalization.
+
+Missing values are handled per model family. Tree-based models (RF, XGB, LGBM) exploit
+their native missing-value pathways and require no imputation. Linear and kernel models
+(ElasticNet, GP) receive median imputation and one-hot encoding for categorical
+variables; imputation statistics are computed on the training fold only and applied to
+the held-out fold to prevent leakage through imputation. Permutation importance and
+SHAP values are estimated from in-sample RF fits and used descriptively.
+
+A negative-control robustness check (TEST~1) substitutes the study-grouped
+macro-average $R^2$ with a row-weighted LOSO (leave-one-study-out) $R^2$ to confirm
+that the performance collapse is not an artifact of the aggregation rule.
+
+\subsection{Between-study variance decomposition and mixed-effects regression}
+\label{sec:variance_decomp}
+
+To identify \emph{what} drives between-study disagreement, we aggregate to the study
+level (one row per study: mean yield and modal covariate values for that study) and
+decompose the total between-study variance of mean yield. For a categorical predictor
+$C$ the variance share is
+\begin{equation}
+R^2_C \;=\; 1 - \frac{\mathrm{SS}_{\text{within}}(C)}{\mathrm{SS}_{\text{total}}},
+\label{eq:rsq_c}
+\end{equation}
+where $\mathrm{SS}_{\text{within}}(C)$ is the residual sum of squares after fitting
+group means of $C$, and $\mathrm{SS}_{\text{total}}$ is the total sum of squares of
+between-study mean yield ($n\!=\!31$ studies). We compare the physical-regime label
+(\texttt{system\_class}) against five methodological covariates
+(\texttt{temperature\_control}, \texttt{measurement\_method}, \texttt{water\_type},
+\texttt{quality\_tier}, \texttt{vessel\_type}), individually and jointly.
+All headline $R^2_C$ values carry cluster-bootstrap confidence intervals ($B\!=\!1000$,
+resampling complete studies with replacement). Incremental comparisons and cross-tabulations
+use Holm correction throughout.
+
+Complementing the variance decomposition, we fit a mixed-effects meta-regression
+(statsmodels \texttt{MixedLM}, REML) with \texttt{system\_class} and standardised
+physical covariates as fixed effects, and a random intercept per \texttt{study\_id}.
+The mixed-effects model operates on row-level yield data ($n\!=\!299$ rows from
+$27$~studies; rows with missing temperature excluded). This directly tests hypothesis
+H2: that the physico-chemical regime label moderates hydrogen yield after accounting
+for unobserved between-study heterogeneity. Fixed-effect significance uses Wald tests;
+all parameter$\times$\texttt{system\_class} interactions use Holm correction. The
+Arrhenius $E_\mathrm{a}$ analysis (H3) applies the same cluster-bootstrap framework to
+the 17-study kinetic subsample.
 
 \subsection{Discipline}
-Hypotheses and success thresholds were frozen before computation. Language on observational
-findings is associational, not causal. We report nulls as ``no detectable effect at
-$n\!\approx\!31$ studies / $3$--$9$ per regime.'' Machine-learning attributions
-(SHAP/importances) are used descriptively only. All numbers in this paper trace to a
-committed analysis artifact, and the full pipeline is released.
+
+Hypotheses and success thresholds were pre-registered before computation. Language on
+observational findings is associational, not causal. Null results are reported as ``no
+detectable effect at $n\!\approx\!31$ studies / $3$--$9$ per regime.'' SHAP values and
+permutation importances are used descriptively to characterize which features the models
+draw on; they are not interpreted as evidence of physical causation. All quantities in
+this paper trace to a committed analysis artifact, and the full pipeline is released
+with the dataset.
