@@ -1,5 +1,8 @@
 # Suggested reviewers — template (user finalizes)
 
+**Corresponding author:** Dogukan Unal — dunal@ipec.com.tr — IPEC, Industrial Project Engineering
+Consulting, Çankaya, Ankara, Türkiye — ORCID 0009-0006-5102-8013.
+
 > These are **candidate names** drawn from the cited literature and the methods used. Contact details
 > are intentionally left blank — the corresponding author must look up current affiliation/email and
 > **confirm no conflict of interest** (no recent co-authorship, no shared institution, no advisor/

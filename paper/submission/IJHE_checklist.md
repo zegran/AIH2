@@ -9,8 +9,10 @@ Status: ✅ done · 🟡 CLI-ready, needs user input · ⛔ user gate
 - ✅ Sections: Intro, Related work, Data & methods, Results, Discussion, Conclusion
 - ✅ Data and code availability statement (Zenodo DOI placeholder)
 - ✅ Declaration of competing interest
-- 🟡 CRediT authorship contribution statement — needs real author roles
-- ⛔ Author names, affiliations, corresponding-author email, ORCID(s)
+- ✅ CRediT authorship contribution statement (Dogukan Unal — all roles)
+- ✅ Declaration of generative AI and AI-assisted technologies (flagged `% AUTHOR: confirm`)
+- ✅ Author, affiliation, corresponding-author email, ORCID (Dogukan Unal, IPEC; ORCID 0009-0006-5102-8013)
+- ⛔ Funding statement — [USER INPUT, if any]
 
 ## Figures (Elsevier artwork specs)
 - ✅ Vector PDF, fonts embedded (`pdf.fonttype=42`), 300 dpi PNG previews available

@@ -45,11 +45,11 @@ standard so future aluminum-hydrolysis studies become comparable. We believe thi
 materials topic addressed with reproducibility-first methodology and an open data resource — is well
 suited to IJHE.
 
-The manuscript is original, not under consideration elsewhere, and all authors approve the submission.
-We declare no competing interests. The data and code are available at
-<https://github.com/zegran/AIH2> and archived at Zenodo (DOI to be activated on acceptance).
+The manuscript is original and not under consideration elsewhere. The author declares no competing
+interests. The data and code are available at <https://github.com/zegran/AIH2> and archived at Zenodo
+(DOI to be activated on deposit).
 
 Sincerely,
-[CORRESPONDING AUTHOR NAME — USER INPUT]
-on behalf of all authors
-[AFFILIATION — USER INPUT] · [EMAIL — USER INPUT]
+Dogukan Unal
+IPEC, Industrial Project Engineering Consulting, Çankaya, Ankara, 06550, Türkiye
+dunal@ipec.com.tr · ORCID 0009-0006-5102-8013

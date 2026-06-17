@@ -4,6 +4,7 @@
 % the section files and references are class-independent, so only this preamble would need swapping.
 \documentclass[preprint,12pt]{elsarticle}
 
+\usepackage[T1]{fontenc}   % correct rendering of accented characters (Çankaya, Türkiye)
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{amsmath}
@@ -24,15 +25,13 @@
 \title{Apparent Contradictions in the Aluminum--Water Hydrolysis Literature
 are Predominantly Methodological: a Provenance-Tracked, Leakage-Controlled Analysis}
 
-%% ===== AUTHORS / AFFILIATIONS — USER INPUT REQUIRED (placeholders; do not invent) =====
-\author[a]{[AUTHOR ONE --- USER INPUT]}
-\author[a]{[AUTHOR TWO --- USER INPUT]}
-\affiliation[a]{organization={[AFFILIATION --- USER INPUT]},
-                addressline={[STREET]}, city={[CITY]}, postcode={[POSTCODE]},
-                country={[COUNTRY]}}
-\cortext[cor]{Corresponding author: [EMAIL --- USER INPUT]}
-%% ORCID(s): [USER INPUT]
-%% ======================================================================================
+\author[a]{Dogukan Unal\corref{cor}}
+\ead{dunal@ipec.com.tr}
+\affiliation[a]{organization={IPEC, Industrial Project Engineering Consulting},
+                city={Çankaya, Ankara}, postcode={06550}, country={Türkiye}}
+\cortext[cor]{Corresponding author. ORCID: 0009-0006-5102-8013
+              (\url{https://orcid.org/0009-0006-5102-8013}).}
+%% Single author. Co-authors can be added with additional \author[..]{} lines if applicable.
 
 \begin{abstract}
 \noindent The aluminum--water hydrolysis literature for hydrogen production reports
