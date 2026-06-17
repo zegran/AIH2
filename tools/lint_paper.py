@@ -74,6 +74,17 @@ def main() -> int:
             if "\\todocite{" in ln and "newcommand" not in ln:
                 problems.append(f"[todocite] unresolved placeholder in {f.name}: {ln.strip()[:70]}")
 
+    # 5. amssymb-only macros require \usepackage{amssymb} (a common "undefined control sequence")
+    def strip_comments(txt: str) -> str:
+        return "\n".join(re.sub(r"(?<!\\)%.*", "", ln) for ln in txt.splitlines())
+    amssymb_macros = ["blacksquare", "square", "mathbb", "checkmark", "varnothing",
+                      "lesssim", "gtrsim", "therefore", "because", "blacktriangle"]
+    has_amssymb = "amssymb" in strip_comments(read(PAPER / "main.tex"))
+    used_sym = sorted({m for f in TEX_FILES for m in amssymb_macros
+                       if re.search(r"\\" + m + r"\b", strip_comments(read(f)))})
+    if used_sym and not has_amssymb:
+        problems.append(f"[pkg] amssymb macros used without \\usepackage{{amssymb}}: {used_sym}")
+
     # orphan section files (present but not \input)
     present = {p.stem for p in (PAPER / "sections").glob("*.tex")}
     orphans = sorted(present - INPUTS)
