@@ -20,14 +20,37 @@ because methodology is largely a study-level attribute, the temperature-control 
 could be partly confounded with other unmeasured study-level choices. We therefore state the
 finding associationally and quantify, rather than assert, its robustness.
 
-\subsection{A reporting standard}
-The remedy is standardization. We propose a minimum-information checklist for
-aluminum-hydrolysis studies---temperature-control method and thermal boundary conditions,
-water type and purity, reactor vessel and openness, the rate definition used, the yield
-basis (theoretical reference), particle-size metric, and activation route---templated on
-established minimum-information standards in catalysis and materials
-\citep{wulf2021,hoque2018}. Adopting it would make future data poolable and
-convert the dataset released here into a growing, comparable benchmark.
+\subsection{A minimum-information reporting standard}
+The remedy is standardization. Table~\ref{tab:mireport} is a minimum-information checklist for
+aluminum-hydrolysis studies, ordered by how much between-study variance each field carried in our
+analysis and templated on minimum-information standards in catalysis and materials
+\citep{wulf2021,hoque2018}. Reporting these items would let future yields be compared across
+laboratories and would shrink the methodological variance this paper quantifies, turning the released
+dataset into a growing, comparable benchmark.
+
+\begin{table}[t]\centering\small
+\caption{Proposed minimum-information reporting standard for aluminum--water hydrolysis hydrogen-yield
+studies. Items are ordered by the between-study yield variance each carried here (Sec.~3.2);
+temperature control is the largest single source.}
+\label{tab:mireport}
+\begin{tabular}{lll}
+\toprule
+Field & Report & Between-study $R^2$ here \\
+\midrule
+Temperature control & method (isothermal bath / self-heating / uncontrolled) + setpoint or boundary & 0.33 \\
+Measurement method & water displacement / pressure / GC / mass-flow & 0.07 \\
+Water type \& purity & DI / tap / alkaline / saline, with conductivity or grade & 0.04 \\
+Quality / control & isothermal vs.\ uncontrolled; replication; value reported vs.\ derived & 0.04 \\
+Reaction vessel & open or closed; insulated? & 0.02 \\
+Alkali & type (NaOH/KOH/none) + concentration (mol\,L$^{-1}$) & --- \\
+Particle size & $D_{50}$ ($\mu$m) + sizing method & --- \\
+Activation route & pure / melt-alloyed / ball-milled / liquid-metal / waste & --- \\
+Yield basis & theoretical reference (mL\,g$^{-1}$); \% vs.\ volumetric & --- \\
+Rate definition & initial / maximum / average; $t_{50}$/$t_{80}$ if a rate is claimed & --- \\
+Provenance & study DOI, number of conditions, replicate count & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Limitations}
 The analysis rests on 31 studies ($3$--$9$ per regime); negative results (no regime
@@ -36,7 +59,11 @@ predictability) are reported as ``no detectable effect at this sample size,'' no
 of absence. The within-study predictability test is power-limited at small per-study $n$.
 Two regimes (\texttt{waste\_al}, \texttt{liquid\_metal\_activated}) are exploratory
 ($<\!40$ rows). Open-access retrieval may bias the sample; we mitigate this with a quality
-tier and report it as a limitation. The headline attribution is associational. Positioning
+tier and report it as a limitation. The headline attribution is associational, and because
+methodology is largely a study-level attribute it may co-vary with unmeasured study choices.
+Physics is not excluded: the coarse regime label does not capture finer, within-study
+particle-size-dependent kinetics \citep{saceleanu2019}, so the claim is \emph{predominantly}, not
+purely, methodological. Positioning
 citations are complete from DOI-verified metadata; the exact in-sample $R^2$ of the single-study
 prior model is to be confirmed against its full text, and one 2021 review citation was omitted as
 unverifiable rather than mis-attributed.

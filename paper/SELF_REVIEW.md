@@ -33,11 +33,13 @@ matches the Consensus GAP; citations verified or explicitly placeholdered.
 | Das 2023 foil | R²≈0.998 single-study | user/Consensus (cite placeholder) |
 **Result: all numbers trace. No untraceable or invented figure found.**
 
-## 2. Causal-language audit
-- Headline uses **"explain / are associated with", "predominantly", "associationally"** — correct.
-- ⚠️ Minor: the word **"driver/drives"** appears (variance-decomposition sense). It is statistically
-  defensible but could read mechanistic; consider "largest single source" on a polish pass. Not blocking.
-- "predominantly, not purely, methodological" is stated in abstract, results, discussion, conclusion. ✓
+## 2. Causal-language audit — **RESOLVED (polish pass)**
+- Headline uses "explain / are associated with", "predominantly", "associationally" — correct.
+- "driver/drives" softened to "largest single source / accounts for" (3 sites). No "causes/proves" on
+  observational findings.
+- "predominantly, not purely, methodological" stated in abstract, results, discussion, conclusion. ✓
+- Reporting standard now a concrete table (Table~1); Limitations complete (5/5 items incl. Saceleanu
+  finer-physics caveat). See `COMPLETENESS_AUDIT.md`.
 
 ## 3. Nulls framing
 H2/H3/T_A nulls are framed as **"no detectable effect at n≈31 studies / 3–9 per regime"** (results

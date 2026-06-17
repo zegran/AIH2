@@ -4,14 +4,20 @@ Status snapshot (2026-06-17): full honest first draft written; figures reproduci
 complete from verified metadata (zero placeholders); self-review done. Venue: IJHE primary, Energy
 and AI floor. Below, each work package lists goal · output · blocker/dependency · owner.
 
-| # | WP | status |
-|---|---|---|
-| 1 | WP-CITE | ✅ done |
-| 2 | WP-COMPILE | ⛔ user-gated (no local TeX) |
-| 3 | WP-FRONTMATTER | ⛔ user-gated (author info) |
-| 4 | WP-POLISH | ⏳ CLI-doable now |
-| 5 | WP-DATA-RELEASE | ⛔ user-gated (Zenodo) |
-| 6 | WP-SUBMISSION-PREP | ⏳ CLI-draftable; user-signed |
+| # | WP | % | gate |
+|---|---|---|---|
+| 1 | WP-CITE | **100%** | done (CLI) |
+| 4 | WP-POLISH | **100%** | done (CLI) |
+| 3 | WP-FRONTMATTER | ~15% | user (author/affiliation) — CLI can do the elsarticle conversion + highlights/keywords once names given |
+| 2 | WP-COMPILE | 0% | user (TeX path) — structure verified; CLI can add CI YAML |
+| 5 | WP-DATA-RELEASE | 0% | user (Zenodo) — CLI can prep `.zenodo.json` + dataset card |
+| 6 | WP-SUBMISSION-PREP | 0% | user decisions — CLI can draft cover letter / reviewers / checklist |
+
+**Overall submission-readiness ≈ 70%.** The science, draft, figures, bibliography, reporting-standard
+table, and self-review/audit are complete (content ≈ 100%). The remaining ~30% is packaging behind
+three user gates: **(a) author/affiliation info**, **(b) a TeX build path** (Overleaf fastest, or a
+GitHub Actions LaTeX CI), **(c) a Zenodo account** for the dataset DOI. CLI can advance the CLI-portion
+of each (conversion, CI YAML, deposit metadata, cover-letter draft) as soon as the gate is opened.
 
 ## 1. WP-CITE — bibliography completion ✅ DONE
 - **Goal:** every citation backed by verified BibTeX; zero placeholders.
