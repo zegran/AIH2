@@ -1,0 +1,7 @@
+Highlights (Elsevier: 3–5 bullets, each ≤ 85 characters incl. spaces)
+
+- 31 aluminum–water hydrolysis studies unified into one provenance-tracked dataset.
+- Study-grouped cross-validation exposes a large optimism gap (R2 0.62–0.85).
+- Methodology explains ~55% of between-study yield variance vs ~2% for regime.
+- Temperature-control method alone is the single largest source (~33%).
+- Particle-size effect is negative within all 5/5 studies; the "flip" is an artifact.
