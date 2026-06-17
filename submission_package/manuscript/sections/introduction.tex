@@ -9,7 +9,9 @@ particle size, alloying or activation method, and water chemistry control the yi
 rate. Yet the resulting literature is internally contradictory. Reported apparent
 activation energies span $3.5$--$102.6$\,kJ\,mol$^{-1}$; within the single
 liquid-metal-activated regime this spread is still $8.5$--$58.0$\,kJ\,mol$^{-1}$
-\citep{ilyukhina2012,dudoladov2016}. The direction of the particle-size effect changes
+\citep{ilyukhina2012,dudoladov2016}. This range is too large to be explained by
+measurement noise alone and, if genuine, would imply fundamentally different rate-limiting
+mechanisms even within nominally identical systems. The direction of the particle-size effect changes
 sign when studies are compared across the literature, yet within every study that varies
 particle size the effect is consistently negative
 \citep{zhang2024,prabu2021,wen2018,porciuncula2012}. The rate--yield trade-off
@@ -19,7 +21,8 @@ never been tested quantitatively.
 
 This is the unresolved question we address: \emph{are the apparent inter-study
 contradictions genuine physico-chemical regime differences, or artifacts of isolated,
-non-standardized experimental conditions?} The distinction matters because it determines
+non-standardized experimental conditions (e.g., temperature-control method, measurement
+protocol, water type)?} The distinction matters because it determines
 whether the literature can be pooled to build predictive design models. Prior
 machine-learning work on aluminum--water hydrolysis is, to our knowledge, limited to a
 single-study, in-sample neural network reporting near-perfect prediction
@@ -31,14 +34,14 @@ We take the opposite stance. We unify the scattered literature into a single
 provenance-tracked dataset, apply leakage-controlled evaluation to test how far one study
 transfers to another, and use between-study variance decomposition to identify
 \emph{what} accounts for the differences when transfer fails. We pre-registered the
-analyses and their success criteria before computation and report nulls as ``no
+analyses and their success criteria before any analysis code was executed and report nulls as ``no
 detectable effect at this sample size'' rather than as evidence of absence.
 
 \paragraph{Contributions.}
 \begin{itemize}\itemsep2pt
   \item A curated, provenance-tracked, quality-tiered \textbf{open dataset} of 315
   condition-level hydrogen-yield rows from 31 independent studies, with a separate
-  76-row kinetic table (activation energies and rates), released under CC-BY; this
+  76-row kinetic table (activation energies and rates), to be released under CC-BY upon publication; this
   dataset serves as a reproducible \textbf{ML benchmark} for cross-study generalization
   in aluminum--water hydrolysis.
   \item A \textbf{leakage-controlled evaluation} showing that random-split predictability
@@ -47,7 +50,7 @@ detectable effect at this sample size'' rather than as evidence of absence.
   robustness check} confirms that the apparent within-class signal is porciuncula-weighted
   (row-weighted LOSO $+0.83$) and not a genuine per-study replication signal (study-macro
   LOSO $-0.31$).
-  \item The central quantitative finding: a study-level variance decomposition in which
+  \item The primary quantitative finding: a study-level variance decomposition in which
   \textbf{methodological covariates explain $\approx\!55\%$ of the between-study yield
   variance versus $\approx\!2\%$ for the physico-chemical regime}, with the
   temperature-control method the largest single source ($\approx\!33\%$); the effect
@@ -60,5 +63,6 @@ detectable effect at this sample size'' rather than as evidence of absence.
   $\eta^2\!=\!0.36$, $p\!=\!0.13$) are both not supported at the pre-registered bar;
   we frame these as power-limited findings at $n\!\approx\!31$ studies.
   \item A proposed \textbf{minimum-information reporting standard} for aluminum-hydrolysis
-  studies to make future data poolable across laboratories.
+  studies to make future data poolable across laboratories (not yet prospectively
+  validated; see Section~\ref{sec:limitations}).
 \end{itemize}

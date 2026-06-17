@@ -120,7 +120,9 @@ Arrhenius quality gate & Studies with $\ge\!3$ T-point rate data & 17 passed ($R
 For each of six comparative regressors---ElasticNet, $k$-nearest neighbours ($k$NN),
 random forest (RF), XGBoost (XGB), LightGBM (LGBM), and Gaussian process (GP)---we
 estimated the held-out coefficient of determination $R^2$ under two cross-validation
-protocols. In the \emph{random-split} protocol, records are assigned to folds
+protocols. These six regressors span linear (ElasticNet), kernel (GP), instance-based
+($k$NN), bagging (RF), and gradient-boosting (XGB, LGBM) inductive paradigms.
+In the \emph{random-split} protocol, records are assigned to folds
 independently of their study origin, the standard approach in prior ML literature on
 this domain. In the \emph{study-grouped} protocol, all records from a given study are
 withheld together, ensuring no study contributes to both training and test partitions.
@@ -156,7 +158,7 @@ between-study mean yield ($n\!=\!31$ studies). We compare the physical-regime la
 (\texttt{temperature\_control}, \texttt{measurement\_method}, \texttt{water\_type},
 \texttt{quality\_tier}, \texttt{vessel\_type}), individually and jointly.
 All headline $R^2_C$ values carry cluster-bootstrap confidence intervals ($B\!=\!1000$,
-resampling complete studies with replacement). Incremental comparisons and cross-tabulations
+resampling complete studies with replacement, unstratified across regimes). Incremental comparisons and cross-tabulations
 use Holm correction throughout.
 
 Complementing the variance decomposition, we fit a mixed-effects meta-regression
@@ -174,7 +176,7 @@ the 17-study kinetic subsample.
 
 % NOTE: if you mint an OSF pre-registration before submission, replace "pre-specified" with
 % "pre-registered (OSF: <URL>)" in the sentence below.
-Hypotheses and success thresholds were pre-specified and frozen before computation
+Hypotheses and success thresholds were pre-specified and frozen before any analysis code was executed
 (protocol in \texttt{plan/analysis-protocol.md}, versioned in the companion data release). Language on
 observational findings is associational, not causal. Null results are reported as ``no
 detectable effect at $n\!\approx\!31$ studies / $3$--$9$ per regime.'' SHAP values and

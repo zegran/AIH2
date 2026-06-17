@@ -3,7 +3,8 @@
 \subsection{What the contradictions are---and are not}
 
 Taken together, the results support a single claim: the apparent inter-study contradictions
-in aluminum--water hydrolysis are \emph{predominantly methodological}. Naive pooling
+in aluminum--water hydrolysis are \emph{predominantly methodological} (though this attribution is observational and
+may partly reflect unmeasured study-level factors). Naive pooling
 overstates predictability by $0.62$--$0.85$ in $R^2$; the physico-chemical regime label
 explains $\approx\!2\%$ of between-study yield variance while methodological covariates
 explain $\approx\!55\%$; the flagship particle-size contradiction dissolves. The practical
@@ -52,7 +53,8 @@ coarse; finer, particle-size-dependent kinetics---tunable between nano- and
 micro-aluminium powders---genuinely shape the reaction \citep{saceleanu2019}, and such
 physics operates \emph{within} studies, below the resolution of a five-level label and
 partly absorbed into the methodological covariates with which it co-varies. Incremental
-regime variance ($+0.15$ after controlling for method) is nonzero, even if not robust.
+regime variance ($+0.15$ after controlling for method) is nonzero, though its precise
+magnitude cannot be established reliably at $n\!=\!31$ studies.
 Our attribution is also observational: because methodology is largely a study-level
 attribute, the temperature-control association could be partly confounded with other
 unmeasured study-level choices (principal investigator laboratory practice, instrument
@@ -110,7 +112,9 @@ Provenance           & study DOI, number of conditions, replicate count & --- \\
 The analysis rests on $n\!\approx\!31$ studies ($3$--$9$ per regime). Null results
 (no regime moderation of yield, H2; no regime structure in $E_\mathrm{a}$, H3;
 heterogeneous within-study predictability, T\_A) are reported as ``no detectable effect
-at this sample size,'' not as proof of absence. The between-study variance decomposition
+at this sample size,'' not as proof of absence. Detection of small effects ($R^2\!<\!0.10$ for regime) would
+likely require a corpus substantially larger than $n\!=\!31$ studies.
+The between-study variance decomposition
 (T\_B) has cluster-bootstrap confidence intervals that are wide at this $n$; the lower
 bound on method-joint $R^2$ ($0.36$) excludes zero but the upper bound ($0.999$) is
 uninformative. Two regimes (\texttt{waste\_al}, \texttt{liquid\_metal\_activated}) have
@@ -134,7 +138,10 @@ studies; we mitigate this with a quality tier and report the access constraint h
 The proposed minimum-information checklist (Table~\ref{tab:mireport}) has not been
 prospectively validated: we do not yet know how much of the residual between-study
 variance it would remove in practice. It is a hypothesis about what would help, grounded
-in our variance decomposition.
+in our variance decomposition. Prospective validation would require a multi-laboratory
+round-robin trial in which independent groups run the same experiment under the
+standard's reporting protocol; this is beyond the scope of the present work but is a
+logical next step.
 
 \paragraph{Single-author and AI-assisted workflow.}
 All data extraction, curation, analysis, and writing were performed by a single author
