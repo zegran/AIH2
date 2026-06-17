@@ -35,7 +35,12 @@ derived from the source materials-and-methods section and verified during the
 classification audit described below. The final yield dataset has 315 condition-level
 rows from 31 studies (Fig.~\ref{fig:dataset}); a separate 76-row kinetic table
 holds Arrhenius activation energies and reaction rates, with their own provenance and
-fit-quality columns, and is never merged into the yield table. Table~\ref{tab:dataset_composition}
+fit-quality columns, and is never merged into the yield table.
+The tables remain separate because yield ($\eta$, a cumulative fraction at a fixed endpoint)
+and kinetic parameters ($E_\mathrm{a}$, peak rate, half-time) are distinct outcome types
+with incompatible units and different quality gates; merging would require normalization
+assumptions not justified in a meta-analytic context.
+Table~\ref{tab:dataset_composition}
 summarises the per-regime composition; the complete 31-study source list with
 temperature, concentration, and particle-size ranges appears in Table~SI-1.
 

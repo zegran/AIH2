@@ -138,12 +138,53 @@ in our variance decomposition.
 
 \paragraph{Single-author and AI-assisted workflow.}
 All data extraction, curation, analysis, and writing were performed by a single author
-with AI assistance (see Declaration of generative AI). Single-author extraction carries
-no inter-rater reliability guarantee beyond the internal double-extraction check
-($52/52$ exact, covering $16\%$ of yield rows, $52/315$); the remaining $263$ rows
-have no independent extractor check, leaving systematic extraction errors undetectable
-by this protocol. Because both extraction passes may have relied on the same AI tool,
+with AI assistance (see Declaration of generative AI). Single-author extraction provides
+intra-rater consistency evidence only, not inter-rater reliability: the double-extraction
+check ($52/52$ exact, $52/315$ rows, $16\%$) repeated extraction by the same author on a
+subset of rows, confirming self-consistency but not guarding against systematic extractor
+bias shared across both passes. The remaining $84\%$ of rows ($263/315$) have no
+independent extractor check. Because both passes may have relied on the same AI tool,
 the $52/52$ agreement is a self-consistency check rather than an independent validation
-against AI-introduced errors---the primary protection is the author's manual review and
+against AI-introduced errors; the primary protection is the author's manual review and
 verification of every extracted value. Readers should treat the results as a first
 systematic synthesis requiring external validation rather than as an established consensus.
+The curated data and analysis pipeline are released openly so that independent groups can
+audit extraction quality and extend the corpus.
+
+\paragraph{Particle-size finding scope.}
+The resolution of the particle-size contradiction rests on $n\!=\!5$ studies
+($59/315$ rows, $19\%$) that systematically vary particle size. Two regimes
+(\texttt{al\_alloy}, \texttt{mechanically\_activated}) have zero particle-size entries.
+The $5/5$ within-study consistency is a strong qualitative signal, but the $26$ studies
+that did not report particle size may differ systematically from those that did.
+Whether the consistently-negative within-study effect generalises beyond the reporting
+subset cannot be established from the current dataset.
+
+\paragraph{Leakage gap as a conflated signal.}
+The optimism gap ($0.62$--$0.85$ for tree models) reflects two distinct phenomena:
+between-study methodological heterogeneity and out-of-distribution extrapolation.
+If the 31 studies explore non-overlapping regions of physicochemical parameter
+space---plausible given five regimes with different activation methods, particle sizes,
+and alkali types---a model trained on some studies will fail on others even under
+identical measurement protocols, because the held-out study's conditions are out of
+distribution. We cannot currently separate these contributions quantitatively; the
+$55\%$ methodology attribution addresses the heterogeneity component but does not
+isolate it from extrapolation effects.
+
+\paragraph{Mixed-effects model specification.}
+The mixed-effects meta-regression (H2) assumes homoscedastic within-study residual
+variance. However, the within-study LOSO analysis (T\_A) shows wide heterogeneity in
+within-study predictability ($\eta^2_{\text{study}}\!=\!0.496$). If residual variance
+differs substantially across studies, REML estimates may be inefficient and fixed-effect
+standard errors biased, making the null regime effect harder to interpret. Influence
+diagnostics and heteroscedastic alternatives were not performed; the H2 null should be
+replicated in a larger sample.
+
+\paragraph{Laboratory clustering.}
+The study-grouped cross-validation treats each DOI as an independent unit. Multiple
+papers from the same laboratory or principal investigator may share unmeasured
+similarities (equipment, protocols, calibration) that DOI-level grouping does not
+capture. If studies cluster by laboratory, the observed $R^2_{\text{grouped}}$ may
+still overestimate true cross-laboratory generalization. A lab-grouped cross-validation
+was not performed; future work should construct a study-to-laboratory mapping and
+test whether the optimism gap widens under stricter grouping.
