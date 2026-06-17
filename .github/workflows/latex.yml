@@ -6,6 +6,7 @@ on:
   push:
     paths:
       - 'paper/**'
+      - 'tools/**'
       - '.github/workflows/latex.yml'
   pull_request:
     paths:
@@ -13,7 +14,28 @@ on:
   workflow_dispatch:
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install pandas
+
+      - name: Structural lint (citations, refs, labels, coverage)
+        run: python tools/lint_paper.py
+
+      - name: Energy and AI compliance gate
+        run: python tools/compliance_gate.py
+
   build:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

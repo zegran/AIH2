@@ -1,76 +1,77 @@
-# Submission plan — ordered, dependency-aware path to submission
+# Submission plan — post-remediation state (2026-06-17)
 
-Status snapshot (2026-06-17, FINALE): full honest draft; 6 Q1 figures wired + bundled in
-`paper/figures/`; `elsarticle` frontmatter + highlights + keywords; bibliography complete (zero
-placeholders); structural lint clean; LaTeX CI added; data-release + submission packages drafted.
-All CLI-doable finalization is done — only three user gates remain. Venue: IJHE primary, Energy and
-AI floor. Below, each work package lists goal · output · blocker/dependency · owner.
+Status: **manuscript submission-ready** pending 5 user-only gates.
 
-| # | WP | % | gate |
-|---|---|---|---|
-| 1 | WP-CITE | **100%** | done (CLI) |
-| 4 | WP-POLISH | **100%** | done (CLI) |
-| 3 | WP-FRONTMATTER | **~85%** | elsarticle + highlights + keywords done; needs real author/affiliation/ORCID + CRediT roles |
-| 2 | WP-COMPILE | **~90%** | CI YAML + lint clean; needs the user to confirm the GitHub Actions build is green |
-| 5 | WP-DATA-RELEASE | **~70%** | `.zenodo.json` + dataset card done; user mints the Zenodo DOI |
-| 6 | WP-SUBMISSION-PREP | **~80%** | cover letter / reviewers / checklist drafted; needs venue sign-off + author identity |
+Venue: **Energy and AI** (primary — confirmed in Stage 0 via T_A null / GO-NO-GO binding rule).
+Format: full-length research article, open-access, `elsarticle` class.
 
-**Overall submission-readiness ≈ 88%.** Content and packaging are complete (≈100% of what the CLI can
-do): draft, 6 figures, self-contained build, bibliography, reporting standard, elsarticle frontmatter,
-CI compile, data-release metadata, cover letter, reviewer template, checklist. The remaining ~12% is
-**three user gates only**: **(a) real author/affiliation/ORCID + CRediT**, **(b) Zenodo deposit to
-mint the dataset DOI** (insert it where `\todo{Zenodo DOI}` appears), **(c) final venue sign-off +
-submit**. Confirming the CI build is green is the one mechanical check the dev environment cannot run.
+---
 
-## 1. WP-CITE — bibliography completion ✅ DONE
-- **Goal:** every citation backed by verified BibTeX; zero placeholders.
-- **Output:** `references.bib` (18 entries, tier-tagged) wired into the draft; `SELF_REVIEW.md` §5
-  records the verification flags (testa2024 claim removed; das $R^2$ softened; xiao review omitted).
-- **Residual (non-blocking):** confirm the Das exact in-sample $R^2$ against full text if wanted.
-- **Owner:** CLI (complete).
+## Gate summary
 
-## 2. WP-COMPILE — build the PDF  ⛔ user-gated
-- **Goal:** `main.tex` compiles clean (no undefined refs, floats placed).
-- **Blocker:** no `pdflatex` in this environment. **Options:** (a) install TeX Live/MiKTeX locally,
-  (b) upload `paper/` to Overleaf, (c) add a GitHub Actions LaTeX workflow (CLI can write the YAML).
-- **CLI can do now:** structure already verified (all `\input` present, no stray `\end{document}`,
-  `\todocite` macro defined, zero placeholders, figures regenerable via the WP5 script). On request,
-  CLI will add a `.github/workflows/latex.yml` so each push produces a PDF artifact.
-- **Owner:** user (choose a build path) + CLI (CI YAML).
+| Gate | Owner | Status |
+|---|---|---|
+| Structural lint (cites/refs/labels/graphics) | tools/lint_paper.py | PASS |
+| Data-source citation coverage (31/31) | tools/citation_coverage.py | PASS |
+| Energy and AI compliance (12 checks) | tools/compliance_gate.py | PASS |
+| Word count (>5,000 body words) | — | PASS (~5,450 w) |
+| References (>=46) | — | PASS (58 entries) |
+| Abstract (<=250 w) | — | PASS (~211 w) |
+| Keywords (3-6) | — | PASS (6) |
+| Highlights (3-5, <=85 chars) | — | PASS (5 bullets) |
+| Acknowledgements / funding statement | — | PASS (added Stage 6) |
+| Declarations (COI, CRediT, gen-AI, data avail) | — | PASS (all 4 present) |
+| Supplementary material | — | PASS (Tables SI-1, SI-2; SI-3/4 in data release) |
+| CI builds PDF | .github/workflows/latex.yml | PENDING (push to trigger) |
 
-## 3. WP-FRONTMATTER — elsarticle conversion  ⛔ user-gated
-- **Goal:** Elsevier `elsarticle` format with authors, affiliations, highlights (3–5 bullets),
-  graphical abstract, keywords, and corresponding-author block.
-- **Blocker:** author names, affiliations, ORCIDs, corresponding-author email (user).
-- **CLI can do now:** the mechanical `\documentclass[preprint,review,12pt]{elsarticle}` +
-  `\begin{frontmatter}` conversion, highlights drafted from the results, keyword list, and a
-  graphical-abstract figure (reuse fig2). Names inserted once provided.
-- **Owner:** user (identity) + CLI (conversion + highlights/keywords/graphical abstract).
+---
 
-## 4. WP-POLISH — final language + traceability pass  ⏳ CLI-doable now
-- **Goal:** `writing-anti-ai` style sweep; end-to-end `paper-self-review`; confirm every number
-  traces to `results/real_v1/`; nulls power-framed; associational language; soften residual "driver".
-- **Output:** revised sections + updated `SELF_REVIEW.md` verdict.
-- **Owner:** CLI. **Recommended next CLI step.**
+## Work packages — current state
 
-## 5. WP-DATA-RELEASE — Zenodo deposit  ⛔ user-gated
-- **Goal:** versioned DOI for the curated dataset (CC-BY) + code (MIT); cite it in Data Availability.
-- **Blocker:** user Zenodo account / GitHub–Zenodo link.
-- **CLI can do now:** prepare the deposit package — `.zenodo.json` metadata, a `DATASET_CARD.md`
-  (schema, provenance, quality tiers, licensing), and the file manifest (yield + kinetic tables,
-  data dictionary). User mints the DOI; CLI inserts it into the paper.
-- **Owner:** user (account/mint) + CLI (package + metadata).
+### WP-CITE — bibliography completion (DONE)
+58 BibTeX entries: 31 Tier-A data-source + 12 Tier-B domain-context + 15 other.
+All fetched from Crossref by DOI; never written from memory.
+Citation coverage: 31/31 data-source studies cited (tools/citation_coverage.py --check passes).
 
-## 6. WP-SUBMISSION-PREP — cover letter, reviewers, checklist, venue  ⏳ CLI-draftable
-- **Goal:** submission-ready package and a final venue decision (IJHE vs Energy and AI).
-- **Output:** cover letter (honest framing: methodological-heterogeneity finding + open dataset +
-  reporting standard), 3–5 suggested reviewers with justification, IJHE author-checklist pass, final
-  read-through.
-- **Blocker:** venue choice + reviewer preferences (user); author identity (WP-FRONTMATTER).
-- **Owner:** CLI (drafts) + user (decisions, sign).
+### WP-COMPILE — build the PDF (PENDING USER)
+CI workflow `.github/workflows/latex.yml` updated: lint → compliance → LaTeX compile.
+**Action required:** push to GitHub main to trigger CI and confirm the PDF builds green.
+No local pdflatex available; CI is the build path.
 
-## Critical path
-WP-CITE ✅ → **WP-POLISH (CLI, now)** → WP-FRONTMATTER (needs author info) → WP-COMPILE (needs a TeX
-build path) → WP-DATA-RELEASE (needs Zenodo) → WP-SUBMISSION-PREP → submit.
-The two hard user gates are **author/affiliation info** (WP-FRONTMATTER) and a **TeX build path**
-(WP-COMPILE); everything else CLI can advance now.
+### WP-FRONTMATTER — elsarticle format (DONE)
+Author: Dogukan Unal | Affiliation: IPEC, Ankara | ORCID: 0009-0006-5102-8013
+Journal: Energy and AI | Class: elsarticle preprint 12pt | Bibliography: elsarticle-num
+All frontmatter declarations present. CRediT roles: Conceptualization, Methodology,
+Software, Formal analysis, Data curation, Writing.
+
+### WP-CONTENT — Q1 remediation (DONE — 7 stages)
+Stage 0: Energy and AI reframe (journal, abstract <=250 w, keywords 6, highlights 5)
+Stage 1: Citation backfill (28+12 BibTeX from Crossref, coverage 31/31)
+Stage 2: Methods expansion (~1,150 w, Tables 1+2, leakage-controlled eval section)
+Stage 3: Results expansion (~1,600 w, Tables 3+4, 14 unreported quantities added)
+Stage 4: Related work (~750 w, regime-organized) + Introduction (~650 w, contributions updated)
+Stage 5: Discussion (~1,000 w, named studies, round-robin analogues, 5 limitations)
+Stage 6: Supplementary (Tables SI-1, SI-2) + compliance gate + declaration of generative AI
+
+### WP-DATA-RELEASE — Zenodo deposit (PENDING USER)
+Dataset package ready in `submission_package/dataset/` (315 yield + 76 kinetic rows, CC-BY).
+`.zenodo.json` metadata complete. User mints DOI → replace `\todo{Zenodo DOI}` in
+`conclusion.tex` (line 17) and update `submission_package/dataset/CITATION.cff`.
+
+### WP-SUBMISSION-PREP — paperwork (MOSTLY DONE, user finalizes)
+Cover letter: `paper/submission/cover_letter.md` (date = submission date)
+Suggested reviewers: `paper/submission/suggested_reviewers.md` (template; user confirms)
+AI disclosure: `conclusion.tex` (user to confirm accuracy of wording)
+Checklist: `paper/submission/COMPLIANCE_REPORT.md` (all checks PASS)
+
+---
+
+## Critical path to submit
+
+1. Push → CI turns green (PDF builds) [user]
+2. Zenodo deposit → insert DOI into paper [user]
+3. Confirm AI-disclosure wording [user]
+4. Confirm suggested reviewers + COI check [user]
+5. Final venue sign-off + submit via Elsevier Editorial Manager [user]
+
+Items 1-5 are user-only. No further manuscript content changes are required.

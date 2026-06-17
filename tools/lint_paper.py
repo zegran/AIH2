@@ -10,6 +10,7 @@ Exit code 0 = clean, 1 = problems found. Run: uv run python tools/lint_paper.py
 """
 from __future__ import annotations
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -91,6 +92,20 @@ def main() -> int:
     orphans = sorted(present - INPUTS)
     if orphans:
         problems.append(f"[orphan] sections/*.tex not \\input by main.tex (warning): {orphans}")
+
+    # 6. citation coverage gate — every dataset study must be cited
+    coverage = Path(__file__).parent / "citation_coverage.py"
+    if coverage.exists():
+        result = subprocess.run(
+            [sys.executable, str(coverage), "--check"],
+            capture_output=True, text=True,
+        )
+        if result.returncode != 0:
+            problems.append("[coverage] citation_coverage.py --check: missing data-source citations")
+            # Print just the MISSING line from coverage output
+            for ln in result.stdout.splitlines():
+                if "MISSING" in ln or "missing" in ln.lower():
+                    print(f"  coverage: {ln.strip()}")
 
     print(f"cite keys: {len(keys)} defined, {len(cited)} cited | "
           f"labels: {len(labels)} | refs: {len(refs)}")
