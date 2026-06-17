@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite both the dataset and the accompanying paper."
+title: "AIH2: A Provenance-Tracked Open Dataset for Aluminum–Water Hydrolysis Hydrogen Production"
+type: dataset
+version: "1.0.0"
+date-released: "2026-06-17"
+license: CC-BY-4.0
+url: "https://github.com/zegran/AIH2"
+authors:
+  - family-names: Unal
+    given-names: Dogukan
+    orcid: "https://orcid.org/0009-0006-5102-8013"
+    affiliation: "IPEC, Industrial Project Engineering Consulting, Ankara, Türkiye"
+keywords:
+  - aluminum-water hydrolysis
+  - hydrogen production
+  - open dataset
+  - reproducibility
+  - data leakage
+  - meta-analysis
+  - activation energy
+abstract: >-
+  A provenance-tracked dataset for hydrogen production by aluminum-water hydrolysis:
+  315 condition-level yield rows from 31 studies plus a separate 76-row kinetic table
+  (activation energies, peak rates, rate constants, t80), each with full provenance and
+  quality metadata. Assembled for leakage-controlled cross-study analysis.

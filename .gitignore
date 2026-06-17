@@ -33,3 +33,7 @@ Thumbs.db
 
 # WP5 figure PNGs (regenerate via src/analysis/figures/wp5_figures.py)
 results/real_v1/figures/*.png
+
+# Claude session logs (internal)
+results/**/.claude/
+.claude/logs/
