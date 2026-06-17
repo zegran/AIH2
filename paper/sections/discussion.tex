@@ -1,75 +1,144 @@
 \section{Discussion}
+
 \subsection{What the contradictions are---and are not}
+
 Taken together, the results support a single claim: the apparent inter-study contradictions
 in aluminum--water hydrolysis are \emph{predominantly methodological}. Naive pooling
-overstates predictability (the optimism gap); the physico-chemical regime label explains
-almost none of the between-study variance ($\approx\!2\%$) while methodological covariates
-explain the majority ($\approx\!55\%$), led by how temperature is controlled; and the
-flagship particle-size contradiction dissolves into a within-study-consistent effect. The
-practical implication is direct: a hydrogen yield reported without its measurement protocol
-is only weakly comparable across laboratories, and meta-analyses that pool raw yields will
-inherit methodological variance as if it were chemistry.
+overstates predictability by $0.62$--$0.85$ in $R^2$; the physico-chemical regime label
+explains $\approx\!2\%$ of between-study yield variance while methodological covariates
+explain $\approx\!55\%$; the flagship particle-size contradiction dissolves. The practical
+implication is direct: a hydrogen yield reported without its measurement protocol is only
+weakly comparable across laboratories, and meta-analyses that pool raw yields inherit
+methodological variance as if it were chemistry.
+
+Naming the specific apparent contradictions helps calibrate the claim. For activation
+energy, the most striking contrast in the liquid-metal regime is between
+\citeauthor{ilyukhina2012}~\citep{ilyukhina2012} ($E_\mathrm{a}\!=\!8.5$\,kJ\,mol$^{-1}$,
+Ga--In eutectic, peak-rate proxy) and \citeauthor{dudoladov2016}~\citep{dudoladov2016}
+($E_\mathrm{a}\!=\!58.0$\,kJ\,mol$^{-1}$, Ga in KOH, tabulated rate): both are
+liquid-metal-activated systems, yet they differ by nearly sevenfold. Our analysis does
+not resolve whether this reflects different Ga/In loading, different activation proxies
+(peak rate vs.\ initial rate), or different surface geometries; it demonstrates that the
+current ``liquid\_metal\_activated'' label is too coarse to resolve this.
+For particle size, cross-study comparisons are misleading because studies compare
+incompatible size windows: one laboratory's ``fine'' particles are another's standard
+size, and different regimes are mixed when averaging across studies. Within each of the
+five studies that vary particle size, the effect is consistent and negative (smaller
+$\rightarrow$ higher yield; Spearman $\rho\!=\!-0.29$ to $-0.87$ in
+\citep{zhang2024,prabu2021,wen2018,porciuncula2012}). The apparent cross-study flip is
+thus an artifact of comparing different experimental windows, not a genuine physics
+disagreement.
+
+\subsection{Why pooling fails: the cross-study evidence in context}
+
+The scale of the optimism gap ($0.62$--$0.85$) is consistent with what has been found
+when grouped cross-validation is applied to other domains with hidden group structure
+\citep{bernett2024,john2025}. The closest published analogues for hydrogen generation
+are the interlaboratory round-robin comparisons for MgH$_2$ storage \citep{wulf2021} and
+biohydrogen fermentation \citep{hoque2018}: in both cases, identical ``conditions'' in
+different laboratories produced yields spanning roughly twofold, with the spread traced
+primarily to measurement and protocol choices rather than to genuine material differences.
+The present result---that temperature control alone explains $33\%$ of between-study
+yield variance in aluminum hydrolysis---places this field in the same category. The
+leakage-controlled benchmark we release is designed to let future modeling efforts detect
+the same failure mode: any model that achieves positive grouped $R^2$ on the provided
+corpus under the study-grouped split would represent genuine cross-study generalization
+beyond what the current literature supports.
 
 \subsection{Physics is not absent}
+
 ``Predominantly methodological'' is not ``purely methodological.'' The regime label is
-\emph{coarse}; finer, particle-size-dependent kinetics---tunable between nano- and
-micro-aluminium powders---genuinely shape the reaction \citep{saceleanu2019}, and such physics operates within
-studies, below the resolution of a five-level label and partly absorbed into the
-methodological covariates with which it co-varies. Our attribution is also observational:
-because methodology is largely a study-level attribute, the temperature-control association
-could be partly confounded with other unmeasured study-level choices. We therefore state the
-finding associationally and quantify, rather than assert, its robustness.
+coarse; finer, particle-size-dependent kinetics---tunable between nano- and
+micro-aluminium powders---genuinely shape the reaction \citep{saceleanu2019}, and such
+physics operates \emph{within} studies, below the resolution of a five-level label and
+partly absorbed into the methodological covariates with which it co-varies. Incremental
+regime variance ($+0.15$ after controlling for method) is nonzero, even if not robust.
+Our attribution is also observational: because methodology is largely a study-level
+attribute, the temperature-control association could be partly confounded with other
+unmeasured study-level choices (principal investigator laboratory practice, instrument
+calibration, student experience). We state the finding associationally and quantify,
+rather than assert, its robustness.
 
 \subsection{A minimum-information reporting standard}
-The remedy is standardization. Table~\ref{tab:mireport} is a minimum-information checklist for
-aluminum-hydrolysis studies, ordered by how much between-study variance each field carried in our
-analysis and templated on minimum-information standards in catalysis and materials
-\citep{wulf2021,hoque2018}. Reporting these items would let future yields be compared across
-laboratories and would shrink the methodological variance this paper quantifies, turning the released
-dataset into a growing, comparable benchmark.
+
+The remedy is standardization. Table~\ref{tab:mireport} lists the minimum information
+needed to interpret a hydrogen yield across laboratories. The ordering reflects the
+between-study variance contribution each field carried in our analysis: temperature
+control is listed first because it was the single largest source ($R^2\!=\!0.33$);
+measurement method and water type follow because they contribute smaller but nonzero
+shares. The remaining fields---alkali type and concentration, particle size, activation
+route, yield basis, rate definition---carried detectable but weaker or less-covered
+signal here, yet they are practically essential for reproducibility. Provenance (DOI,
+condition count, replicate count) is necessary to build cumulative, poolable evidence.
+
+This template is modelled on reporting standards that successfully improved poolability
+in related fields: round-robin-derived checklists for MgH$_2$ \citep{wulf2021} and
+biohydrogen \citep{hoque2018} both show that standardization shrinks interlaboratory
+spread rather than eliminating it. We expect the same here: full compliance would not
+remove between-study variance, but it would expose the remaining variance as physics
+rather than protocol.
 
 \begin{table}[t]\centering\small
-\caption{Proposed minimum-information reporting standard for aluminum--water hydrolysis hydrogen-yield
-studies. Items are ordered by the between-study yield variance each carried here (Sec.~3.2);
-temperature control is the largest single source.}
+\caption{Proposed minimum-information reporting standard for aluminum--water hydrolysis
+hydrogen-yield studies. Items are ordered by the between-study yield variance each
+carried here (Section~\ref{sec:variance_decomp}); temperature control is the largest
+single source ($R^2\!=\!0.33$).}
 \label{tab:mireport}
 \begin{tabular}{lll}
 \toprule
 Field & Report & Between-study $R^2$ here \\
 \midrule
-Temperature control & method (isothermal bath / self-heating / uncontrolled) + setpoint or boundary & 0.33 \\
-Measurement method & water displacement / pressure / GC / mass-flow & 0.07 \\
+Temperature control  & method (isothermal bath / self-heating / uncontrolled) + setpoint & 0.33 \\
+Measurement method   & water displacement / pressure / GC / mass-flow & 0.07 \\
 Water type \& purity & DI / tap / alkaline / saline, with conductivity or grade & 0.04 \\
-Quality / control & isothermal vs.\ uncontrolled; replication; value reported vs.\ derived & 0.04 \\
-Reaction vessel & open or closed; insulated? & 0.02 \\
-Alkali & type (NaOH/KOH/none) + concentration (mol\,L$^{-1}$) & --- \\
-Particle size & $D_{50}$ ($\mu$m) + sizing method & --- \\
-Activation route & pure / melt-alloyed / ball-milled / liquid-metal / waste & --- \\
-Yield basis & theoretical reference (mL\,g$^{-1}$); \% vs.\ volumetric & --- \\
-Rate definition & initial / maximum / average; $t_{50}$/$t_{80}$ if a rate is claimed & --- \\
-Provenance & study DOI, number of conditions, replicate count & --- \\
+Quality / control    & replication count; value reported vs.\ derived & 0.04 \\
+Reaction vessel      & open or closed; insulated? & 0.02 \\
+Alkali               & type (NaOH/KOH/none) + concentration (mol\,L$^{-1}$) & --- \\
+Particle size        & $D_{50}$ ($\mu$m) + sizing method & --- \\
+Activation route     & pure / melt-alloyed / ball-milled / liquid-metal / waste & --- \\
+Yield basis          & theoretical reference (mL\,g$^{-1}$); \% vs.\ volumetric & --- \\
+Rate definition      & initial / maximum / average; $t_{50}$/$t_{80}$ if rate is claimed & --- \\
+Provenance           & study DOI, number of conditions, replicate count & --- \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{Limitations}
-The analysis rests on 31 studies ($3$--$9$ per regime); negative results (no regime
-moderation of yield; no regime structure in $E_\mathrm{a}$; heterogeneous within-study
-predictability) are reported as ``no detectable effect at this sample size,'' not as proof
-of absence. The within-study predictability test is power-limited at small per-study $n$.
-Two regimes (\texttt{waste\_al}, \texttt{liquid\_metal\_activated}) are exploratory
-($<\!40$ rows). Open-access retrieval may bias the sample; we mitigate this with a quality
-tier and report it as a limitation. The headline attribution is associational, and because
-methodology is largely a study-level attribute it may co-vary with unmeasured study choices.
-Physics is not excluded: the coarse regime label does not capture finer, within-study
-particle-size-dependent kinetics \citep{saceleanu2019}, so the claim is \emph{predominantly}, not
-purely, methodological. Positioning
-citations are complete from DOI-verified metadata; the exact in-sample $R^2$ of the single-study
-prior model is to be confirmed against its full text, and one 2021 review citation was omitted as
-unverifiable rather than mis-attributed.
+\label{sec:limitations}
 
-\subsection{Data and code availability}
-The curated yield dataset (315 rows), the kinetic table (76 rows), and the full,
-deterministic analysis pipeline are released under CC-BY (code: MIT). Raw third-party PDFs
-are not redistributed; the dataset records DOIs and provenance so that any value can be
-traced to its source.
+\paragraph{Sample size and power.}
+The analysis rests on $n\!\approx\!31$ studies ($3$--$9$ per regime). Null results
+(no regime moderation of yield, H2; no regime structure in $E_\mathrm{a}$, H3;
+heterogeneous within-study predictability, T\_A) are reported as ``no detectable effect
+at this sample size,'' not as proof of absence. The between-study variance decomposition
+(T\_B) has cluster-bootstrap confidence intervals that are wide at this $n$; the lower
+bound on method-joint $R^2$ ($0.36$) excludes zero but the upper bound ($0.999$) is
+uninformative. Two regimes (\texttt{waste\_al}, \texttt{liquid\_metal\_activated}) have
+fewer than $40$ yield rows each; effect estimates for these classes are exploratory.
+
+\paragraph{Associational attribution.}
+All findings are associational, not causal. Because temperature-control method is largely a
+study-level attribute, its $33\%$ variance share could partly reflect unmeasured
+study-level differences (equipment, practice, calibration) that co-vary with protocol
+choice. We quantify the incremental contribution (method beyond regime: $+0.47$; regime
+beyond method: $+0.15$) but do not attribute a causal mechanism.
+
+\paragraph{Single material system and open-access bias.}
+The dataset covers only aluminum--water hydrolysis; the leakage finding and the
+methodological-heterogeneity finding may not transfer to other reaction systems, though
+analogues exist in MgH$_2$ and biohydrogen \citep{wulf2021,hoque2018}. Open-access
+retrieval may bias the sample toward English-language, higher-impact, more-systematic
+studies; we mitigate this with a quality tier and report the access constraint here.
+
+\paragraph{Unvalidated reporting standard.}
+The proposed minimum-information checklist (Table~\ref{tab:mireport}) has not been
+prospectively validated: we do not yet know how much of the residual between-study
+variance it would remove in practice. It is a hypothesis about what would help, grounded
+in our variance decomposition.
+
+\paragraph{Single-author and AI-assisted workflow.}
+All data extraction, curation, analysis, and writing were performed by a single author
+with AI assistance (see Declaration of generative AI). Single-author extraction carries
+no inter-rater reliability guarantee beyond the internal double-extraction check
+($52/52$ exact). Readers should treat the results as a first systematic synthesis
+requiring external validation rather than as an established consensus.
