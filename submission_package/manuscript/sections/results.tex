@@ -1,0 +1,221 @@
+\section{Results}
+
+\subsection{TEST~1 negative control: the cross-study signal is not a genuine
+replication signal}
+\label{sec:test1}
+
+Before reporting the primary results, we establish that the apparent within-regime
+cross-study signal is not genuine. Within the largest regime (\texttt{pure\_al\_alkali},
+$n\!=\!162$, 9~studies), a rows-weighted LOSO skill of $+0.825$ looks impressive.
+However, one study---\citeauthor{porciuncula2012}~\cite{porciuncula2012}---contributes
+120~of 162~rows (74\%) and achieves LOSO skill $+0.926$; when skill is averaged uniformly
+over studies (study-macro LOSO) rather than over rows, it falls to $-0.311$. MAE doubles
+from $9.3$ to $17.2$\,\% yield on removing that study from the training pool.
+Of the nine studies, 5/9 beat the class mean when tested individually; the four failing
+studies miss badly (skill $-0.10$ to $-3.3$). The row-weighted and study-macro metrics
+diverge by $1.14$---the headline score is porciuncula-weighted, not a replication signal.
+A row-weighted metric should therefore not be used to claim cross-study performance on
+this corpus.
+
+\subsection{The literature does not pool: a large and robust optimism gap}
+
+Table~\ref{tab:cv_summary} reports the full per-model cross-validation results. Under
+random $k$-fold splits, tree models reach $R^2\!\approx\!0.55$--$0.57$ (random forest
+$0.564$, LightGBM $0.572$, XGBoost $0.545$). Under study-grouped cross-validation the
+same models collapse to $R^2\!<\!0$---all six regressors perform worse than predicting
+the global mean---for optimism gaps of $0.62$--$0.85$ (tree models) and up to $6.27$
+(ElasticNet). The gap persists after removing \citeauthor{porciuncula2012}: RF gap
+$0.622\to0.484$, LGBM $0.828\to0.730$, XGB $0.845\to0.632$, confirming it is not driven
+by one dominant study (Fig.~\ref{fig:gap}).
+
+\begin{table}[tbp]
+\centering
+\caption{\textbf{Leakage-controlled cross-validation results for all six regressors.}
+$R^2_{\text{rand}}$: random-split; $R^2_{\text{grp}}$: study-grouped;
+Gap\,$= R^2_{\text{rand}} - R^2_{\text{grp}}$;
+RMSE$_{\text{grp}}$: study-grouped RMSE in \% yield.
+Porc-out columns show the grouped results after removing \citeauthor{porciuncula2012}.}
+\label{tab:cv_summary}
+\begin{tabular}{lcccccc}
+\hline
+Model & $R^2_{\text{rand}}$ & $R^2_{\text{grp}}$ & Gap & RMSE$_{\text{grp}}$ & $R^2_{\text{grp}}$ (porc-out) & Gap (porc-out) \\
+\hline
+Random forest   & 0.564 & $-$0.058 & 0.622 & 26.2 & $-$0.046 & 0.484 \\
+LightGBM        & 0.572 & $-$0.256 & 0.828 & 28.6 & $-$0.221 & 0.730 \\
+XGBoost         & 0.545 & $-$0.300 & 0.845 & 29.1 & $-$0.145 & 0.632 \\
+Gaussian process& 0.465 & $-$0.481 & 0.945 & 31.0 & ---       & ---   \\
+$k$NN           & 0.337 & $-$1.487 & 1.824 & 40.2 & ---       & ---   \\
+ElasticNet      & 0.186 & $-$6.081 & 6.267 & 67.8 & ---       & ---   \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Methodology, not physical regime, explains the between-study variance}
+
+At the study level, $\approx\!50\%$ of the total yield variance lies between studies
+($\eta^2_{\text{study}}\!=\!0.496$; this is a robust one-way decomposition, as the
+null-model random-intercept in the mixed-effects fit collapsed to the boundary). The
+physico-chemical regime label explains almost none of it:
+$R^2_{\texttt{system\_class}}\!=\!0.018$ (cluster-bootstrap 95\,\% CI $[0.015,\,0.373]$).
+Methodological covariates jointly explain $R^2\!=\!0.553$ (CI $[0.361,\,0.999]$),
+$\approx\!27\times$ more (Fig.~\ref{fig:variance}). The single largest source is the
+\emph{temperature-control method}: $R^2_{\texttt{temperature\_control}}\!=\!0.332$
+(CI $[0.030,\,0.676]$); studies using a self-heating protocol report higher mean yields
+($86\%$) than isothermal-bath studies ($75\%$), and uncontrolled studies far lower
+($32\%$).
+
+This signal is not a relabeling of study identity or physical regime. Each
+temperature-control level is shared by many studies ($22\,/\,7\,/\,2$ studies for
+isothermal-bath\,/\,self-heating\,/\,uncontrolled) and spans four or five of the five
+regimes, so it is not collinear with \texttt{system\_class}. The contribution
+\emph{survives controlling for regime}: incremental variance explained by temperature
+control given \texttt{system\_class} is $+0.467$ (bootstrap CI $[+0.037,\,+0.772]$,
+excluding $0$), whereas regime given method adds only $+0.153$. Residual between-study
+spread remains within the dominant isothermal-bath level (yield range $26$--$100$\,\%,
+s.d.~$18.7$\,\%), so temperature control is the largest single source of between-study
+variance, though not the only one.
+
+\subsection{Mixed-effects regime moderation: not supported (H2)}
+
+A mixed-effects meta-regression ($n\!=\!299$ rows, $27$~studies, REML, random intercept
+per study) with \texttt{system\_class} as the fixed regime effect finds no significant
+moderation at any pre-registered Holm-corrected bar. The joint Wald test on the
+\texttt{system\_class} main effect gives $p\!=\!0.32$ on the full dataset,
+$p\!=\!0.45$ removing \citeauthor{porciuncula2012}, and $p\!=\!0.41$ on A/B-tier
+studies only. None of the $8$~parameter$\times$\texttt{system\_class} interactions
+survive Holm correction in any of the three subsets ($0/8$ every time; closest:
+temperature$\times$liquid\_metal in A/B-tier, raw $p\!=\!0.007$, Holm $p\!=\!0.057$).
+A cluster bootstrap over studies confirms fragility: the system\_class main effect
+reaches $p\!<\!0.05$ in only $34\%$ of $200$ bootstrap resamples (median bootstrap
+$p\!=\!0.14$). H2 is \textbf{not supported}: conditioning on physico-chemical regime
+does not resolve the between-study contradictions.
+
+\subsection{Activation energy does not organize by regime (H3)}
+
+Per-study median apparent activation energies from the 17-study kinetic sample are
+$52.0$\,kJ\,mol$^{-1}$ (\texttt{pure\_al\_alkali}, $n\!=\!5$), $47.4$
+(\texttt{waste\_al}, $n\!=\!3$), $36.2$ (\texttt{liquid\_metal\_activated}, $n\!=\!4$;
+range $8.5$--$58.0$), $39.2$ (\texttt{al\_alloy}, $n\!=\!1$), and $23.7$
+(\texttt{mechanically\_activated}, $n\!=\!4$) (Table~\ref{tab:ea_summary};
+Fig.~\ref{fig:ea}). A variance decomposition of per-study $E_\mathrm{a}$ by regime
+gives $\eta^2\!=\!0.361$, permutation $p\!=\!0.129$ (bootstrap 95\,\% CI $[0.127,\,0.808]$)
+on the four classes with $\ge\!3$ studies. H3 is \textbf{not supported}: the
+coarse regime label does not explain the apparent $E_\mathrm{a}$ spread. The
+\texttt{liquid\_metal\_activated} within-class spread ($8.5$--$58.0$\,kJ\,mol$^{-1}$)
+is as large as the between-class spread, suggesting unresolved within-regime
+heterogeneity rather than true thermodynamic regime structure.
+
+\begin{table}[tbp]
+\centering
+\caption{\textbf{Apparent activation energy by physico-chemical regime.}
+Per-study median $E_\mathrm{a}$ from the 17-study kinetic sample (Arrhenius gate:
+$R^2\!\ge\!0.90$, $\ge\!3$ temperature points). The range for
+\texttt{liquid\_metal\_activated} is explicitly noted because it spans an order of
+magnitude and drives the null finding. Al\_alloy has $n\!=\!1$ study; no
+distributional summary is reported. Per-study values are listed in Table~SI-2.
+Power is low at these $n$; the finding is a null, not proof of absence of regime effects.}
+\label{tab:ea_summary}
+\begin{tabular}{lcc}
+\hline
+Regime & Studies ($n$) & Median $E_\mathrm{a}$ (kJ\,mol$^{-1}$) \\
+\hline
+\texttt{pure\_al\_alkali}         & 5 & 52.0 \\
+\texttt{waste\_al}                & 3 & 47.4 \\
+\texttt{liquid\_metal\_activated} & 4 & 36.2 \quad (range: 8.5--58.0) \\
+\texttt{al\_alloy}                & 1 & 39.2 \\
+\texttt{mechanically\_activated}  & 4 & 23.7 \\
+\hline
+\textbf{All 17 studies}           & 17 & --- \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{The flagship particle-size contradiction is a cross-study artifact}
+
+The literature's headline contradiction is a direction-changing particle-size effect.
+Within every study that varies particle size ($5/5$), the within-study effect has the
+\emph{same} sign: smaller particles give higher yield (Spearman $\rho\!=\!-0.29$
+to $-0.87$; Fig.~\ref{fig:particle}). The apparent ``flip'' across the literature
+arises from comparing different size ranges and material regimes between studies, not
+from any within-study sign reversal. The flagship contradiction is an integration
+artifact. Coverage note: particle size ($d_{50}$) is recorded for only $19\,\%$ of
+yield rows ($59/315$), and two regimes (\texttt{al\_alloy} and
+\texttt{mechanically\_activated}) have zero particle-size entries; the $5/5$ finding
+is limited to the regimes and study designs where particle size was reported as a
+variable.
+
+\subsection{Within-study predictability is heterogeneous (a transparent null)}
+
+Whether each study is internally predictable varies widely. Within-study LOSO skill is
+clearly positive for well-designed parameter sweeps with a smooth response surface
+(Fig.~\ref{fig:surface}; \citeauthor{qiao2019}~\cite{qiao2019} $+0.84$,
+\citeauthor{zhang2024}~\cite{zhang2024} $+0.86$). But the median skill across 14~testable
+studies is $-0.145$ (cluster-bootstrap 95\,\% CI $[-0.447,\,+0.233]$), with $5/14$
+positive. The between-study variance ($\eta^2_{\text{study}}\!=\!0.496$) and the consistent
+particle-size direction both indicate that the underlying physics is not inconsistent;
+the low within-study skill reflects heterogeneous experimental designs and per-study
+sample sizes of $5$--$120$ rows rather than genuine within-study physical noise.
+
+\subsection{Permutation importance: methodology features dominate}
+
+In-sample random-forest permutation importance ranks \texttt{particle\_size} ($0.597$)
+first, \texttt{in\_wt\_pct} ($0.489$) second, and \texttt{temperature\_k} ($0.269$) third.
+The regime label \texttt{system\_class} ranks tenth ($0.032$)---one-nineteenth of
+\texttt{particle\_size}---consistent with the variance-decomposition finding that
+methodology rather than regime drives apparent yield differences. Alkali concentration
+ranks fourteenth ($0.009$). SHAP cross-fold rank stability (mean pairwise Spearman across
+grouped folds) is $0.66$\,/\,$0.68$\,/\,$0.70$ (seeds $0$\,/\,$42$\,/\,$7$): the feature
+hierarchy is moderately stable but should not be over-interpreted given the poor
+between-study predictive $R^2$.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.7\linewidth]{fig1_optimism_gap.pdf}
+\caption{\textbf{Leakage control.} Each model is a dumbbell from its study-grouped cross-validated
+$R^2$ (\,$\bullet$\,) to its random-split $R^2$ (\,$\blacksquare$\,); the open diamond is the
+study-grouped $R^2$ after removing the single largest study (tree models only). Tree models reach
+$R^2\!\approx\!0.55$ under random splits but fall below zero under study-grouped cross-validation
+(optimism gap $0.62$--$0.85$): a model trained on some studies does not predict an unseen study.}
+\label{fig:gap}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.82\linewidth]{fig2_variance_decomposition.pdf}
+\caption{\textbf{Methodology, not physical regime, explains the between-study yield variance
+(headline).} Between-study variance of study-mean yield explained ($R^2$, dot) with a 95\%
+cluster-bootstrap confidence interval (bar), one row per predictor. The physico-chemical regime
+label (\texttt{system\_class}) explains $0.02$; all methodological covariates jointly explain
+$0.55$ ($\approx\!27\times$), and the temperature-control method alone explains $0.33$.
+Associational; the temperature-control effect survives controlling for regime (incremental
+$R^2{=}{+}0.47$, bootstrap CI excludes $0$).}
+\label{fig:variance}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.66\linewidth]{fig3_particle_size_consistency.pdf}
+\caption{\textbf{The flagship particle-size contradiction is internally consistent.} Raw
+$(D_{50},\text{yield})$ points per study (log $x$) with a robust Theil--Sen trend line; the
+per-study Spearman $\rho$ is in the legend. All $5/5$ studies trend negative (smaller particle
+$\Rightarrow$ higher yield), so the literature-wide ``flip'' is a cross-study integration
+artifact, not a within-study sign reversal.}
+\label{fig:particle}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.66\linewidth]{fig4_ea_spread.pdf}
+\caption{\textbf{Apparent activation energy does not organize by physical regime.} Per-study
+apparent $E_\mathrm{a}$ (points) with a class-median bar per \texttt{system\_class}; the shaded
+band is the literature range $3.5$--$102.6$\,kJ\,mol$^{-1}$. The within-regime spread is comparable
+to the between-regime spread (\texttt{liquid\_metal\_activated} alone spans $8.5$--$58$\,kJ\,mol$^{-1}$).}
+\label{fig:ea}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.95\linewidth]{fig6_within_study_surface.pdf}
+\caption{\textbf{Within a single well-designed study the response is smooth.} \citeauthor{porciuncula2012}~\cite{porciuncula2012}
+(NaOH, foil) temperature\,$\times$\,concentration factorial: (a) a 2D contour and (b) the same data
+as a 3D surface. Within this study the yield rises smoothly and monotonically with both temperature
+and alkali concentration---within-study data are clean, locating the contradictions in the
+cross-study integration. (3D shown only here, where the data are an intrinsic response surface, and
+always with the 2D companion.)}
+\label{fig:surface}
+\end{figure}

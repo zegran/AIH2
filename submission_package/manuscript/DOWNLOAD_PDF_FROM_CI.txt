@@ -1,0 +1,14 @@
+PENDING USER ACTION — Download the authoritative manuscript PDF from GitHub CI
+==========================================================================
+
+The gh CLI is not installed on this machine, so the PDF cannot be fetched automatically.
+
+STEPS:
+1. Go to:  https://github.com/zegran/AIH2/actions
+2. Click the latest green "Build paper PDF" run (triggered by commit 1ce67e3).
+3. Under "Artifacts", download "main-pdf".
+4. Unzip the artifact; place main.pdf in this folder:
+   submission_package/manuscript/main.pdf
+
+This is the authoritative typeset version (elsarticle, latexmk, figures embedded).
+The DOCX in this folder (main.docx) is a pandoc preview copy only.

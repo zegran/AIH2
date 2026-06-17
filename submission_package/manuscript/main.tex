@@ -1,0 +1,89 @@
+% International Journal of Hydrogen Energy submission — Elsevier elsarticle class.
+% Compiles on Overleaf / TeX Live (CI). Local fallback: if elsarticle is unavailable, the previous
+% `article`-class preamble is preserved in git history (commit before the elsarticle conversion);
+% the section files and references are class-independent, so only this preamble would need swapping.
+\documentclass[preprint,12pt]{elsarticle}
+
+\usepackage[T1]{fontenc}   % correct rendering of accented characters (Çankaya, Türkiye)
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}   % \blacksquare etc. used in figure captions
+\usepackage{xcolor}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+% elsarticle loads natbib internally — do NOT load natbib again here.
+\graphicspath{{figures/}}
+\newcommand{\todocite}[1]{\textcolor{red}{[cite: #1]}}  % placeholder macro (currently unused)
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+
+\journal{Energy and AI}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Apparent Contradictions in the Aluminum--Water Hydrolysis Literature
+are Predominantly Methodological: a Provenance-Tracked, Leakage-Controlled Analysis}
+
+\author[a]{Dogukan Unal\corref{cor}}
+\ead{dunal@ipec.com.tr}
+\affiliation[a]{organization={IPEC, Industrial Project Engineering Consulting},
+                city={Çankaya, Ankara}, postcode={06550}, country={Türkiye}}
+\cortext[cor]{Corresponding author. ORCID: 0009-0006-5102-8013
+              (\url{https://orcid.org/0009-0006-5102-8013}).}
+%% Single author: Dogukan Unal.
+
+\begin{abstract}
+\noindent Two decades of aluminum--water hydrolysis experiments have produced a literature
+that contradicts itself: reported activation energies span $3.5$--$102.6$\,kJ\,mol$^{-1}$
+and the direction of the particle-size effect changes sign across studies. Whether these
+contradictions reflect genuine physico-chemical regimes or artifacts of non-standardized
+protocols is the question we address with a leakage-controlled machine-learning evaluation
+framework. We curate a provenance-tracked, quality-tiered open dataset of 315 condition-level
+hydrogen-yield rows from 31 independent studies (plus a separate 76-row kinetic table), with
+pre-registered hypotheses and transparent null reporting. Under study-grouped cross-validation,
+six comparative machine-learning models collapse from $R^2\!\approx\!0.55$ (random splits)
+to $R^2<0$ (optimism gap $0.62$--$0.85$)---the literature does not pool naively. A
+between-study variance decomposition attributes $\approx\!55\%$ of the between-study
+yield variance to \emph{methodological} covariates versus $\approx\!2\%$ for the
+physico-chemical regime label, with temperature-control method alone the largest single
+source ($\approx\!33\%$). A complementary mixed-effects meta-regression finds no significant
+regime moderation ($p=0.32$--$0.45$, $0/8$ Holm-corrected interactions). The flagship
+particle-size ``contradiction'' dissolves: within every study that varies particle size
+($5/5$), the within-study effect is consistently negative, identifying the cross-study
+apparent flip as an integration artifact. We release the curated dataset, the reproducible
+analysis pipeline, and a minimum-information reporting standard to make future experiments
+poolable across laboratories.
+\end{abstract}
+
+\begin{keyword}
+aluminum--water hydrolysis \sep hydrogen production \sep data leakage \sep
+meta-analysis \sep reproducibility \sep open dataset
+\end{keyword}
+
+\end{frontmatter}
+
+%% Highlights (3--5 bullets, each $\le$85 chars). For Elsevier upload these are also provided as a
+%% separate file: paper/submission/highlights.txt. Shown here so the preprint PDF carries them.
+\section*{Highlights}
+\begin{itemize}\setlength{\itemsep}{0pt}
+  \item Leakage-controlled ML evaluation: study-grouped $R^2$ collapses 0.62--0.85 below random-split.
+  \item Open dataset: 315 yield rows + 76 kinetic rows from 31 studies, CC-BY.
+  \item Methodology explains $\approx$55\% of between-study yield variance vs $\approx$2\% for regime.
+  \item Temperature-control method alone is the single largest variance source ($\approx$33\%).
+  \item Particle-size ``contradiction'' is an integration artifact: 5/5 within-study effects negative.
+\end{itemize}
+
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/method}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\bibliographystyle{elsarticle-num}
+\bibliography{references}
+
+\input{sections/supplementary}
+
+\end{document}

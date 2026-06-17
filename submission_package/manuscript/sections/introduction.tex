@@ -1,0 +1,64 @@
+\section{Introduction}
+
+The reaction of aluminum with water,
+$2\,\mathrm{Al}+3\,\mathrm{H_2O}\rightarrow\mathrm{Al_2O_3}+3\,\mathrm{H_2}$
+(or via hydroxides), is an attractive route to hydrogen on demand: it is triggered by
+water alone, stores energy at high density, and needs no high-pressure H$_2$
+infrastructure. Two decades of experiments have mapped how temperature, alkalinity,
+particle size, alloying or activation method, and water chemistry control the yield and
+rate. Yet the resulting literature is internally contradictory. Reported apparent
+activation energies span $3.5$--$102.6$\,kJ\,mol$^{-1}$; within the single
+liquid-metal-activated regime this spread is still $8.5$--$58.0$\,kJ\,mol$^{-1}$
+\citep{ilyukhina2012,dudoladov2016}. The direction of the particle-size effect changes
+sign when studies are compared across the literature, yet within every study that varies
+particle size the effect is consistently negative
+\citep{zhang2024,prabu2021,wen2018,porciuncula2012}. The rate--yield trade-off
+is inconsistent; and studies disagree on which parameter dominates. These contradictions
+are usually attributed, in passing, to ``different conditions,'' but the attribution has
+never been tested quantitatively.
+
+This is the unresolved question we address: \emph{are the apparent inter-study
+contradictions genuine physico-chemical regime differences, or artifacts of isolated,
+non-standardized experimental conditions?} The distinction matters because it determines
+whether the literature can be pooled to build predictive design models. Prior
+machine-learning work on aluminum--water hydrolysis is, to our knowledge, limited to a
+single-study, in-sample neural network reporting near-perfect prediction
+\citep{das2023fuel}. Such a near-perfect in-sample fit is exactly the generalization
+illusion that a cross-study analysis must guard against: a model that interpolates one
+laboratory's parameter grid says nothing about whether the literature agrees.
+
+We take the opposite stance. We unify the scattered literature into a single
+provenance-tracked dataset, apply leakage-controlled evaluation to test how far one study
+transfers to another, and use between-study variance decomposition to identify
+\emph{what} accounts for the differences when transfer fails. We pre-registered the
+analyses and their success criteria before computation and report nulls as ``no
+detectable effect at this sample size'' rather than as evidence of absence.
+
+\paragraph{Contributions.}
+\begin{itemize}\itemsep2pt
+  \item A curated, provenance-tracked, quality-tiered \textbf{open dataset} of 315
+  condition-level hydrogen-yield rows from 31 independent studies, with a separate
+  76-row kinetic table (activation energies and rates), released under CC-BY; this
+  dataset serves as a reproducible \textbf{ML benchmark} for cross-study generalization
+  in aluminum--water hydrolysis.
+  \item A \textbf{leakage-controlled evaluation} showing that random-split predictability
+  ($R^2\!\approx\!0.55$) collapses under study-grouped cross-validation ($R^2<0$; optimism
+  gap $0.62$--$0.85$)---the literature does not pool naively. A \textbf{negative-control
+  robustness check} confirms that the apparent within-class signal is porciuncula-weighted
+  (row-weighted LOSO $+0.83$) and not a genuine per-study replication signal (study-macro
+  LOSO $-0.31$).
+  \item The central quantitative finding: a study-level variance decomposition in which
+  \textbf{methodological covariates explain $\approx\!55\%$ of the between-study yield
+  variance versus $\approx\!2\%$ for the physico-chemical regime}, with the
+  temperature-control method the largest single source ($\approx\!33\%$); the effect
+  survives controlling for regime (incremental $R^2\!=\!+0.47$, bootstrap CI excludes 0).
+  \item Resolution of the \textbf{flagship particle-size contradiction} as a cross-study
+  integration artifact: within-study effects are consistently negative in all $5/5$
+  studies that vary particle size ($\rho\!=\!-0.29$ to $-0.87$).
+  \item Transparent reporting of \textbf{null results}: mixed-effects regime moderation
+  (H2, $p\!=\!0.32$--$0.45$) and Arrhenius activation-energy regime structure (H3,
+  $\eta^2\!=\!0.36$, $p\!=\!0.13$) are both not supported at the pre-registered bar;
+  we frame these as power-limited findings at $n\!\approx\!31$ studies.
+  \item A proposed \textbf{minimum-information reporting standard} for aluminum-hydrolysis
+  studies to make future data poolable across laboratories.
+\end{itemize}
