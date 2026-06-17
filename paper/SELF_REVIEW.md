@@ -72,19 +72,30 @@ leakage-controlled ML / reporting standard." Matches the Consensus-confirmed GAP
 - **No longer blocking submission** (was item 1). Residual pre-submission task: confirm the Das exact
   $R^2$ against full text if the precise number is wanted; optionally restore a verified Xiao review.
 
-## 6. Figures / compile
-5 figures, self-contained captions, wired to `results/real_v1/figures/*.pdf` (reproducible script).
-⚠️ **pdflatex is not installed in this environment → compilation is UNVERIFIED.** Structure checked
-(all `\input` targets present, no stray `\end{document}`, `\todocite` defined). Compile on a TeX
-machine before submission; an orphan `sections/experiments.tex` (not `\input`) can be deleted.
+## 6. Figures / compile — **UPDATED (2026-06-17)**
+**6 figures** (Q1 re-design), self-contained captions, all referenced (fig1 gap, fig2 variance
+[headline], fig3 particle, fig4 Eₐ, fig5 dataset, fig6 within-study surface). The paper is now
+**self-contained**: PDFs bundled in tracked `paper/figures/` with `\graphicspath{{figures/}}`, so it
+builds on Overleaf/CI/local without the analysis tree.
+- **Captions match the v2 figures** — the stale fig1 "per-model bars" / fig3 "Spearman ρ bars"
+  wording was corrected to the dumbbell and the points+Theil–Sen encodings.
+- **`elsarticle` conversion done** (`[preprint,12pt]`, frontmatter, highlights, keywords; author/
+  affiliation/ORCID clearly placeholdered). `elsarticle-num` bibliography.
+- **Structural lint clean** (`tools/lint_paper.py`): 18/18 cites resolve, 7/7 refs↔labels, all
+  `\includegraphics` paths exist, zero `\todocite` usage. Orphan `experiments.tex` deleted.
+- ⚠️ **No local pdflatex** → the actual typeset compile runs in **GitHub Actions**
+  (`.github/workflows/latex.yml`); confirm the run is green and download `main.pdf` from the Actions
+  tab (Overleaf is the alternative). This is the only step the dev environment cannot self-verify.
 
 ## Blocking issues before submission
 1. ~~Citations~~ **RESOLVED** — bibliography complete from verified metadata; zero placeholders.
-2. **Compile**: verify `main.tex` builds on a LaTeX install; check float placement + undefined refs
-   (only remaining hard blocker; see `SUBMISSION_PLAN.md` WP-COMPILE).
+2. ~~Compile path~~ **RESOLVED (mechanically)** — CI workflow added + structural lint clean; the
+   remaining action is to confirm the CI build is green (cannot run pdflatex locally).
+3. **User gates only:** (a) real author/affiliation/ORCID + CRediT roles, (b) Zenodo deposit to mint
+   the dataset DOI, (c) final venue sign-off (IJHE primary / Energy and AI floor).
 ## Non-blocking polish
-- Soften "driver"→"largest single source"; add author block/affiliations; consider an elsarticle
-  frontmatter conversion; delete orphan `experiments.tex`.
+- Confirm the Das exact in-sample R² against full text if a precise number is wanted (`% NEEDS-FULLTEXT`).
+- Optionally add a funding statement; consider a dedicated graphical abstract (fig2 can serve).
 
 ## Stop
 Pipeline stopped for user sign-off on the framing and the draft before any submission step.

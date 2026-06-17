@@ -1,0 +1,35 @@
+name: Build paper PDF
+
+# Compiles paper/main.tex on every push that touches the paper, and on manual dispatch.
+# Download the resulting main.pdf from the run's "Artifacts" section (Actions tab).
+on:
+  push:
+    paths:
+      - 'paper/**'
+      - '.github/workflows/latex.yml'
+  pull_request:
+    paths:
+      - 'paper/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX (latexmk + bibtex, elsarticle)
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: paper
+          root_file: main.tex
+          # latexmk runs pdflatex -> bibtex -> pdflatex x2 automatically.
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Upload compiled PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-pdf
+          path: paper/main.pdf
+          if-no-files-found: error

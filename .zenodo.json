@@ -1,0 +1,33 @@
+{
+  "title": "AIH2: A Provenance-Tracked Open Dataset and Reproducible Analysis for Aluminum-Water Hydrolysis Hydrogen Production",
+  "upload_type": "dataset",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "version": "1.0.0",
+  "description": "Curated, provenance-tracked dataset and reproducible analysis pipeline for hydrogen production by aluminum-water hydrolysis. Includes a condition-level yield table (315 rows from 31 studies) and a separate kinetic table (76 rows: activation energies, peak rates, rate constants, t80). Each row carries full provenance (study DOI, table/figure source, extractor, extraction method) and quality/methodology metadata. The accompanying analysis demonstrates that the literature's apparent parameter-effect contradictions are predominantly methodological rather than physico-chemical. Data are released under CC-BY-4.0; the accompanying analysis code is released under MIT (see the linked repository).",
+  "creators": [
+    {
+      "name": "[LASTNAME, Firstname --- USER INPUT]",
+      "affiliation": "[AFFILIATION --- USER INPUT]",
+      "orcid": "[0000-0000-0000-0000 --- USER INPUT]"
+    }
+  ],
+  "keywords": [
+    "aluminum-water hydrolysis",
+    "hydrogen production",
+    "open dataset",
+    "reproducibility",
+    "data leakage",
+    "meta-analysis",
+    "activation energy",
+    "methodological heterogeneity"
+  ],
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/zegran/AIH2",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Data licensed CC-BY-4.0; analysis/figure code licensed MIT. Creators, affiliation, and ORCID are placeholders to be completed by the depositor before minting the DOI."
+}

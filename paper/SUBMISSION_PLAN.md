@@ -1,23 +1,26 @@
 # Submission plan — ordered, dependency-aware path to submission
 
-Status snapshot (2026-06-17): full honest first draft written; figures reproducible; bibliography
-complete from verified metadata (zero placeholders); self-review done. Venue: IJHE primary, Energy
-and AI floor. Below, each work package lists goal · output · blocker/dependency · owner.
+Status snapshot (2026-06-17, FINALE): full honest draft; 6 Q1 figures wired + bundled in
+`paper/figures/`; `elsarticle` frontmatter + highlights + keywords; bibliography complete (zero
+placeholders); structural lint clean; LaTeX CI added; data-release + submission packages drafted.
+All CLI-doable finalization is done — only three user gates remain. Venue: IJHE primary, Energy and
+AI floor. Below, each work package lists goal · output · blocker/dependency · owner.
 
 | # | WP | % | gate |
 |---|---|---|---|
 | 1 | WP-CITE | **100%** | done (CLI) |
 | 4 | WP-POLISH | **100%** | done (CLI) |
-| 3 | WP-FRONTMATTER | ~15% | user (author/affiliation) — CLI can do the elsarticle conversion + highlights/keywords once names given |
-| 2 | WP-COMPILE | 0% | user (TeX path) — structure verified; CLI can add CI YAML |
-| 5 | WP-DATA-RELEASE | 0% | user (Zenodo) — CLI can prep `.zenodo.json` + dataset card |
-| 6 | WP-SUBMISSION-PREP | 0% | user decisions — CLI can draft cover letter / reviewers / checklist |
+| 3 | WP-FRONTMATTER | **~85%** | elsarticle + highlights + keywords done; needs real author/affiliation/ORCID + CRediT roles |
+| 2 | WP-COMPILE | **~90%** | CI YAML + lint clean; needs the user to confirm the GitHub Actions build is green |
+| 5 | WP-DATA-RELEASE | **~70%** | `.zenodo.json` + dataset card done; user mints the Zenodo DOI |
+| 6 | WP-SUBMISSION-PREP | **~80%** | cover letter / reviewers / checklist drafted; needs venue sign-off + author identity |
 
-**Overall submission-readiness ≈ 70%.** The science, draft, figures, bibliography, reporting-standard
-table, and self-review/audit are complete (content ≈ 100%). The remaining ~30% is packaging behind
-three user gates: **(a) author/affiliation info**, **(b) a TeX build path** (Overleaf fastest, or a
-GitHub Actions LaTeX CI), **(c) a Zenodo account** for the dataset DOI. CLI can advance the CLI-portion
-of each (conversion, CI YAML, deposit metadata, cover-letter draft) as soon as the gate is opened.
+**Overall submission-readiness ≈ 88%.** Content and packaging are complete (≈100% of what the CLI can
+do): draft, 6 figures, self-contained build, bibliography, reporting standard, elsarticle frontmatter,
+CI compile, data-release metadata, cover letter, reviewer template, checklist. The remaining ~12% is
+**three user gates only**: **(a) real author/affiliation/ORCID + CRediT**, **(b) Zenodo deposit to
+mint the dataset DOI** (insert it where `\todo{Zenodo DOI}` appears), **(c) final venue sign-off +
+submit**. Confirming the CI build is green is the one mechanical check the dev environment cannot run.
 
 ## 1. WP-CITE — bibliography completion ✅ DONE
 - **Goal:** every citation backed by verified BibTeX; zero placeholders.

@@ -1,24 +1,37 @@
-% IJHE submission (elsarticle). For Elsevier, switch to:
-%   \documentclass[preprint,12pt]{elsarticle}  and use \begin{frontmatter}...\end{frontmatter}.
-% Kept as `article` for local compilation; structure/content are submission-ready first-draft.
-\documentclass[11pt]{article}
-\usepackage[margin=1in]{geometry}
+% International Journal of Hydrogen Energy submission — Elsevier elsarticle class.
+% Compiles on Overleaf / TeX Live (CI). Local fallback: if elsarticle is unavailable, the previous
+% `article`-class preamble is preserved in git history (commit before the elsarticle conversion);
+% the section files and references are class-independent, so only this preamble would need swapping.
+\documentclass[preprint,12pt]{elsarticle}
+
 \usepackage{graphicx}
 \usepackage{booktabs}
-\usepackage[numbers,sort&compress]{natbib}
 \usepackage{amsmath}
 \usepackage{xcolor}
 \usepackage[colorlinks=true,allcolors=blue]{hyperref}
-\graphicspath{{../results/real_v1/figures/}}
-\newcommand{\todocite}[1]{\textcolor{red}{[cite: #1]}}  % placeholder for not-yet-verified refs
+% elsarticle loads natbib internally — do NOT load natbib again here.
+\graphicspath{{figures/}}
+\newcommand{\todocite}[1]{\textcolor{red}{[cite: #1]}}  % placeholder macro (currently unused)
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+
+\journal{International Journal of Hydrogen Energy}
+
+\begin{document}
+
+\begin{frontmatter}
 
 \title{Apparent Contradictions in the Aluminum--Water Hydrolysis Literature
 are Predominantly Methodological: a Provenance-Tracked, Leakage-Controlled Analysis}
-\author{Author One \and Author Two}
-\date{}
 
-\begin{document}
-\maketitle
+%% ===== AUTHORS / AFFILIATIONS — USER INPUT REQUIRED (placeholders; do not invent) =====
+\author[a]{[AUTHOR ONE --- USER INPUT]}
+\author[a]{[AUTHOR TWO --- USER INPUT]}
+\affiliation[a]{organization={[AFFILIATION --- USER INPUT]},
+                addressline={[STREET]}, city={[CITY]}, postcode={[POSTCODE]},
+                country={[COUNTRY]}}
+\cortext[cor]{Corresponding author: [EMAIL --- USER INPUT]}
+%% ORCID(s): [USER INPUT]
+%% ======================================================================================
 
 \begin{abstract}
 \noindent The aluminum--water hydrolysis literature for hydrogen production reports
@@ -44,6 +57,24 @@ we release the curated dataset, the reproducible analysis, and a minimum-informa
 reporting standard for aluminum-hydrolysis studies.
 \end{abstract}
 
+\begin{keyword}
+aluminum--water hydrolysis \sep hydrogen production \sep reproducibility \sep
+data leakage \sep meta-analysis \sep methodological heterogeneity \sep open dataset
+\end{keyword}
+
+\end{frontmatter}
+
+%% Highlights (3--5 bullets, each $\le$85 chars). For Elsevier upload these are also provided as a
+%% separate file: paper/submission/highlights.txt. Shown here so the preprint PDF carries them.
+\section*{Highlights}
+\begin{itemize}\setlength{\itemsep}{0pt}
+  \item 31 aluminum--water hydrolysis studies unified into one provenance-tracked dataset.
+  \item Study-grouped cross-validation exposes a large optimism gap ($R^2$ $0.62$--$0.85$).
+  \item Methodology explains $\approx$55\% of between-study yield variance vs $\approx$2\% for regime.
+  \item Temperature-control method alone is the single largest source ($\approx$33\%).
+  \item Particle-size effect is negative within all 5/5 studies; the ``flip'' is an artifact.
+\end{itemize}
+
 \input{sections/introduction}
 \input{sections/related_work}
 \input{sections/method}
@@ -51,6 +82,6 @@ reporting standard for aluminum-hydrolysis studies.
 \input{sections/discussion}
 \input{sections/conclusion}
 
-\bibliographystyle{unsrtnat}
+\bibliographystyle{elsarticle-num}
 \bibliography{references}
 \end{document}
