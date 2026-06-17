@@ -17,7 +17,8 @@ PAPER = Path(__file__).resolve().parents[1] / "paper"
 FIGDIR = PAPER / "figures"
 TEX_FILES = [PAPER / "main.tex", *sorted((PAPER / "sections").glob("*.tex"))]
 # sections actually pulled in via \input (orphans are reported, not linted for refs)
-INPUTS = {"introduction", "related_work", "method", "results", "discussion", "conclusion"}
+INPUTS = {"introduction", "related_work", "method", "results", "discussion", "conclusion",
+          "supplementary"}
 
 
 def read(p: Path) -> str:
