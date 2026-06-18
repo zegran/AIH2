@@ -78,7 +78,7 @@ Regime (\texttt{system\_class}) & Studies & Yield rows & Kinetic rows \\
 \subsection{Quality control}
 \label{sec:qc}
 
-Quality control followed four procedures, summarised in Table~\ref{tab:qc_summary}.
+Quality control followed five procedures, summarised in Table~\ref{tab:qc_summary}.
 First, approximately 16\,\% of yield rows (52~rows from 5~studies) were re-extracted
 independently using different source annotations; 52/52 rows reached exact numeric
 agreement, confirming extraction fidelity. Second, a classification audit
@@ -98,6 +98,35 @@ the fit); \citeauthor{ho2016}~\cite{ho2016} could not be fit reliably because th
 lowest-temperature reaction was already $\approx\!80\%$ complete within ten seconds and
 the additive loading was confounded with temperature across curves. Both retain their
 yield rows in the primary dataset but contribute no $E_\mathrm{a}$ estimate.
+Fifth, a post-hoc independent-agent inter-rater reliability (IRR) pass
+re-extracted the three high-variance categorical labels
+(\texttt{system\_class}, \texttt{temperature\_control}, \texttt{measurement\_method})
+from a stratified random sample of 19 of the 31 studies
+(77 yield rows, spanning all five \texttt{system\_class} levels and all quality tiers)
+using fresh agents with no access to the committed codings.
+Eight studies were openly accessible; ten were paywalled (Table~\ref{tab:qc_summary}).
+Raw inter-rater agreement on the accessible subset was:
+Cohen's $\kappa\!=\!0.826$ (\texttt{system\_class}),
+$\kappa\!=\!0.429$ (\texttt{temperature\_control}; pre-adjudication),
+$\kappa\!=\!0.700$ (\texttt{measurement\_method}; pre-adjudication).
+Adjudication against full texts identified three coding corrections:
+(1--2) two studies (\citeauthor{trowell2022}~\cite{trowell2022};
+\citeauthor{martinezv2026}~\cite{martinezv2026}) re-coded from \texttt{temperature\_control=uncontrolled}
+to \texttt{isothermal\_bath}: both papers use an explicit external temperature-control
+device (ceramic-fiber heater and PID-controlled heating plate, respectively);
+(3) \citeauthor{porciuncula2012}~\cite{porciuncula2012} re-coded from
+\texttt{measurement\_method=water\_displacement} to \texttt{other}: hydrogen is measured
+by syringe-piston displacement, not a classic inverted-vessel water-displacement apparatus.
+Post-adjudication agreement: $\kappa\!=\!0.826$ (\texttt{system\_class}),
+$\kappa\!=\!1.00$ (\texttt{temperature\_control}),
+$\kappa\!=\!1.00$ (\texttt{measurement\_method}).
+These corrections meaningfully changed the \texttt{temperature\_control}
+$R^2_C$ from $0.332$ to $0.081$; \texttt{measurement\_method} became the
+largest individual predictor ($R^2_C\!=\!0.425$). The headline finding
+(methodological covariates explain $\gg$ regime) is unchanged and strengthened
+($72\%$ vs.\ $2\%$; was $55\%$ vs.\ $2\%$). The IRR pass is agent-based
+(independent agents, same base model), so shared model-level systematic errors
+are not fully excluded; this is not equivalent to human dual-coding.
 
 \begin{table}[tbp]
 \centering
@@ -111,6 +140,7 @@ Double extraction      & 52 rows, 5 studies        & 52/52 exact       & None \\
 Classification audit   & All 31 studies            & 1 error found     & \citeauthor{dudoladov2016} reclassified \\
 Digitization QC        & 5 kinetic curves re-read  & $\approx$1.5\% point error & Accepted \\
 Arrhenius quality gate & Studies with $\ge\!3$ T-point rate data & 17 passed ($R^2\!\ge\!0.90$) & \citeauthor{rin2021}, \citeauthor{ho2016} dropped \\
+Independent-agent IRR  & 19-study stratified sample (8 accessible) & $\kappa\!=\!0.83$\,/\,$1.00$\,/\,$1.00$ post-adj.\ (sc/tc/mm) & 3 codings corrected; tc\,$R^2$ revised \\
 \hline
 \end{tabular}
 \end{table}
@@ -202,3 +232,42 @@ permutation importances are used descriptively to characterize which features th
 draw on; they are not interpreted as evidence of physical causation. All quantities in
 this paper trace to a committed analysis artifact, and the full pipeline is released
 with the dataset.
+
+Table~\ref{tab:prereg} maps each pre-registered test to its null hypothesis, statistic,
+threshold, correction, and outcome; reference this table when assessing whether the
+reported analyses match the pre-specified protocol.
+
+\begin{table}[tbp]
+\centering
+\small
+\caption{\textbf{Pre-registered hypotheses, statistical tests, and outcomes.}
+All four tests were pre-specified and frozen before analysis was executed
+(protocol: \texttt{plan/analysis-protocol.md}, versioned in the companion data release).}
+\label{tab:prereg}
+\begin{tabular}{p{0.7cm}p{2.6cm}p{2.8cm}p{1.6cm}p{1.2cm}p{2.4cm}}
+\toprule
+ID & Scientific question & Test & Threshold & Correction & Outcome \\
+\midrule
+H2 & Does regime moderate yield after removing between-study heterogeneity? &
+  Mixed-effects Wald test on \texttt{system\_class} (statsmodels REML, $n\!=\!299$ rows) &
+  $p < 0.05$ &
+  Holm ($8$ interactions) &
+  Not supported ($p\!=\!0.32$--$0.45$; $0/8$ interactions) \\[4pt]
+H3 & Does the coarse regime label explain the $E_\mathrm{a}$ spread? &
+  Permutation test on $\eta^2$ by regime (4 classes, $\ge\!3$ studies each) &
+  $p < 0.05$ &
+  None &
+  Not supported ($\eta^2\!=\!0.361$, $p\!=\!0.129$) \\[4pt]
+T\_A & Are studies internally predictable? &
+  Within-study LOSO $R^2$ distribution (14 testable studies) &
+  Median $R^2 > 0$ &
+  None &
+  Not supported (median $-0.145$; $5/14$ positive) \\[4pt]
+T\_B & Do methodological covariates explain more between-study yield variance than regime? &
+  Between-study $R^2_C$ decomposition with cluster-bootstrap CIs ($n\!=\!31$ studies) &
+  $R^2_{\text{method}} \gg R^2_{\text{regime}}$ &
+  None (descriptive) &
+  Supported ($72\%$ method vs.\ $2\%$ regime; upper CI bound $37\%$ for regime) \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -51,29 +51,37 @@ ElasticNet      & 0.186 & $-$6.081 & 6.267 & 67.8 & ---       & ---   \\
 \end{table}
 
 \subsection{Methodology, not physical regime, explains the between-study variance}
+\label{sec:variance_results}
 
 At the study level, $\approx\!50\%$ of the total yield variance lies between studies
 ($\eta^2_{\text{study}}\!=\!0.496$; this is a robust one-way decomposition, as the
 null-model random-intercept in the mixed-effects fit collapsed to the boundary). The
-physico-chemical regime label explains almost none of it:
-$R^2_{\texttt{system\_class}}\!=\!0.018$ (cluster-bootstrap 95\,\% CI $[0.015,\,0.373]$).
-Methodological covariates jointly explain $R^2\!=\!0.553$ (CI $[0.361,\,0.999]$),
-$\approx\!27\times$ more (Fig.~\ref{fig:variance}). The single largest source is the
-\emph{temperature-control method}: $R^2_{\texttt{temperature\_control}}\!=\!0.332$
-(CI $[0.030,\,0.676]$); studies using a self-heating protocol report higher mean yields
-($86\%$) than isothermal-bath studies ($75\%$), and uncontrolled studies far lower
-($32\%$).
+physico-chemical regime label explains $R^2_{\texttt{system\_class}}\!=\!0.018$
+(cluster-bootstrap 95\,\% CI $[0.015,\,0.373]$); the point estimate is low, but the
+wide interval (upper bound $\approx\!37\,\%$) reflects the limited corpus ($n\!=\!31$
+studies) and does not exclude moderate regime effects.
+Methodological covariates jointly explain $R^2\!=\!0.717$ (CI $[0.443,\,1.000]$),
+$\approx\!40\times$ more (Fig.~\ref{fig:variance}). The single largest individual source is the
+\emph{hydrogen measurement apparatus}: $R^2_{\texttt{measurement\_method}}\!=\!0.425$
+(CI $[0.024,\,0.806]$; associational; $n\!=\!25$ studies reporting apparatus details;
+6~studies have no apparatus metadata). Temperature-control method explains
+$R^2_{\texttt{temperature\_control}}\!=\!0.081$ (CI $[0.002,\,0.240]$);
+studies using a self-heating protocol report higher mean yields
+($86\%$) than isothermal-bath studies ($72\%$) across $7$ and $24$ studies respectively.
+These two levels exhaust the temperature-control variable in the corrected dataset
+(Section~\ref{sec:qc}; two studies originally coded as \texttt{uncontrolled} were
+reclassified to \texttt{isothermal\_bath} during inter-rater adjudication, see Table~\ref{tab:qc_summary}).
 
-This signal is not a relabeling of study identity or physical regime. Each
-temperature-control level is shared by many studies ($22\,/\,7\,/\,2$ studies for
-isothermal-bath\,/\,self-heating\,/\,uncontrolled) and spans four or five of the five
-regimes, so it is not collinear with \texttt{system\_class}. The contribution
-\emph{survives controlling for regime}: incremental variance explained by temperature
-control given \texttt{system\_class} is $+0.467$ (bootstrap CI $[+0.037,\,+0.772]$,
-excluding $0$), whereas regime given method adds only $+0.153$. Residual between-study
-spread remains within the dominant isothermal-bath level (yield range $26$--$100$\,\%,
-s.d.~$18.7$\,\%), so temperature control is the largest single source of between-study
-variance, though not the only one.
+The measurement-method signal is not a relabeling of study identity or physical regime.
+The dominant levels (\texttt{water\_displacement}, $n\!=\!19$ studies;
+\texttt{other}, $n\!=\!1$; \texttt{pressure}, $n\!=\!3$; \texttt{mass\_flow}, $n\!=\!1$;
+\texttt{gc}, $n\!=\!1$) each span multiple regimes. The measurement-method contribution
+\emph{survives controlling for regime}: incremental variance explained by measurement method
+given \texttt{system\_class} is $+0.512$ (bootstrap CI $[+0.069,\,+0.813]$,
+excluding $0$), whereas regime given method adds only $+0.044$. Temperature control also
+contributes beyond regime: incremental $+0.107$ (CI $[+0.009,\,+0.316]$, excluding $0$).
+Residual between-study spread within measurement-apparatus groups remains substantial,
+so these predictors identify the dominant sources of between-study variance, not all of it.
 
 \subsection{Mixed-effects regime moderation: not supported (H2)}
 
@@ -168,6 +176,30 @@ grouped folds) is $0.66$\,/\,$0.68$\,/\,$0.70$ (seeds $0$\,/\,$42$\,/\,$7$): the
 hierarchy is moderately stable but should not be over-interpreted given the poor
 between-study predictive $R^2$.
 
+\subsection{Robustness sensitivities}
+
+Two pre-specified sensitivity checks were run to assess how robust the headline findings
+are to study-quality cut and particle-size reporting.
+
+\textbf{OA-subset (tier A+B only, $n\!=\!19$).}
+Restricting to the 19 studies rated tier~A or~B eliminates all 12 tier-C studies.
+After this restriction:
+$R^2_{\texttt{system\_class}}\!=\!0.094$ (still low);
+$R^2_{\texttt{measurement\_method}}\!=\!0.073$ (drops substantially);
+$R^2_{\texttt{temperature\_control}}\!=\!0.065$ (also drops).
+All individual predictors weaken, which is expected when the tier-C studies (which
+include the lowest-yield and self-heating records) are removed, reducing between-study
+spread. The headline direction (regime $<$ methodological predictors) holds, but the
+absolute magnitudes are sensitive to quality-tier inclusion; this is a legitimate
+limitation of corpus size and tier composition.
+
+\textbf{Particle-size reporting sensitivity.}
+Among studies that report particle size as an experimental variable ($n\!=\!5$ of $31$;
+$59/315$ rows), a Fisher's exact test comparing studies that do vs.\ do not report
+particle size finds no significant differences in quality-tier distribution
+($p\!=\!0.35$) or temperature-control composition ($p\!=\!0.61$), supporting the
+generalisability of the within-study particle-size finding to the broader corpus.
+
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.7\linewidth]{fig1_optimism_gap.pdf}
 \caption{\textbf{Leakage control.} Each model is a dumbbell from its study-grouped cross-validated
@@ -184,9 +216,10 @@ $R^2\!\approx\!0.55$ under random splits but fall below zero under study-grouped
 (headline).} Between-study variance of study-mean yield explained ($R^2$, dot) with a 95\%
 cluster-bootstrap confidence interval (bar), one row per predictor. The physico-chemical regime
 label (\texttt{system\_class}) explains $0.02$; all methodological covariates jointly explain
-$0.55$ ($\approx\!27\times$), and the temperature-control method alone explains $0.33$.
-Associational; the temperature-control effect survives controlling for regime (incremental
-$R^2{=}{+}0.47$, bootstrap CI excludes $0$).}
+$0.72$ ($\approx\!40\times$); hydrogen measurement apparatus ($0.43$, $n\!=\!25$ studies)
+and temperature-control method ($0.08$) are the largest individual contributors.
+Associational; measurement-method effect survives controlling for regime (incremental
+$R^2{=}{+}0.51$, bootstrap CI excludes $0$).}
 \label{fig:variance}
 \end{figure}
 

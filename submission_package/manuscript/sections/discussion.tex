@@ -7,7 +7,7 @@ in aluminum--water hydrolysis are \emph{predominantly methodological} (though th
 may partly reflect unmeasured study-level factors). Naive pooling
 overstates predictability by $0.62$--$0.85$ in $R^2$; the physico-chemical regime label
 explains $\approx\!2\%$ of between-study yield variance while methodological covariates
-explain $\approx\!55\%$; the flagship particle-size contradiction dissolves. The practical
+explain $\approx\!72\%$; the flagship particle-size contradiction dissolves. The practical
 implication is direct: a hydrogen yield reported without its measurement protocol is only
 weakly comparable across laboratories, and meta-analyses that pool raw yields inherit
 methodological variance as if it were chemistry.
@@ -128,16 +128,17 @@ at this sample size,'' not as proof of absence. Detection of small effects ($R^2
 likely require a corpus substantially larger than $n\!=\!31$ studies.
 The between-study variance decomposition
 (T\_B) has cluster-bootstrap confidence intervals that are wide at this $n$; the lower
-bound on method-joint $R^2$ ($0.36$) excludes zero but the upper bound ($0.999$) is
+bound on method-joint $R^2$ ($0.44$) excludes zero but the upper bound ($1.00$) is
 uninformative. Two regimes (\texttt{waste\_al}, \texttt{liquid\_metal\_activated}) have
 fewer than $40$ yield rows each; effect estimates for these classes are exploratory.
 
 \paragraph{Associational attribution.}
-All findings are associational, not causal. Because temperature-control method is largely a
-study-level attribute, its $33\%$ variance share could partly reflect unmeasured
-study-level differences (equipment, practice, calibration) that co-vary with protocol
-choice. We quantify the incremental contribution (method beyond regime: $+0.47$; regime
-beyond method: $+0.15$) but do not attribute a causal mechanism.
+All findings are associational, not causal. Because measurement apparatus and temperature-control
+method are study-level attributes, their variance shares ($43\%$ and $8\%$ respectively)
+could partly reflect unmeasured study-level differences (equipment, calibration, laboratory
+practice) that co-vary with protocol choice. We quantify the incremental contributions
+(measurement method beyond regime: $+0.51$; temperature control beyond regime: $+0.11$;
+regime beyond both: $+0.04$) but do not attribute a causal mechanism.
 
 \paragraph{Single material system and open-access bias.}
 The dataset covers only aluminum--water hydrolysis; the leakage finding and the
@@ -169,10 +170,18 @@ intra-rater consistency evidence only, not inter-rater reliability: the double-e
 check ($52/52$ exact, $52/315$ rows, $16\%$) repeated extraction by the same author on a
 subset of rows, confirming self-consistency but not guarding against systematic extractor
 bias shared across both passes. The remaining $84\%$ of rows ($263/315$) have no
-independent extractor check. Because both passes may have relied on the same AI tool,
-the $52/52$ agreement is a self-consistency check rather than an independent validation
-against AI-introduced errors; the primary protection is the author's manual review and
-verification of every extracted value. Readers should treat the results as a first
+independent extractor check. A post-hoc independent-agent IRR pass (Section~\ref{sec:qc})
+identified three coding errors in the study-level metadata
+(\texttt{temperature\_control} and \texttt{measurement\_method})
+that, after correction, meaningfully changed the variance decomposition numbers
+(temperature control: $0.332\to0.081$; measurement apparatus: nominally largest predictor,
+$0.425$). This underscores that agent-assisted IRR can surface coding errors even when
+the original pass was author-reviewed, and that the variance decomposition is sensitive
+to the accuracy of study-level metadata labels. The IRR pass covers an accessible
+subset ($8/31$ openly reachable studies); systematic biases in the paywalled studies
+($n\!=\!23$) cannot be ruled out. The agent-based IRR further shares a base model
+(Anthropic Claude), so model-level systematic errors are not excluded; this is not
+equivalent to human dual-coding. Readers should treat the results as a first
 systematic synthesis requiring external validation rather than as an established consensus.
 The curated data and analysis pipeline are released openly so that independent groups can
 audit extraction quality and extend the corpus.
@@ -194,7 +203,7 @@ space (plausible given five regimes with different activation methods, particle 
 and alkali types), a model trained on some studies will fail on others even under
 identical measurement protocols, because the held-out study's conditions are out of
 distribution. We cannot currently separate these contributions quantitatively; the
-$55\%$ methodology attribution addresses the heterogeneity component but does not
+$72\%$ methodology attribution addresses the heterogeneity component but does not
 isolate it from extrapolation effects.
 
 \paragraph{Mixed-effects model specification.}
