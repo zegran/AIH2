@@ -19,8 +19,10 @@ flat-format dataset with 30~columns per row. Physical parameters include tempera
 alkali-solution concentration (mol\,L$^{-1}$), particle size (median $d_{50}$, $\mu$m),
 aluminium purity or alloy composition, activator type and loading, and
 water-to-aluminium mass ratio. Methodological metadata encode temperature-control method
-(\texttt{isothermal\_bath}, \texttt{self\_heating}, \texttt{uncontrolled}), measurement
-method (\texttt{water\_displacement}, \texttt{pressure}, \texttt{gc}), vessel geometry
+(\texttt{isothermal\_bath}, \texttt{self\_heating}; see Section~\ref{sec:qc} for
+corrections applied during inter-rater adjudication), measurement
+method (\texttt{water\_displacement}, \texttt{pressure}, \texttt{gc}, \texttt{mass\_flow},
+\texttt{other}), vessel geometry
 class, water type, and quality tier (A/B/C). Full provenance is stored per row: study
 DOI, the table or figure from which each value was read, extraction method (direct or
 digitized), and extractor identity. The grouping key for all cross-study analyses is the

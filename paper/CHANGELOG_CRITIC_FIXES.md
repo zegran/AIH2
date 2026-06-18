@@ -91,3 +91,32 @@ Zipped to `release/aih2_code_v1.zip` (92 KB). Ready for a separate Zenodo code d
 - Compliance gate: PASS (250 words)
 - Lint: PASS (58/58 cite coverage, 0 structural issues)
 - DOCX: regenerated `submission_package/manuscript/main_review.docx`
+
+---
+
+## Stage 5 — Zenodo DOI insertion + full propagation + consistency gate (2026-06-18)
+
+**New Zenodo DOI:** `10.5281/zenodo.20751918` (old record deleted; fresh upload)
+
+**DOI inserted:**
+- `paper/sections/conclusion.tex` — Data Availability
+- `paper/sections/supplementary.tex` — companion data release line
+- `release/zenodo_v1/CITATION.cff` — doi field (replaced placeholder)
+- `release/zenodo_v1/aih2_dataset_v1.zip` — rebuilt with real DOI in CITATION.cff
+- `submission_package/zenodo/` — synced from `release/zenodo_v1/`
+
+**Propagation sweep — remaining old numbers updated:**
+- `paper/sections/introduction.tex` — ≈55%/TC 33% → ≈72%/apparatus 43%/TC 8%
+- `paper/sections/discussion.tex` — "Why pooling fails" paragraph updated; `tab:mireport` reordered (apparatus first, R²=0.43; TC second, R²=0.08); caption updated; "uncontrolled" removed from TC level list; min-reporting-standard text updated
+- `paper/sections/method.tex` — TC level list: removed "uncontrolled", added reference to §QC; MM levels: added mass_flow + other
+- `paper/submission/cover_letter.md` — updated to Energy and AI; GitHub link replaced with Zenodo DOI; numbers updated to ≈72%/43%/8%
+- `paper/submission/IJHE_checklist.md` — renamed to Energy and AI; Zenodo DOI inserted; venue locked
+
+**Added:**
+- `tools/consistency_gate.py` — asserts headline values (0.717/0.018/0.425/0.081) consistent across all tex files; wired into `tools/lint_paper.py`
+
+**All gates after Stage 5:**
+- Consistency gate: **PASS**
+- Structural lint: **PASS** (58/58 cites, 0 hard errors)
+- Compliance: **PASS** (250 words, 6 keywords, Energy and AI, 3 benign highlight-length warnings)
+- DOCX: regenerated 2026-06-18 (287 KB)

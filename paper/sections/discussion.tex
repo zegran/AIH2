@@ -51,8 +51,9 @@ are the interlaboratory round-robin comparisons for MgH$_2$ storage \citep{wulf2
 biohydrogen fermentation \citep{hoque2018}: in both cases, identical ``conditions'' in
 different laboratories produced yields spanning roughly twofold, with the spread traced
 primarily to measurement and protocol choices rather than to genuine material differences.
-The present result, that temperature control alone explains $33\%$ of between-study
-yield variance in aluminum hydrolysis, places this field in the same category. The
+The present result, that measurement apparatus alone explains $43\%$ and temperature
+control explains $8\%$ of between-study yield variance in aluminum hydrolysis, places
+this field in the same category. The
 leakage-controlled benchmark we release is designed to let future modeling efforts detect
 the same failure mode: any model that achieves positive grouped $R^2$ on the provided
 corpus under the study-grouped split would represent genuine cross-study generalization
@@ -77,9 +78,9 @@ rather than assert, its robustness.
 
 The remedy is standardization. Table~\ref{tab:mireport} lists the minimum information
 needed to interpret a hydrogen yield across laboratories. The ordering reflects the
-between-study variance contribution each field carried in our analysis: temperature
-control is listed first because it was the single largest source ($R^2\!=\!0.33$);
-measurement method and water type follow because they contribute smaller but nonzero
+between-study variance contribution each field carried in our analysis: measurement
+apparatus is listed first because it was the single largest source ($R^2\!=\!0.43$);
+temperature control and water type follow because they contribute smaller but nonzero
 shares. The remaining fields (alkali type and concentration, particle size, activation
 route, yield basis, rate definition) carried detectable but weaker or less-covered
 signal here, yet they are practically essential for reproducibility. Provenance (DOI,
@@ -95,15 +96,15 @@ rather than protocol.
 \begin{table}[t]\centering\small
 \caption{Proposed minimum-information reporting standard for aluminum--water hydrolysis
 hydrogen-yield studies. Items are ordered by the between-study yield variance each
-carried here (Section~\ref{sec:variance_decomp}); temperature control is the largest
-single source ($R^2\!=\!0.33$).}
+carried here (Section~\ref{sec:variance_decomp}); measurement apparatus is the largest
+single source ($R^2\!=\!0.43$).}
 \label{tab:mireport}
 \begin{tabular}{lll}
 \toprule
 Field & Report & Between-study $R^2$ here \\
 \midrule
-Temperature control  & method (isothermal bath / self-heating / uncontrolled) + setpoint & 0.33 \\
-Measurement method   & water displacement / pressure / GC / mass-flow & 0.07 \\
+Measurement method   & water displacement / pressure / GC / mass-flow / other & 0.43 \\
+Temperature control  & method (isothermal bath / self-heating) + setpoint & 0.08 \\
 Water type \& purity & DI / tap / alkaline / saline, with conductivity or grade & 0.04 \\
 Quality / control    & replication count; value reported vs.\ derived & 0.04 \\
 Reaction vessel      & open or closed; insulated? & 0.02 \\
