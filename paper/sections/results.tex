@@ -51,16 +51,21 @@ ElasticNet      & 0.186 & $-$6.081 & 6.267 & 67.8 & ---       & ---   \\
 \end{table}
 
 \subsection{Methodology, not physical regime, explains the between-study variance}
+\label{sec:variance_results}
 
 At the study level, $\approx\!50\%$ of the total yield variance lies between studies
 ($\eta^2_{\text{study}}\!=\!0.496$; this is a robust one-way decomposition, as the
 null-model random-intercept in the mixed-effects fit collapsed to the boundary). The
-physico-chemical regime label explains almost none of it:
-$R^2_{\texttt{system\_class}}\!=\!0.018$ (cluster-bootstrap 95\,\% CI $[0.015,\,0.373]$).
+physico-chemical regime label explains $R^2_{\texttt{system\_class}}\!=\!0.018$
+(cluster-bootstrap 95\,\% CI $[0.015,\,0.373]$); the point estimate is low, but the
+wide interval (upper bound $\approx\!37\,\%$) reflects the limited corpus ($n\!=\!31$
+studies) and does not exclude moderate regime effects.
 Methodological covariates jointly explain $R^2\!=\!0.553$ (CI $[0.361,\,0.999]$),
 $\approx\!27\times$ more (Fig.~\ref{fig:variance}). The single largest source is the
 \emph{temperature-control method}: $R^2_{\texttt{temperature\_control}}\!=\!0.332$
-(CI $[0.030,\,0.676]$); studies using a self-heating protocol report higher mean yields
+(CI $[0.030,\,0.676]$; associational: temperature-control is a study-level attribute
+that may partly reflect unmeasured laboratory-level differences co-varying with
+protocol choice). Studies using a self-heating protocol report higher mean yields
 ($86\%$) than isothermal-bath studies ($75\%$), and uncontrolled studies far lower
 ($32\%$).
 

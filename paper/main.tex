@@ -42,8 +42,8 @@ protocols is the question we address with a leakage-controlled machine-learning 
 framework. We curate a provenance-tracked, quality-tiered open dataset of 315 condition-level
 hydrogen-yield rows from 31 independent studies (plus a separate 76-row kinetic table), with
 pre-registered hypotheses and transparent null reporting. Under study-grouped cross-validation,
-six comparative machine-learning models collapse from $R^2\!\approx\!0.55$ (random splits)
-to $R^2<0$ (optimism gap $0.62$--$0.85$): the literature does not pool naively. A
+six machine-learning models collapse from $R^2\!\approx\!0.55$ (random splits)
+to $R^2<0$ (optimism gap $0.62$--$0.85$, $R^2_{\rm rand}\!-\!R^2_{\rm grp}$): the literature does not pool naively. A
 between-study variance decomposition attributes $\approx\!55\%$ of the between-study
 yield variance to \emph{methodological} covariates versus $\approx\!2\%$
 (bootstrap 95\,\% CI 0.01--0.37) for the physico-chemical regime label,

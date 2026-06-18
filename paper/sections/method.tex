@@ -202,3 +202,42 @@ permutation importances are used descriptively to characterize which features th
 draw on; they are not interpreted as evidence of physical causation. All quantities in
 this paper trace to a committed analysis artifact, and the full pipeline is released
 with the dataset.
+
+Table~\ref{tab:prereg} maps each pre-registered test to its null hypothesis, statistic,
+threshold, correction, and outcome; reference this table when assessing whether the
+reported analyses match the pre-specified protocol.
+
+\begin{table}[tbp]
+\centering
+\small
+\caption{\textbf{Pre-registered hypotheses, statistical tests, and outcomes.}
+All four tests were pre-specified and frozen before analysis was executed
+(protocol: \texttt{plan/analysis-protocol.md}, versioned in the companion data release).}
+\label{tab:prereg}
+\begin{tabular}{p{0.7cm}p{2.6cm}p{2.8cm}p{1.6cm}p{1.2cm}p{2.4cm}}
+\toprule
+ID & Scientific question & Test & Threshold & Correction & Outcome \\
+\midrule
+H2 & Does regime moderate yield after removing between-study heterogeneity? &
+  Mixed-effects Wald test on \texttt{system\_class} (statsmodels REML, $n\!=\!299$ rows) &
+  $p < 0.05$ &
+  Holm ($8$ interactions) &
+  Not supported ($p\!=\!0.32$--$0.45$; $0/8$ interactions) \\[4pt]
+H3 & Does the coarse regime label explain the $E_\mathrm{a}$ spread? &
+  Permutation test on $\eta^2$ by regime (4 classes, $\ge\!3$ studies each) &
+  $p < 0.05$ &
+  None &
+  Not supported ($\eta^2\!=\!0.361$, $p\!=\!0.129$) \\[4pt]
+T\_A & Are studies internally predictable? &
+  Within-study LOSO $R^2$ distribution (14 testable studies) &
+  Median $R^2 > 0$ &
+  None &
+  Not supported (median $-0.145$; $5/14$ positive) \\[4pt]
+T\_B & Do methodological covariates explain more between-study yield variance than regime? &
+  Between-study $R^2_C$ decomposition with cluster-bootstrap CIs ($n\!=\!31$ studies) &
+  $R^2_{\text{method}} \gg R^2_{\text{regime}}$ &
+  None (descriptive) &
+  Supported ($55\%$ method vs.\ $2\%$ regime; upper CI bound $37\%$) \\
+\bottomrule
+\end{tabular}
+\end{table}
