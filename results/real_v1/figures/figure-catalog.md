@@ -26,11 +26,13 @@ covariates (blue ●); black ◆ = all method covariates jointly.
 **Encoding why:** dot = point estimate (position), bar = CI (length) — the two most accurate channels;
 regime vs method distinguished by colour *and* marker shape so it survives grayscale (no bare bars,
 per Weissgerber). 1.5-column width.
-**Read:** method covariates jointly explain 0.55 of between-study variance vs 0.02 for physical regime
-(~27×); temperature-control method alone explains 0.33. **So:** the apparent contradictions are
-predominantly methodological — associational, and the temperature-control effect survives control for
-regime (incremental R² +0.47, CI [0.04, 0.77]). **Trace:** `TB_method_variance.md`,
-`TB_confound_check.md`.
+**Read:** method covariates jointly explain 0.717 of between-study variance vs 0.018 for physical regime
+(~40×); hydrogen measurement apparatus alone explains 0.425 (single largest source); temperature-control
+method explains 0.081. **So:** the apparent contradictions are predominantly methodological —
+associational, and the joint method effect survives control for regime (incremental R² +0.70,
+CI [0.44, 1.00]). **Trace:** `TB_method_variance.md` (updated post-IRR), `TB_confound_check.md`.
+**NOTE:** figures regenerated 2026-06-18 after IRR adjudication corrected 3 coding errors:
+TC R² revised from 0.332→0.081; measurement_method became the single largest predictor at 0.425.
 
 ## fig3_particle_size_consistency — flagship contradiction, resolved
 **Plots:** for each study that varies particle size, raw (D₅₀, yield) points (log x) plus a robust
