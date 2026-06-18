@@ -5,7 +5,8 @@ type: dataset
 version: "1.0.0"
 date-released: "2026-06-17"
 license: CC-BY-4.0
-url: "https://github.com/zegran/AIH2"
+doi: "10.5281/zenodo.20750297"
+url: "https://doi.org/10.5281/zenodo.20750297"
 authors:
   - family-names: Unal
     given-names: Dogukan
