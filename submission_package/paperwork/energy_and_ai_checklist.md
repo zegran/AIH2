@@ -1,56 +1,45 @@
-# Energy and AI — Author Checklist (pre-submission)
+# Energy and AI submission checklist
 
-Source: Elsevier Guide for Authors — Energy and AI
-Verified by `tools/compliance_gate.py` (12/12 checks PASS, 2026-06-17)
+Status: ✅ done · 🟡 CLI-ready, needs user input · ⛔ user gate
 
-## Manuscript format
+## Manuscript
+- ✅ Title, abstract (structured: problem / method / result / contribution)
+- ✅ Keywords (7)
+- 🟡 Highlights — drafted (`highlights.txt` + in `main.tex`); confirm each ≤ 85 chars on final read
+- ✅ Sections: Intro, Related work, Data & methods, Results, Discussion, Conclusion
+- ✅ Data and code availability statement (Zenodo DOI 10.5281/zenodo.20751918)
+- ✅ Declaration of competing interest
+- ✅ CRediT authorship contribution statement (Dogukan Unal — all roles)
+- ✅ Declaration of generative AI and AI-assisted technologies (flagged `% AUTHOR: confirm`)
+- ✅ Author, affiliation, corresponding-author email, ORCID (Dogukan Unal, IPEC; ORCID 0009-0006-5102-8013)
+- ⛔ Funding statement — [USER INPUT, if any]
 
-- [x] Journal declared: `\journal{Energy and AI}` in main.tex
-- [x] Document class: `elsarticle` (preprint, 12pt)
-- [x] Bibliography style: `elsarticle-num`
-- [x] booktabs loaded (publication-quality tables)
-
-## Abstract and metadata
-
-- [x] Abstract ≤ 250 words (current: ~211 words)
-- [x] Keywords: 3–6 (current: 6)
-- [x] Highlights: 3–5 bullets, each ≤ 85 characters (current: 5 bullets — see highlights.md)
-
-## Sections
-
-- [x] Introduction
-- [x] Related work (with `\label{sec:related}`)
-- [x] Data and methods
-- [x] Results
-- [x] Discussion
-- [x] Conclusion
-- [x] Supplementary material (Tables SI-1, SI-2)
-
-## Mandatory declarations
-
-- [x] Acknowledgements / funding statement ("received no specific grant from funding agencies…")
-- [x] Declaration of competing interest
-- [x] CRediT authorship statement
-- [x] Declaration of generative AI and AI-assisted technologies (CONFIRM wording before submit)
-- [x] Data and code availability statement
-
-## Figures
-
-- [x] All 6 figures in vector PDF format, fonts embedded
-- [x] Colorblind-safe palette (Okabe-Ito); grayscale-legible (shape + color)
-- [x] Minimum 7 pt fonts in figures
-- [x] All figures cited in text; self-contained captions
+## Figures (Elsevier artwork specs)
+- ✅ Vector PDF, fonts embedded (`pdf.fonttype=42`), 300 dpi PNG previews available
+- ✅ Colorblind-safe (Okabe–Ito), legible in grayscale (shape+colour redundancy)
+- ✅ ≥7 pt fonts; single-/double-column sizing; no unjustified 3D (one intrinsic-surface panel + 2D companion)
+- ✅ All 6 figures referenced in text (fig1–fig6); self-contained captions
+- ✅ Figures bundled in `paper/figures/` so the source compiles standalone
 
 ## References
+- ✅ 58 entries, each tier-tagged (full-text- or metadata-verified); zero `\todocite`
+- ✅ Every cited key resolves; no uncited entries (structural lint clean)
+- 🟡 `das2023fuel`: exact in-sample R² softened to "near-perfect"; confirm against full text if a precise number is wanted (`% NEEDS-FULLTEXT`)
+- ✅ `elsarticle-num` bibliography style
 
-- [x] 58 BibTeX entries; 31 Tier-A data-source + 12 Tier-B domain-context
-- [x] All data-source studies cited (31/31 — citation_coverage.py PASS)
-- [x] All references fetched from Crossref by DOI; none written from memory
+## Build / format
+- ✅ `elsarticle` class, `[preprint,12pt]`; `\journal{Energy and AI}`
+- ✅ Structural lint clean (`tools/lint_paper.py`): cites, refs/labels, graphics, no placeholders
+- 🟡 Compile: GitHub Actions workflow added (`.github/workflows/latex.yml`) → download `main.pdf` from the Actions tab; or use Overleaf. (No local TeX in dev env.)
 
-## Open gates before submission (user action required)
+## Declarations & policy
+- ✅ Competing-interest declaration present
+- ⛔ Funding statement — [USER INPUT, if any]
+- ✅ Original work, not under consideration elsewhere (stated in cover letter)
+- ✅ Data availability: open dataset at Zenodo 10.5281/zenodo.20751918 (CC-BY-4.0)
 
-- [ ] **Zenodo deposit** — mint DOI; replace `\todo{Zenodo DOI}` in conclusion.tex + CITATION.cff
-- [ ] **Confirm AI-disclosure wording** — conclusion.tex `% AUTHOR: confirm` comment
-- [ ] **Confirm suggested reviewers + COI** — paperwork/suggested_reviewers.md
-- [ ] **CI PDF confirmed green** — download main.pdf from GitHub Actions → manuscript/main.pdf
-- [ ] **Final venue sign-off** — submit via Elsevier Editorial Manager
+## Submission items
+- ✅ Cover letter draft (`cover_letter.md`) — updated for Energy and AI
+- ✅ Suggested reviewers template (`suggested_reviewers.md`)
+- ✅ Highlights file (`highlights.txt`)
+- ✅ Venue: Energy and AI (Elsevier)

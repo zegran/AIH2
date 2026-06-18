@@ -28,7 +28,7 @@ uv run python3 run/pipeline/run_phase1.py
 ```
 
 The curated dataset (`data/curated/aih2_v1.csv`, 315 yield rows from 31 studies)
-is released separately at https://doi.org/10.5281/zenodo.20750297 (CC-BY-4.0).
+is released separately at https://doi.org/10.5281/zenodo.20751918 (CC-BY-4.0).
 
 ## License
 
