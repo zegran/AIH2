@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+type: dataset
+title: "Aluminum–Water Hydrolysis Hydrogen-Yield and Kinetics Dataset (provenance-tracked, leakage-aware), v1.0"
+version: "1.0.0"
+date-released: "2026-06-18"
+license: CC-BY-4.0
+authors:
+  - family-names: Unal
+    given-names: Dogukan
+    orcid: "https://orcid.org/0009-0006-5102-8013"
+    affiliation: "IPEC, Industrial Project Engineering Consulting, Çankaya, Ankara, Türkiye"
+doi: "PLACEHOLDER — replace with the DOI assigned by Zenodo after upload"
+abstract: >
+  A provenance-tracked, quality-tiered dataset for hydrogen production by aluminum–water hydrolysis,
+  assembled from 31 independent published studies (315 yield rows, 76 kinetic rows). Includes
+  per-row study DOI, extraction method, quality tier, and inter-rater–verified methodology
+  covariates (temperature control, hydrogen measurement method). Three coding corrections applied
+  following blind independent-agent inter-rater reliability check (post-adjudication κ = 1.00
+  for temperature_control and measurement_method). Accompanies the paper "Apparent Contradictions
+  in the Aluminum–Water Hydrolysis Literature are Predominantly Methodological: a
+  Provenance-Tracked, Leakage-Controlled Analysis" (D. Unal, Energy and AI).
+keywords:
+  - aluminum-water hydrolysis
+  - hydrogen production
+  - machine learning
+  - meta-analysis
+  - provenance tracking
+  - inter-rater reliability
