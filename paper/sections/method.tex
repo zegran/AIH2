@@ -9,8 +9,8 @@ screened against the inclusion criterion: at least one numeric hydrogen outcome 
 reaction rate) reported with the experimental conditions explicitly stated. Thirty-one
 studies met that criterion and constitute the data corpus
 \cite{wen2018,prabu2021,wanghq2017,yavor2013,rin2021,trowell2022,deng2010,porciuncula2012,zhang2024,liuyh2017,qiao2019,meng2022,xiao2018,guan2019,preez2018,chen2020,xiao2020,davies2022mat,ilyukhina2012,dudoladov2016,fischman2020,lu2017,jayaraman2015,gupta2025,ho2016,knoks2025,mezulis2023,martinezv2026,buryakov2023met,urbonav2024,fadhilah2023};
-the remaining screened papers---comparative reviews and system-specific studies that do
-not report extractable condition-level yield or rate data---are cited in Related Work by
+the remaining screened papers (comparative reviews and system-specific studies that do
+not report extractable condition-level yield or rate data) are cited in Related Work by
 regime (Section~\ref{sec:related})
 \cite{razavi2016,yang2018,shmelev2016,noland2020,wangxy2021,elitzur2014,tan2016,godart2019,razavi2013,preez2019,david2012,slocum2020}.
 
@@ -117,8 +117,8 @@ Arrhenius quality gate & Studies with $\ge\!3$ T-point rate data & 17 passed ($R
 
 \subsection{Leakage-controlled evaluation}
 
-For each of six comparative regressors---ElasticNet, $k$-nearest neighbours ($k$NN),
-random forest (RF), XGBoost (XGB), LightGBM (LGBM), and Gaussian process (GP)---we
+For each of six comparative regressors (ElasticNet, $k$-nearest neighbours ($k$NN),
+random forest (RF), XGBoost (XGB), LightGBM (LGBM), and Gaussian process (GP)) we
 estimated the held-out coefficient of determination $R^2$ under two cross-validation
 protocols. These six regressors span linear (ElasticNet), kernel (GP), instance-based
 ($k$NN), bagging (RF), and gradient-boosting (XGB, LGBM) inductive paradigms.
@@ -143,7 +143,7 @@ that the performance collapse is not an artifact of the aggregation rule.
 \subsection{Between-study variance decomposition and mixed-effects regression}
 \label{sec:variance_decomp}
 
-To identify \emph{what} drives between-study disagreement, we aggregate to the study
+To identify \emph{what accounts for} between-study disagreement, we aggregate to the study
 level (one row per study: mean yield and modal covariate values for that study) and
 decompose the total between-study variance of mean yield. For a categorical predictor
 $C$ the variance share is
@@ -158,7 +158,10 @@ between-study mean yield ($n\!=\!31$ studies). We compare the physical-regime la
 (\texttt{temperature\_control}, \texttt{measurement\_method}, \texttt{water\_type},
 \texttt{quality\_tier}, \texttt{vessel\_type}), individually and jointly.
 All headline $R^2_C$ values carry cluster-bootstrap confidence intervals ($B\!=\!1000$,
-resampling complete studies with replacement, unstratified across regimes). Incremental comparisons and cross-tabulations
+resampling complete studies with replacement, unstratified across regimes). With $n\!=\!31$
+study-level observations and five individual predictors, the effective degrees-of-freedom
+ratio is approximately 6:1; the cluster-bootstrap CIs, which resample complete studies,
+reflect this limited precision directly. Incremental comparisons and cross-tabulations
 use Holm correction throughout.
 
 Complementing the variance decomposition, we fit a mixed-effects meta-regression
@@ -168,14 +171,29 @@ The mixed-effects model operates on row-level yield data ($n\!=\!299$ rows from
 $27$~studies; rows with missing temperature excluded). This directly tests hypothesis
 H2: that the physico-chemical regime label moderates hydrogen yield after accounting
 for unobserved between-study heterogeneity. Fixed-effect significance uses Wald tests;
-all parameter$\times$\texttt{system\_class} interactions use Holm correction. The
-Arrhenius $E_\mathrm{a}$ analysis (H3) applies the same cluster-bootstrap framework to
-the 17-study kinetic subsample.
+all parameter$\times$\texttt{system\_class} interactions use Holm correction. Formally,
+the model is
+\begin{equation}
+y_{ij} = \mu + \sum_{k} \beta_k \mathbf{1}[\text{class}_j = k]
+         + \boldsymbol{\gamma}^{\!\top}\mathbf{x}_{ij} + u_j + \varepsilon_{ij},
+\quad u_j \sim \mathcal{N}(0,\,\sigma_u^2),\;\varepsilon_{ij} \sim \mathcal{N}(0,\,\sigma^2),
+\label{eq:mixedlm}
+\end{equation}
+where $y_{ij}$ is the hydrogen yield for row $i$ from study $j$;
+$\mathbf{1}[\text{class}_j = k]$ is the regime indicator; $\mathbf{x}_{ij}$ are
+standardised physical covariates; $u_j$ is the random study intercept estimated via
+REML. The Arrhenius $E_\mathrm{a}$ analysis (H3) applies the same cluster-bootstrap
+framework to the 17-study kinetic subsample.
 
 \subsection{Discipline}
 
 % NOTE: if you mint an OSF pre-registration before submission, replace "pre-specified" with
 % "pre-registered (OSF: <URL>)" in the sentence below.
+The pre-registered family comprises four primary tests: H2 (mixed-effects regime
+moderation of yield), H3 (activation-energy regime structure), T\_A (within-study
+predictability), and T\_B (between-study variance decomposition). Holm correction is
+applied to all secondary interaction tests within H2 ($8$
+parameter$\times$\texttt{system\_class} terms).
 Hypotheses and success thresholds were pre-specified and frozen before any analysis code was executed
 (protocol in \texttt{plan/analysis-protocol.md}, versioned in the companion data release). Language on
 observational findings is associational, not causal. Null results are reported as ``no

@@ -7,13 +7,13 @@ replication signal}
 Before reporting the primary results, we establish that the apparent within-regime
 cross-study signal is not genuine. Within the largest regime (\texttt{pure\_al\_alkali},
 $n\!=\!162$, 9~studies), a rows-weighted LOSO skill of $+0.825$ looks impressive.
-However, one study---\citeauthor{porciuncula2012}~\cite{porciuncula2012}---contributes
+However, one study, \citeauthor{porciuncula2012}~\cite{porciuncula2012}, contributes
 120~of 162~rows (74\%) and achieves LOSO skill $+0.926$; when skill is averaged uniformly
 over studies (study-macro LOSO) rather than over rows, it falls to $-0.311$. MAE doubles
 from $9.3$ to $17.2$\,\% yield on removing that study from the training pool.
 Of the nine studies, 5/9 beat the class mean when tested individually; the four failing
 studies miss badly (skill $-0.10$ to $-3.3$). The row-weighted and study-macro metrics
-diverge by $1.14$---the headline score is porciuncula-weighted, not a replication signal.
+diverge by $1.14$: the headline score is porciuncula-weighted, not a replication signal.
 A row-weighted metric should therefore not be used to claim cross-study performance on
 this corpus.
 
@@ -22,8 +22,8 @@ this corpus.
 Table~\ref{tab:cv_summary} reports the full per-model cross-validation results. Under
 random $k$-fold splits, tree models reach $R^2\!\approx\!0.55$--$0.57$ (random forest
 $0.564$, LightGBM $0.572$, XGBoost $0.545$). Under study-grouped cross-validation the
-same models collapse to $R^2\!<\!0$---all six regressors perform worse than predicting
-the global mean---for optimism gaps of $0.62$--$0.85$ (tree models) and up to $6.27$
+same models collapse to $R^2\!<\!0$ (all six regressors perform worse than predicting
+the global mean) for optimism gaps of $0.62$--$0.85$ (tree models) and up to $6.27$
 (ElasticNet). The gap persists after removing \citeauthor{porciuncula2012}: RF gap
 $0.622\to0.484$, LGBM $0.828\to0.730$, XGB $0.845\to0.632$, confirming it is not driven
 by one dominant study (Fig.~\ref{fig:gap}).
@@ -159,10 +159,10 @@ sample sizes of $5$--$120$ rows rather than genuine within-study physical noise.
 \subsection{Permutation importance: methodology features dominate}
 
 In-sample random-forest permutation importance ranks \texttt{particle\_size} ($0.597$)
-first, \texttt{in\_wt\_pct} ($0.489$) second, and \texttt{temperature\_k} ($0.269$) third.
-The regime label \texttt{system\_class} ranks tenth ($0.032$)---one-nineteenth of
-\texttt{particle\_size}---consistent with the variance-decomposition finding that
-methodology rather than regime drives apparent yield differences. Alkali concentration
+first, \texttt{in\_wt\_pct} ($0.488$) second, and \texttt{temperature\_k} ($0.269$) third.
+The regime label \texttt{system\_class} ranks tenth ($0.032$), one-nineteenth of
+\texttt{particle\_size}, consistent with the variance-decomposition finding that
+methodology rather than regime accounts for apparent yield differences. Alkali concentration
 ranks fourteenth ($0.009$). SHAP cross-fold rank stability (mean pairwise Spearman across
 grouped folds) is $0.66$\,/\,$0.68$\,/\,$0.70$ (seeds $0$\,/\,$42$\,/\,$7$): the feature
 hierarchy is moderately stable but should not be over-interpreted given the poor
@@ -191,6 +191,15 @@ $R^2{=}{+}0.47$, bootstrap CI excludes $0$).}
 \end{figure}
 
 \begin{figure}[tbp]\centering
+\includegraphics[width=0.66\linewidth]{fig4_ea_spread.pdf}
+\caption{\textbf{Apparent activation energy does not organize by physical regime.} Per-study
+apparent $E_\mathrm{a}$ (points) with a class-median bar per \texttt{system\_class}; the shaded
+band is the literature range $3.5$--$102.6$\,kJ\,mol$^{-1}$. The within-regime spread is comparable
+to the between-regime spread (\texttt{liquid\_metal\_activated} alone spans $8.5$--$58$\,kJ\,mol$^{-1}$).}
+\label{fig:ea}
+\end{figure}
+
+\begin{figure}[tbp]\centering
 \includegraphics[width=0.66\linewidth]{fig3_particle_size_consistency.pdf}
 \caption{\textbf{The flagship particle-size contradiction is internally consistent.} Raw
 $(D_{50},\text{yield})$ points per study (log $x$) with a robust Theil--Sen trend line; the
@@ -201,20 +210,11 @@ artifact, not a within-study sign reversal.}
 \end{figure}
 
 \begin{figure}[tbp]\centering
-\includegraphics[width=0.66\linewidth]{fig4_ea_spread.pdf}
-\caption{\textbf{Apparent activation energy does not organize by physical regime.} Per-study
-apparent $E_\mathrm{a}$ (points) with a class-median bar per \texttt{system\_class}; the shaded
-band is the literature range $3.5$--$102.6$\,kJ\,mol$^{-1}$. The within-regime spread is comparable
-to the between-regime spread (\texttt{liquid\_metal\_activated} alone spans $8.5$--$58$\,kJ\,mol$^{-1}$).}
-\label{fig:ea}
-\end{figure}
-
-\begin{figure}[tbp]\centering
 \includegraphics[width=0.95\linewidth]{fig6_within_study_surface.pdf}
 \caption{\textbf{Within a single well-designed study the response is smooth.} \citeauthor{porciuncula2012}~\cite{porciuncula2012}
 (NaOH, foil) temperature\,$\times$\,concentration factorial: (a) a 2D contour and (b) the same data
 as a 3D surface. Within this study the yield rises smoothly and monotonically with both temperature
-and alkali concentration---within-study data are clean, locating the contradictions in the
+and alkali concentration; within-study data are clean, locating the contradictions in the
 cross-study integration. (3D shown only here, where the data are an intrinsic response surface, and
 always with the 2D companion.)}
 \label{fig:surface}
