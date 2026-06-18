@@ -1,27 +1,29 @@
 cff-version: 1.2.0
-message: "If you use this dataset, please cite both the dataset and the accompanying paper."
-title: "AIH2: A Provenance-Tracked Open Dataset for Aluminum–Water Hydrolysis Hydrogen Production"
+message: "If you use this dataset, please cite it as below."
 type: dataset
+title: "Aluminum–Water Hydrolysis Hydrogen-Yield and Kinetics Dataset (provenance-tracked, leakage-aware), v1.0"
 version: "1.0.0"
-date-released: "2026-06-17"
+date-released: "2026-06-18"
 license: CC-BY-4.0
-doi: "10.5281/zenodo.20750297"
-url: "https://doi.org/10.5281/zenodo.20750297"
 authors:
   - family-names: Unal
     given-names: Dogukan
     orcid: "https://orcid.org/0009-0006-5102-8013"
-    affiliation: "IPEC, Industrial Project Engineering Consulting, Ankara, Türkiye"
+    affiliation: "IPEC, Industrial Project Engineering Consulting, Çankaya, Ankara, Türkiye"
+doi: "10.5281/zenodo.20751918"
+abstract: >
+  A provenance-tracked, quality-tiered dataset for hydrogen production by aluminum–water hydrolysis,
+  assembled from 31 independent published studies (315 yield rows, 76 kinetic rows). Includes
+  per-row study DOI, extraction method, quality tier, and inter-rater–verified methodology
+  covariates (temperature control, hydrogen measurement method). Three coding corrections applied
+  following blind independent-agent inter-rater reliability check (post-adjudication κ = 1.00
+  for temperature_control and measurement_method). Accompanies the paper "Apparent Contradictions
+  in the Aluminum–Water Hydrolysis Literature are Predominantly Methodological: a
+  Provenance-Tracked, Leakage-Controlled Analysis" (D. Unal, Energy and AI).
 keywords:
   - aluminum-water hydrolysis
   - hydrogen production
-  - open dataset
-  - reproducibility
-  - data leakage
+  - machine learning
   - meta-analysis
-  - activation energy
-abstract: >-
-  A provenance-tracked dataset for hydrogen production by aluminum-water hydrolysis:
-  315 condition-level yield rows from 31 studies plus a separate 76-row kinetic table
-  (activation energies, peak rates, rate constants, t80), each with full provenance and
-  quality metadata. Assembled for leakage-controlled cross-study analysis.
+  - provenance tracking
+  - inter-rater reliability

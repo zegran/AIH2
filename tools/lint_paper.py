@@ -107,6 +107,20 @@ def main() -> int:
                 if "MISSING" in ln or "missing" in ln.lower():
                     print(f"  coverage: {ln.strip()}")
 
+    # 7. numerical consistency gate — headline variance-decomposition values
+    consistency = Path(__file__).parent / "consistency_gate.py"
+    if consistency.exists():
+        result = subprocess.run(
+            [sys.executable, str(consistency)],
+            capture_output=True, text=True,
+        )
+        print(result.stdout.strip())
+        if result.returncode != 0:
+            problems.append("[consistency] consistency_gate.py: headline values inconsistent")
+            for ln in result.stdout.splitlines():
+                if ln.startswith("  "):
+                    print(f"  {ln.strip()}")
+
     print(f"cite keys: {len(keys)} defined, {len(cited)} cited | "
           f"labels: {len(labels)} | refs: {len(refs)}")
     if not problems:

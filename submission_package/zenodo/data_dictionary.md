@@ -1,15 +1,15 @@
 # AIH2 Curated Dataset — Data Dictionary
 
 One row = one reported experimental condition for aqueous aluminum–water hydrolysis.
-Scope is locked by the concept foundation: aqueous Al hydrolysis only.
+Scope is locked: aqueous Al hydrolysis only.
 
 ## Targets
 
-| Column | Type | Unit | Range | Phase | Notes |
-|---|---|---|---|---|---|
-| `h2_yield_pct` | float | % | 0–100 | 1 | H2 yield vs. theoretical 1.245 L H2/g Al at STP |
-| `max_rate_ml_min_g` | float | mL·min⁻¹·g⁻¹ | ≥0 | 2 | reserved, nullable |
-| `t80_min` | float | min | ≥0 | 2 | time to 80% conversion; reserved, nullable |
+| Column | Type | Unit | Range | Notes |
+|---|---|---|---|---|
+| `h2_yield_pct` | float | % | 0–100 | H₂ yield vs. theoretical 1244 mL g⁻¹ (pure Al at STP) |
+| `max_rate_ml_min_g` | float | mL·min⁻¹·g⁻¹ | ≥0 | reserved; mostly null |
+| `t80_min` | float | min | ≥0 | time to 80% conversion; reserved; mostly null |
 
 ## Numeric features
 
@@ -18,13 +18,13 @@ Scope is locked by the concept foundation: aqueous Al hydrolysis only.
 | `temperature_k` | float | K | reaction temperature |
 | `alkali_conc_mol_l` | float | mol/L | alkali (NaOH/KOH) concentration; 0 if none |
 | `particle_size_d50_um` | float | µm | median (D50) particle size |
-| `activator_ratio` | float | – | activator-to-Al mass ratio |
+| `activator_ratio` | float | — | activator-to-Al mass ratio |
 
-## Alloy composition (wt%) — `absent=0` vs `unreported=NaN`
+## Alloy composition (wt%) — absent = 0, unreported = NaN
 
 | Column | Type | Unit | Rule |
 |---|---|---|---|
-| `al_wt_pct`, `ga_wt_pct`, `in_wt_pct`, `sn_wt_pct`, `bi_wt_pct`, `mg_wt_pct`, `zn_wt_pct` | float | wt% | **`0` means the element is absent; `NaN` means the study did not report it.** Tree models keep NaN. |
+| `al_wt_pct`, `ga_wt_pct`, `in_wt_pct`, `sn_wt_pct`, `bi_wt_pct`, `mg_wt_pct`, `zn_wt_pct` | float | wt% | **`0` = element absent; `NaN` = study did not report it.** Tree models use native NaN pathways. |
 
 ## Categorical features
 
@@ -36,7 +36,7 @@ Scope is locked by the concept foundation: aqueous Al hydrolysis only.
 | `morphology_flag` | powder, flake, nano, foil |
 | `system_class` | pure_al_alkali, al_alloy, mechanically_activated, liquid_metal_activated, waste_al |
 
-`system_class` is the central analysis axis (real vs. artifact contradiction).
+`system_class` is the central analysis axis (real vs. methodological contradiction).
 
 ## Group key
 
@@ -48,30 +48,27 @@ Scope is locked by the concept foundation: aqueous Al hydrolysis only.
 
 | Column | Notes |
 |---|---|
-| `source_ref` | table/figure reference within the source |
+| `source_ref` | table/figure reference within the source paper |
 | `extractor` | who/what extracted the row |
 | `extraction_date` | ISO date |
 | `extraction_method` | table, webplotdigitizer |
 
-## Quality / heterogeneity
+## Quality / heterogeneity covariates
 
 | Column | Levels / Notes |
 |---|---|
-| `measurement_method` | water_displacement, mass_loss, pressure, gc |
-| `temperature_control` | isothermal_bath, uncontrolled, self_heating |
+| `measurement_method` | `water_displacement`, `other`, `pressure`, `mass_flow`, `gc`; NaN = not reported. `other` covers closed-syringe piston and similar non-classic displacement setups. |
+| `temperature_control` | `isothermal_bath`, `self_heating`. NaN not present (fully covered). Note: the `uncontrolled` category was eliminated after independent-agent re-extraction identified two coding errors (see README). |
 | `vessel_type` | open, closed |
 | `rate_definition` | initial, avg, max |
 | `value_origin` | reported, derived |
-| `quality_tier` | A, B, C (composite quality; enables high-quality-only sensitivity run) |
+| `quality_tier` | A, B, C — composite quality score; enables high-quality-only sensitivity analysis |
 
-## N thresholds
+## Scope (locked)
 
-- Hard floor to model at all: **150 rows**.
-- Target: **~300 rows** (range 300–500) from ~40–80 studies.
-- Any `system_class` with **< 40 rows** is **exploratory-only** (no headline claims).
+Aqueous aluminum–water/alkaline hydrolysis for H₂ only. Out of scope: electrolysis, photocatalysis, non-aqueous routes.
 
-## Current file
+## Source file
 
-`data/curated/fixture_v0.csv` is a **synthetic, schema-conforming fixture** used to develop and
-test the pipeline before real literature extraction (WP1). It is clearly labeled synthetic and
-will be replaced by the real curated dataset.
+`aih2_v1.csv` — 315 yield rows from 31 independent studies, 30 columns per row.
+`rate_extraction.csv` — 76 kinetic rows (activation energies, peak rates, rate constants, t₈₀).

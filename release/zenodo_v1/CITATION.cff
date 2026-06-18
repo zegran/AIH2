@@ -10,7 +10,7 @@ authors:
     given-names: Dogukan
     orcid: "https://orcid.org/0009-0006-5102-8013"
     affiliation: "IPEC, Industrial Project Engineering Consulting, Çankaya, Ankara, Türkiye"
-doi: "PLACEHOLDER — replace with the DOI assigned by Zenodo after upload"
+doi: "10.5281/zenodo.20751918"
 abstract: >
   A provenance-tracked, quality-tiered dataset for hydrogen production by aluminum–water hydrolysis,
   assembled from 31 independent published studies (315 yield rows, 76 kinetic rows). Includes
