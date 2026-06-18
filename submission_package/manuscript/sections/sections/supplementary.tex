@@ -1,0 +1,118 @@
+%% SUPPLEMENTARY MATERIAL — Energy and AI submission
+%% All tables in this section trace to committed analysis artifacts in results/real_v1/
+
+\clearpage
+\appendix
+\section*{Supplementary Material}
+\setcounter{table}{0}
+\renewcommand{\thetable}{SI-\arabic{table}}
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{SI-\arabic{figure}}
+
+\noindent\textbf{Contents:}
+SI-1: Complete 31-study data-source list (regime, row counts, DOI).
+SI-2: Full random-forest permutation importance ranking (all 16 model features).
+Full per-study Arrhenius activation energies ($E_\mathrm{a}$), per-study within-study
+LOSO skill values, and coverage tables are provided in the companion data release (\url{https://doi.org/10.5281/zenodo.20750297}).
+
+%% ============================================================
+\subsection*{Table~SI-1: Complete data-source study list}
+%% Source: tools/citation_coverage.py output; row counts from aih2_v1.csv
+%% ============================================================
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{\textbf{All 31 data-source studies, their physico-chemical regime, row counts,
+and DOIs.} Studies are listed in order of first regime, then alphabetically by citekey.
+``Yield rows'' are condition-level records in the hydrogen-yield dataset; ``kinetic rows''
+are Arrhenius fits or tabulated rates in the separate kinetic table.
+Full condition-range metadata (temperature, concentration, particle-size ranges) are in
+the companion data release.}
+\label{tab:si_sources}
+\begin{tabular}{llccp{5.5cm}}
+\toprule
+Citekey & Regime & Yield & Kinetic & DOI \\
+\midrule
+\multicolumn{5}{l}{\textit{pure\_al\_alkali} (9 studies)} \\
+\citeauthor{deng2010}~\cite{deng2010}          & pure\_al\_alkali & 1 & 1 & 10.1111/j.1551-2916.2010.03969.x \\
+\citeauthor{porciuncula2012}~\cite{porciuncula2012} & pure\_al\_alkali & 120 & 7 & 10.1590/s0104-66322012000200014 \\
+\citeauthor{yavor2013}~\cite{yavor2013}        & pure\_al\_alkali & 3 & 2 & 10.1016/j.ijhydene.2013.09.070 \\
+\citeauthor{wanghq2017}~\cite{wanghq2017}      & pure\_al\_alkali & 2 & 3 & 10.1016/j.energy.2017.05.031 \\
+\citeauthor{wen2018}~\cite{wen2018}            & pure\_al\_alkali & 8 & 5 & 10.1002/er.3955 \\
+\citeauthor{rin2021}~\cite{rin2021}            & pure\_al\_alkali & 9 & 2 & 10.1016/j.ijhydene.2021.06.101 \\
+\citeauthor{prabu2021}~\cite{prabu2021}        & pure\_al\_alkali & 4 & 1 & 10.1002/er.6478 \\
+\citeauthor{trowell2022}~\cite{trowell2022}    & pure\_al\_alkali & 5 & 1 & 10.1039/d2ra01231f \\
+\citeauthor{zhang2024}~\cite{zhang2024}        & pure\_al\_alkali & 10 & 4 & 10.3389/fenrg.2024.1441155 \\
+\midrule
+\multicolumn{5}{l}{\textit{al\_alloy} (3 studies)} \\
+\citeauthor{liuyh2017}~\cite{liuyh2017}        & al\_alloy & 16 & 1 & 10.1016/j.ijhydene.2017.02.205 \\
+\citeauthor{qiao2019}~\cite{qiao2019}          & al\_alloy & 28 & 1 & 10.1016/j.ijhydene.2018.12.124 \\
+\citeauthor{meng2022}~\cite{meng2022}          & al\_alloy & 1 & 1 & 10.1016/j.ijhydene.2022.09.127 \\
+\midrule
+\multicolumn{5}{l}{\textit{mechanically\_activated} (6 studies)} \\
+\citeauthor{xiao2018}~\cite{xiao2018}          & mechanically\_activated & 4 & 2 & 10.1016/j.energy.2018.05.201 \\
+\citeauthor{guan2019}~\cite{guan2019}          & mechanically\_activated & 28 & 2 & 10.1016/j.energy.2019.116107 \\
+\citeauthor{preez2018}~\cite{preez2018}        & mechanically\_activated & 16 & 1 & 10.1016/j.ijhydene.2018.09.133 \\
+\citeauthor{chen2020}~\cite{chen2020}          & mechanically\_activated & 4 & 3 & 10.1016/j.ijhydene.2020.03.027 \\
+\citeauthor{xiao2020}~\cite{xiao2020}          & mechanically\_activated & 7 & 7 & 10.1016/j.jallcom.2019.152800 \\
+\citeauthor{davies2022mat}~\cite{davies2022mat}& mechanically\_activated & 10 & 1 & 10.3390/ma15031197 \\
+\midrule
+\multicolumn{5}{l}{\textit{liquid\_metal\_activated} (5 studies)} \\
+\citeauthor{ilyukhina2012}~\cite{ilyukhina2012}& liquid\_metal\_activated & 5 & 2 & 10.1016/j.ijhydene.2012.02.175 \\
+\citeauthor{dudoladov2016}~\cite{dudoladov2016}& liquid\_metal\_activated & 6 & 5 & 10.1016/j.ijhydene.2015.11.122 \\
+\citeauthor{fischman2020}~\cite{fischman2020}  & liquid\_metal\_activated & 1 & 0 & 10.1016/j.ijhydene.2020.04.161 \\
+\citeauthor{lu2017}~\cite{lu2017}              & liquid\_metal\_activated & 1 & 1 & 10.1039/c7ra01839h \\
+\citeauthor{jayaraman2015}~\cite{jayaraman2015}& liquid\_metal\_activated & 6 & 2 & 10.4236/epe.2015.79041 \\
+\midrule
+\multicolumn{5}{l}{\textit{waste\_al} (8 studies)} \\
+\citeauthor{ho2016}~\cite{ho2016}              & waste\_al & 1 & 2 & 10.1016/j.ijhydene.2015.11.083 \\
+\citeauthor{gupta2025}~\cite{gupta2025}        & waste\_al & 1 & 4 & 10.1007/s40243-024-00287-2 \\
+\citeauthor{mezulis2023}~\cite{mezulis2023}    & waste\_al & 1 & 2 & 10.3390/en16145554 \\
+\citeauthor{martinezv2026}~\cite{martinezv2026}& waste\_al & 3 & 4 & 10.3390/hydrogen7020055 \\
+\citeauthor{knoks2025}~\cite{knoks2025}        & waste\_al & 4 & 4 & 10.3390/app15052640 \\
+\citeauthor{buryakov2023met}~\cite{buryakov2023met}& waste\_al & 6 & 3 & 10.3390/met13020185 \\
+\citeauthor{urbonav2024}~\cite{urbonav2024}    & waste\_al & 2 & 1 & 10.3390/ma17112637 \\
+\citeauthor{fadhilah2023}~\cite{fadhilah2023}  & waste\_al & 2 & 1 & 10.9767/bcrec.20041 \\
+\midrule
+\textbf{Total} & & \textbf{315} & \textbf{76} & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%% ============================================================
+\subsection*{Table~SI-2: Full random-forest permutation importance}
+%% Source: results/real_v1/tables/permutation_importance.csv
+%% In-sample RF fit on 315 yield rows; descriptive only (see permutation importance section)
+%% ============================================================
+
+\begin{table}[htbp]
+\centering
+\caption{\textbf{Random-forest permutation importance for all 16 model features.}
+In-sample fit on 315 yield rows; used descriptively only (grouped $R^2 < 0$, so the
+model is not a validated predictor). Feature names follow the dataset schema.
+Source: \texttt{results/real\_v1/tables/permutation\_importance.csv}.}
+\label{tab:si_perm_imp}
+\begin{tabular}{llr}
+\toprule
+Rank & Feature & Permutation importance \\
+\midrule
+1  & \texttt{particle\_size\_d50\_um} & 0.597 \\
+2  & \texttt{in\_wt\_pct} (indium loading)  & 0.488 \\
+3  & \texttt{temperature\_k}               & 0.269 \\
+4  & \texttt{ga\_wt\_pct} (gallium loading) & 0.240 \\
+5  & \texttt{al\_wt\_pct} (aluminium purity)& 0.139 \\
+6  & \texttt{sn\_wt\_pct} (tin loading)     & 0.076 \\
+7  & \texttt{activator\_ratio}              & 0.035 \\
+8  & \texttt{morphology\_flag}              & 0.035 \\
+9  & \texttt{bi\_wt\_pct} (bismuth loading) & 0.034 \\
+10 & \texttt{system\_class}                 & 0.032 \\
+11 & \texttt{mg\_wt\_pct} (magnesium loading)& 0.023 \\
+12 & \texttt{water\_type}                   & 0.017 \\
+13 & \texttt{zn\_wt\_pct} (zinc loading)    & 0.011 \\
+14 & \texttt{alkali\_conc\_mol\_l}           & 0.009 \\
+15 & \texttt{alkali\_type}                  & 0.004 \\
+16 & \texttt{activation\_method}            & 0.002 \\
+\bottomrule
+\end{tabular}
+\end{table}
